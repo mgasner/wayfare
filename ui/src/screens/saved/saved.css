@@ -1,0 +1,15 @@
+.saved-sub {
+  font-size: 14px;
+  margin-top: 2px;
+}
+.saved-input,
+.where-input {
+  padding: 4px 12px 4px;
+}
+.empty p {
+  margin-top: 6px;
+}
+.empty a {
+  color: var(--accent);
+  font-weight: 600;
+}
