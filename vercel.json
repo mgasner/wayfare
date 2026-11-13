@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/api/:file/:export", "destination": "/api/route?file=:file&export=:export" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}

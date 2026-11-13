@@ -1,0 +1,4 @@
+# Seven days, matching the org's supply-chain gate.
+minimumReleaseAge: 10080
+onlyBuiltDependencies:
+  - esbuild
