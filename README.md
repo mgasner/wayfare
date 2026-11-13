@@ -16,7 +16,7 @@ The database is one SQLite file per environment in R2 (`prod.db`, `dev.db`; `DB_
 
 - Schema changes: a new `db/migrations/NNNN_name.sql`, plus the columns in `server/tables.ts` (a test compares them).
 - City data: `data/cities/<city>/{city.json,areas.json,places/<id>.json}`, shaped by `shared/research.ts`. Seeding upserts and never deletes.
-- `DEV_USER` signs every request in as that email.
+- Sign-in: Google OAuth in `api/auth/{login,callback,logout}.ts`; the session is an HMAC-signed cookie with the user id (no session table). The refresh token for Calendar is in `calendar_link.credentials` (`{refresh_token, scope, sub}`, provider `google`, ref = email). Off Vercel, `DEV_USER` signs in requests that have no session.
 
 - `server/<file>.ts` exports `query(...)` and `mutation(...)` from `lib/nexus.ts`, served at `/api/<file>/<export>`. Add each new file to `server/index.ts`.
 - `server/` runs in the nexus-sdk server runtime's subset; `test/runtime-imports.test.ts` fails on any Node built-in it reaches.
