@@ -13,7 +13,7 @@ export function SignIn() {
   const next = location.pathname + (query ? `?${query}` : "");
   return (
     <section className="sign-in">
-      <h1>Dining planner</h1>
+      <h1>Wayfare</h1>
       <p>Plan where to eat on your trip, on your phone and your laptop.</p>
       <a className="sign-in-button" href={`/api/auth/login?next=${encodeURIComponent(next)}`}>
         Sign in with Google

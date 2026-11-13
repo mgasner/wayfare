@@ -1,4 +1,4 @@
-# dining-planner
+# wayfare
 
 A city dining planner, piloted on Lima. Plan: https://app.indent.com/reports/01a1d244-d12d-7998-a0e6-0439927ce1b1
 
@@ -13,7 +13,7 @@ bin/sql "select id, name, kind from place"   # add --json for JSON
 bin/load-overture lima # Overture eat-and-drink places as uncurated rows; matches curated ones
 ```
 
-The database is one SQLite file per environment in R2 (`prod.db`, `dev.db`; `DB_KEY` defaults by `VERCEL_ENV`), or a local file with `DB_FILE`. Each function instance keeps a copy in `/tmp`, revalidates it once per request, and uploads it with `If-Match` after each write; on a conflict it downloads again and replays the write, up to 5 times. Vercel builds run `bin/migrate` and `bin/seed` first (`pnpm vercel-build`).
+The database is one SQLite file per environment in R2 (`prod.db`, `dev.db`; `DB_KEY` defaults by `VERCEL_ENV`), or a local file with `DB_FILE`. Each function instance keeps a copy in `/tmp` and revalidates it once per request. Writes in a request (an API call, a cron run) apply to the copy and upload once when the request ends, with `If-Match`; on a conflict it downloads again and replays the request's writes in order, up to 5 uploads. Outside a request (`bin/migrate`, `bin/seed`) each write uploads at once. Vercel builds run `bin/migrate` and `bin/seed` first (`pnpm vercel-build`).
 
 - Schema changes: a new `db/migrations/NNNN_name.sql`, plus the columns in `server/tables.ts` (a test compares them).
 - City data: `data/cities/<city>/{city.json,areas.json,places/<id>.json}`, shaped by `shared/research.ts`. Seeding upserts and never deletes.

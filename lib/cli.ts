@@ -32,7 +32,7 @@ async function sqlCommand(args: string[]) {
   if (!path) {
     const got = await r2StoreFromEnv().get();
     if (got.status !== "ok") throw new Error(`No database at r2 ${dbKey()}`);
-    path = `/tmp/dining-planner/sql-${process.pid}-${dbKey()}`;
+    path = `/tmp/wayfare/sql-${process.pid}-${dbKey()}`;
     mkdirSync(resolve(path, ".."), { recursive: true });
     writeFileSync(path, got.body);
   }

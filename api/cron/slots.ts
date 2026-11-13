@@ -1,6 +1,6 @@
 // Vercel Cron, every 15 minutes: live slot reads for places on trips in the next 14 days.
 import { ensureDriver } from "../../lib/auth.js";
-import { inRequest } from "../../lib/db.js";
+import { serveInRequest } from "../../lib/db.js";
 import { blockedChannelsFromEnv, setBlockedChannels } from "../../server/adapters/slots.js";
 import { refreshPlaceSlots, slotTargets } from "../../server/slots.js";
 
@@ -17,7 +17,7 @@ export async function GET(request: Request): Promise<Response> {
   }
   ensureDriver();
   setBlockedChannels(blockedChannelsFromEnv(process.env.BLOCK_CHANNELS));
-  return inRequest(async () => {
+  return serveInRequest(async () => {
     const targets = await slotTargets((tz) => localDate(tz));
     const steps: Record<string, number> = {};
     const queue = [...targets];

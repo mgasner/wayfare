@@ -1,6 +1,6 @@
 {
-  "name": "Dining planner",
-  "short_name": "Dining",
+  "name": "Wayfare",
+  "short_name": "Wayfare",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
