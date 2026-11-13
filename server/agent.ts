@@ -137,3 +137,74 @@ export const expireFacts = mutation({
     return { deleted: results.reduce((n, r) => n + r.changes, 0) };
   },
 });
+
+const SharedView = z.object({ value: z.unknown(), source: z.string(), checked_at: Instant });
+
+/**
+ * User-reported facts for the weekly promotion job, oldest first: each with the newest shared fact for the same
+ * field (research or live) and how many other users reported the same value. Reporters appear only as `user:<id>`.
+ */
+export const listUserFacts = query({
+  input: z.object({ city: z.string().optional(), limit: z.number().int().min(1).max(1000).optional() }),
+  output: z.object({
+    checked_at: Instant,
+    facts: z.array(
+      z.object({
+        place: z.string(),
+        place_name: z.string(),
+        city: z.string(),
+        field: FactField,
+        value: z.unknown(),
+        source: z.string(),
+        checked_at: Instant,
+        shared: SharedView.nullable(),
+        agreeing_reporters: z.number().int(),
+      }),
+    ),
+  }),
+  async handler({ city, limit }, context) {
+    requireAgent(context);
+    const Row = z.object({
+      place: z.string(),
+      place_name: z.string(),
+      city: z.string(),
+      field: FactField,
+      value: z.string(),
+      source: z.string(),
+      checked_at: z.string(),
+      shared_value: z.string().nullable(),
+      shared_source: z.string().nullable(),
+      shared_checked_at: z.string().nullable(),
+      agreeing: z.number(),
+    });
+    const [{ rows }] = await db.execute(sql(Row)`
+      SELECT f.place, p.name AS place_name, p.city, f.field, f.value, f.source, f.checked_at,
+        s.value AS shared_value, s.source AS shared_source, s.checked_at AS shared_checked_at,
+        (SELECT count(*) FROM fact o WHERE o.place = f.place AND o.field = f.field AND o.source LIKE 'user:%'
+           AND o.source <> f.source AND o.value = f.value) AS agreeing
+      FROM fact f JOIN place p ON p.id = f.place
+      LEFT JOIN fact s ON s.rowid = (
+        SELECT x.rowid FROM fact x WHERE x.place = f.place AND x.field = f.field AND x.source NOT LIKE 'user:%'
+        ORDER BY x.checked_at DESC LIMIT 1)
+      WHERE f.source LIKE 'user:%' AND (${city ?? null} IS NULL OR p.city = ${city ?? null})
+      ORDER BY f.checked_at, f.place, f.field
+      LIMIT ${limit ?? 500}`);
+    return {
+      checked_at: new Date().toISOString(),
+      facts: rows.map((r) => ({
+        place: r.place,
+        place_name: r.place_name,
+        city: r.city,
+        field: r.field,
+        value: JSON.parse(r.value) as unknown,
+        source: r.source,
+        checked_at: r.checked_at,
+        shared:
+          r.shared_value !== null && r.shared_source && r.shared_checked_at
+            ? { value: JSON.parse(r.shared_value) as unknown, source: r.shared_source, checked_at: r.shared_checked_at }
+            : null,
+        agreeing_reporters: r.agreeing,
+      })),
+    };
+  },
+});

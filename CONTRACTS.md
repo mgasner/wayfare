@@ -30,6 +30,9 @@ Plan: https://app.indent.com/reports/01a1d244-d12d-7998-a0e6-0439927ce1b1 (local
 | `calendar.*` | | see C's PR | | C |
 | `agent.recordFacts` | mutation | `{ facts: { place, field, value, source?, checked_at? }[] }` (source `research` \| `overture` \| `live:<channel>`) | `{ written, unchanged, unknown_places }` | B |
 | `agent.listStale` | query | `{ city, fields?, older_than_days?, only_on_trip?, limit? }` | `{ checked_at, places: { id, name, kind, area, on_trip, stale: { field, checked_at \| null }[] }[] }` | B |
+| `facts.report` | mutation | `{ place, field, value }` (value in the field's shape, `shared/facts.ts`) | `Fact` with source `user:<id>`; only its author sees it | B |
+| `facts.retract` | mutation | `{ place, field }` | `{ ok: true }` | B |
+| `agent.listUserFacts` | query | `{ city?, limit? }` | `{ checked_at, facts: { place, place_name, city, field, value, source, checked_at, shared, agreeing_reporters }[] }` | B |
 | `agent.expireFacts` | mutation | `{ facts?: { place, field, source }[], user_facts_before? }` | `{ deleted }` | B |
 
 `places.refreshSlots` returns the live read per date (and per service for Meitre), else the last good one with its old `checked_at`; a date neither could answer has no entry. Reads from the last minute are returned without a new call.
