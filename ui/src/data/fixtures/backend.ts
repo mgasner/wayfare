@@ -316,7 +316,12 @@ function interpret({ text, context }: In<"input.interpret">): InterpretResult {
     const wd = WEEKDAYS.find(([re]) => re.test(s));
     let date = context.date ?? trip.start_date;
     if (wd) {
-      for (let d = new Date(`${trip.start_date}T12:00:00Z`); d.toISOString().slice(0, 10) <= trip.end_date; d.setUTCDate(d.getUTCDate() + 1)) {
+      // Same rule as the server: a bare weekday is the next one after today, unless the input says today.
+      const today = context.today ?? new Date().toLocaleDateString("en-CA");
+      let start = new Date(`${today}T12:00:00Z`);
+      if (!/\b(today|tonight|hoy|esta noche)\b/.test(s)) start.setUTCDate(start.getUTCDate() + 1);
+      if (start.toISOString().slice(0, 10) < trip.start_date) start = new Date(`${trip.start_date}T12:00:00Z`);
+      for (let d = start; d.toISOString().slice(0, 10) <= trip.end_date; d.setUTCDate(d.getUTCDate() + 1)) {
         if (d.getUTCDay() === wd[1]) {
           date = d.toISOString().slice(0, 10);
           break;

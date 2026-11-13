@@ -23,6 +23,7 @@ const SYSTEM = `You turn what a traveler says or types into changes to their din
 - set_meal: a meal at a place on a date. Booked, reserved or "we have a table" is confirmed; asked or requested is requested; "we'd like to go" is want. Slot is lunch before 16:00, dinner after, unless said.
 - update_trip: changes to the trip's dates, party size, budget or diet.
 - Dates must be within trip_days; resolve weekdays and "tomorrow" against today and trip_days.
+- A bare weekday ("el viernes", "on Friday") is the next one after today, as listed in next_weekday, even when today is that weekday. It means today only when the input says so ("today", "hoy", "tonight", "esta noche").
 - For a place in known_places, give its id. Otherwise id null and the name spelled the way the place spells it.
 - When the input could mean several things, pick the most likely. When nothing in it changes the plan, return no actions.`;
 
@@ -46,6 +47,48 @@ function days(from: string, to: string): string[] {
 
 function localDate(tz: string, at = new Date()): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit" }).format(at);
+}
+
+function addDays(date: string, n: number): string {
+  const d = new Date(`${date}T12:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + n);
+  return d.toISOString().slice(0, 10);
+}
+
+/**
+ * The speaker's today: their device's date when it is within a day of the city's (time zones differ),
+ * else the city's.
+ */
+export function speakerToday(given: string | undefined, tz: string, at = new Date()): string {
+  const city = localDate(tz, at);
+  return given && [addDays(city, -1), city, addDays(city, 1)].includes(given) ? given : city;
+}
+
+/** Each weekday's next date strictly after `today`. */
+export function nextWeekdays(today: string): Record<string, string> {
+  return Object.fromEntries([1, 2, 3, 4, 5, 6, 7].map((n) => addDays(today, n)).map((d) => [weekday(d), d]));
+}
+
+const WEEKDAY_WORDS: Record<string, RegExp> = {
+  Sunday: /\b(sunday|domingo)\b/,
+  Monday: /\b(monday|lunes)\b/,
+  Tuesday: /\b(tuesday|martes)\b/,
+  Wednesday: /\b(wednesday|miercoles)\b/,
+  Thursday: /\b(thursday|jueves)\b/,
+  Friday: /\b(friday|viernes)\b/,
+  Saturday: /\b(saturday|sabado)\b/,
+};
+const TODAY_WORDS = /\b(today|tonight|this (morning|afternoon|evening)|hoy|esta (noche|tarde|manana))\b/;
+
+/**
+ * Backstop for the prompt rule: a date of today for input that names today's weekday without saying "today"
+ * moves to the same weekday next week.
+ */
+export function bareWeekdayDate(date: string, text: string, today: string): string {
+  if (date !== today) return date;
+  const said = text.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+  if (TODAY_WORDS.test(said)) return date;
+  return WEEKDAY_WORDS[weekday(today)]!.test(said) ? addDays(today, 7) : date;
 }
 
 function slug(name: string): string {
@@ -111,8 +154,12 @@ async function load(owner: string, context: InputContext): Promise<Loaded> {
 
 function prompt(text: string, context: InputContext, l: Loaded): string {
   const trip = l.trip;
+  const today = speakerToday(context.today, l.tz);
   const ctx = {
-    today: localDate(l.tz),
+    today,
+    today_weekday: weekday(today),
+    city_time_zone: l.tz,
+    next_weekday: nextWeekdays(today),
     screen: context.screen,
     date_in_view: context.date ?? null,
     trip: trip ? { start_date: trip.start_date, end_date: trip.end_date, party: trip.party, base: JSON.parse(trip.base).name } : null,
@@ -392,7 +439,10 @@ export async function interpretText(
   }).catch((error: unknown) => {
     throw toolError("unavailable", "Could not interpret that", { cause: error });
   });
-  const actions = parseActions(call.value);
+  const today = speakerToday(context.today, loaded.tz);
+  const actions = parseActions(call.value).map((a) =>
+    a.type === "add_anchor" || a.type === "set_meal" ? { ...a, date: bareWeekdayDate(a.date, text, today) } : a,
+  );
   return apply(await plan(actions, loaded, null), loaded, { interaction: call.interaction, media: options.media ?? null });
 }
 
