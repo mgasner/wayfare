@@ -1,0 +1,11 @@
+{
+  "id": "isolina",
+  "area": "barranco",
+  "name": "Isolina",
+  "kind": "walk_in",
+  "lat": -12.1462,
+  "lng": -77.0207,
+  "channels": [{ "type": "walk_in" }],
+  "summary": "Criollo taberna with large plates meant for sharing.",
+  "facts": [{ "field": "status", "value": "open", "checked_at": "2026-11-12T22:00:00Z" }]
+}

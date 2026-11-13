@@ -1,0 +1,5 @@
+[
+  { "id": "miraflores", "name": "Miraflores", "lat": -12.1211, "lng": -77.0297, "brief": "Clifftop parks over the Pacific, hotels and the densest cluster of restaurants." },
+  { "id": "barranco", "name": "Barranco", "lat": -12.1491, "lng": -77.0218, "brief": "The bohemian district: galleries, bars and several top tasting menus." },
+  { "id": "san-isidro", "name": "San Isidro", "lat": -12.0975, "lng": -77.0365, "brief": "Business district with an olive grove park and quieter dining rooms." }
+]
