@@ -28,6 +28,8 @@ export type StepContext = {
   privately(fields: { [key: string]: Json }): void;
   /** When the value was true, for a value read from storage; default: now. */
   checkedAt(at: string): void;
+  /** The `media` row (a voice clip, a screenshot) this step sent, for interaction_private.media. */
+  media(id: string): void;
 };
 
 const EMPTY = Symbol("empty");
@@ -134,6 +136,7 @@ type Row = {
   cost: number | null;
   notes: { [key: string]: Json };
   private: { [key: string]: Json };
+  media: string | null;
 };
 
 /**
@@ -165,6 +168,7 @@ export async function attempt<R extends readonly unknown[]>(
       cost: null,
       notes: {},
       private: {},
+      media: null,
     };
     let checkedAt = startedAt.toISOString();
     const ctx: StepContext = {
@@ -179,6 +183,10 @@ export async function attempt<R extends readonly unknown[]>(
       },
       checkedAt: (at) => {
         checkedAt = at;
+      },
+      media: (id) => {
+        if (!spec.owner) throw new Error(`${spec.channel} ${spec.kind}: media needs an owner`);
+        row.media = id;
       },
     };
     try {
@@ -219,8 +227,10 @@ function statements(spec: AttemptSpec, row: Row, root: string): Statement<never>
                 ${Object.keys(request).length ? JSON.stringify(request) : null})`,
   ];
   const payload = row.id === root ? { ...spec.request?.private, ...row.private } : row.private;
-  if (Object.keys(payload).length) {
-    out.push(sql`INSERT INTO interaction_private (interaction, owner, payload) VALUES (${row.id}, ${spec.owner ?? null}, ${JSON.stringify(payload)})`);
+  if (Object.keys(payload).length || row.media) {
+    out.push(sql`
+      INSERT INTO interaction_private (interaction, owner, payload, media)
+      VALUES (${row.id}, ${spec.owner ?? null}, ${JSON.stringify(payload)}, ${row.media})`);
   }
   return out;
 }

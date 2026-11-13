@@ -104,6 +104,27 @@ describe("attempt", () => {
     expect(JSON.parse(priv!.payload as string)).toEqual({ media: "m1", transcript: "el viernes estamos en Barranco, ten to six" });
   });
 
+  it("links a step's media row in interaction_private", async () => {
+    await attempt({ kind: "transcribe", channel: "openai", owner }, [
+      ["live", (ctx) => {
+        ctx.media("clip-1");
+        throw new Error("upstream 500");
+      }],
+      ["retry", (ctx) => {
+        ctx.media("clip-1");
+        ctx.privately({ transcript: "hola" });
+        return "hola";
+      }],
+    ]);
+    const rows = await interactions();
+    const privs = await privates();
+    expect(privs.map((p) => [p.interaction, p.media, JSON.parse(p.payload as string)])).toEqual([
+      [rows[0]!.id, "clip-1", {}],
+      [rows[1]!.id, "clip-1", { transcript: "hola" }],
+    ]);
+    await expect(attempt({ kind: "x", channel: "y" }, [["live", (ctx) => (ctx.media("m"), 1)]])).rejects.toThrow();
+  });
+
   it("refuses private data without an owner", async () => {
     await expect(
       attempt({ kind: "x", channel: "y", request: { private: { phone: "+51 987 654 321" } } }, [["live", () => 1]]),
