@@ -1,0 +1,32 @@
+.sign-in {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.sign-in .theme-strip {
+  margin-top: 24dvh;
+}
+.sign-in-body {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 20px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sign-in-kicker {
+  color: var(--accent);
+}
+.sign-in h1 {
+  font-size: 44px;
+}
+.sign-in p {
+  font-size: 15.5px;
+}
+.sign-in-note {
+  font-size: 13px !important;
+}
+.sign-in-error {
+  color: var(--danger);
+}
