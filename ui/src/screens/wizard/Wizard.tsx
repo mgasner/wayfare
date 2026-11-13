@@ -31,7 +31,19 @@ import { PagerDots, SwipePager } from "../../components/SwipePager";
 import { useToast } from "../../components/Toast";
 import { hours, priceUsd } from "../../data/facts";
 import { estimateMinutes, isWalk } from "../../data/geo";
-import { useCity, useCreateTrip, useCurrentTripId, usePlaces, useStayMinutes, useStaySearch, useTrip, useUpdateTrip } from "../../data/hooks";
+import {
+  useCity,
+  useClearPassport,
+  useCreateTrip,
+  useCurrentTripId,
+  useMe,
+  usePlaces,
+  useSetPassport,
+  useStayMinutes,
+  useStaySearch,
+  useTrip,
+  useUpdateTrip,
+} from "../../data/hooks";
 import { dayLabel, dayOfMonth, isSunday, monthLong, rangeLabel, toDate, weeksOfMonth } from "../../lib/dates";
 import { useLocation, useNavigate } from "../../lib/router";
 import { ThemeGlyph, ThemeStrip } from "../../theme/motifs";
@@ -680,9 +692,18 @@ function BudgetDiet({ d, set, places }: PageProps) {
 
 // ---------- 5. Booking profile ----------
 
+const PASSPORT_RE = /^[A-Z0-9]{6,12}$/;
+const cleanPassport = (s: string) => s.replace(/[\s-]/g, "").toUpperCase();
+
 function BookingProfile({ d, set }: PageProps) {
   const [passport, setPassport] = useState("");
   const [open, setOpen] = useState(false);
+  const me = useMe();
+  const save = useSetPassport();
+  const clear = useClearPassport();
+  const toast = useToast();
+  const onFile = me.data?.passport_on_file ?? false;
+  const valid = PASSPORT_RE.test(cleanPassport(passport));
   return (
     <>
       <Kicker icon={<IdCard size={15} />}>Booking profile</Kicker>
@@ -695,10 +716,18 @@ function BookingProfile({ d, set }: PageProps) {
           </span>
           <div className="grow">
             <div className="wiz-strong">Passport number</div>
-            <div className="muted wiz-small">{d.passport_on_file ? "On file" : "Optional. Needed by some booking forms."}</div>
+            <div className="muted wiz-small">
+              {onFile ? (
+                <span className="row on-file">
+                  <Lock size={12} /> On file
+                </span>
+              ) : (
+                "Optional. Needed by some booking forms."
+              )}
+            </div>
           </div>
-          {d.passport_on_file ? (
-            <Button size="sm" onClick={() => set((x) => ({ ...x, passport_on_file: false }))}>
+          {onFile ? (
+            <Button size="sm" disabled={clear.isPending} onClick={() => clear.mutate(undefined, { onError: () => toast({ text: "Could not remove the passport" }) })}>
               Remove
             </Button>
           ) : (
@@ -707,19 +736,35 @@ function BookingProfile({ d, set }: PageProps) {
             </Button>
           )}
         </div>
-        {open && !d.passport_on_file && (
+        {open && !onFile && (
           <form
             className="field"
             onSubmit={(e) => {
               e.preventDefault();
-              if (passport.trim().length < 5) return;
-              set((x) => ({ ...x, passport_on_file: true }));
-              setPassport("");
-              setOpen(false);
+              if (!valid) return;
+              save.mutate(
+                { number: cleanPassport(passport) },
+                {
+                  onSuccess: () => {
+                    setPassport("");
+                    setOpen(false);
+                  },
+                  onError: () => toast({ text: "Could not save the passport" }),
+                },
+              );
             }}
           >
-            <input autoFocus value={passport} onChange={(e) => setPassport(e.target.value.toUpperCase())} placeholder="Passport number" autoComplete="off" inputMode="text" />
-            <Button type="submit" size="sm" variant="primary" disabled={passport.trim().length < 5}>
+            <input
+              autoFocus
+              value={passport}
+              onChange={(e) => setPassport(e.target.value.toUpperCase())}
+              placeholder="Passport number"
+              aria-label="Passport number"
+              autoComplete="off"
+              spellCheck={false}
+              inputMode="text"
+            />
+            <Button type="submit" size="sm" variant="primary" disabled={!valid || save.isPending}>
               Save
             </Button>
           </form>
@@ -759,8 +804,8 @@ function BookingProfile({ d, set }: PageProps) {
 
 // ---------- 6. Summary ----------
 
-function bookingLine(d: Draft): { main: string; sub: string; warn: boolean } {
-  const missing = [!d.passport_on_file && "passport not added", d.credits_usd <= 0 && "no credits yet"].filter(Boolean) as string[];
+function bookingLine(d: Draft, passportOnFile: boolean): { main: string; sub: string; warn: boolean } {
+  const missing = [!passportOnFile && "passport not added", d.credits_usd <= 0 && "no credits yet"].filter(Boolean) as string[];
   return {
     main: d.whatsapp_fallback ? "WhatsApp fallback on" : "WhatsApp fallback off",
     sub: missing.length ? missing.join(" · ").replace(/^./, (c) => c.toUpperCase()) : `Passport on file · US$${d.credits_usd} credits`,
@@ -773,7 +818,8 @@ function SummaryLines({ d, areas, stayMinutes, onOpen, active, compact }: PagePr
     .filter((a) => a.lat !== null && a.lng !== null)
     .map((a) => ({ a, m: areaTime(d.base, a, stayMinutes).mins }))
     .sort((x, y) => y.m - x.m)[0];
-  const b = bookingLine(d);
+  const me = useMe();
+  const b = bookingLine(d, me.data?.passport_on_file ?? false);
   const lines: { page: number; icon: ReactNode; k: string; v: string; sub?: ReactNode; warn?: boolean }[] = [
     {
       page: 0,

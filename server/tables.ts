@@ -181,6 +181,12 @@ export const inputUndo = table(
   { key: ["id"], people: ["ops"] },
 );
 
+export const userPrivate = table(
+  "user_private",
+  z.object({ owner: text, passport: maybeText, updated_at: text }),
+  { key: ["owner"], people: ["passport"] },
+);
+
 export const tables = [
   city,
   area,
@@ -197,6 +203,7 @@ export const tables = [
   media,
   calendarLink,
   inputUndo,
+  userPrivate,
 ];
 
 // Rows read as the records in shared/records.ts: JSON columns parsed, integer flags as booleans.

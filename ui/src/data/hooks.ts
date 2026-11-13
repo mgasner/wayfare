@@ -100,6 +100,17 @@ export function useUpdateTrip() {
   return useMutation({ mutationFn: (input: In<"trips.update">) => api("trips.update", input), onSuccess: () => invalidate(qc, "trips.list", "trips.get") });
 }
 
+/** Sends the passport number to user_private; the app only ever reads back whether one is on file. */
+export function useSetPassport() {
+  const qc = useQueryClient();
+  return useMutation({ mutationFn: (input: In<"me.setPassport">) => api("me.setPassport", input), onSuccess: () => invalidate(qc, "me.get") });
+}
+
+export function useClearPassport() {
+  const qc = useQueryClient();
+  return useMutation({ mutationFn: () => api("me.clearPassport", {}), onSuccess: () => invalidate(qc, "me.get") });
+}
+
 export function useSetMeal() {
   const qc = useQueryClient();
   return useMutation({ mutationFn: (input: In<"meals.set">) => api("meals.set", input), onSuccess: () => invalidate(qc, "trips.get", "anchors.conflicts") });

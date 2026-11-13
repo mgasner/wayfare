@@ -16,7 +16,6 @@ export interface Draft {
   budget_usd: number;
   currency: "USD" | "PEN";
   diet: string[];
-  passport_on_file: boolean;
   credits_usd: number;
   whatsapp_fallback: boolean;
 }
@@ -34,7 +33,6 @@ export const LIMA_DEFAULTS: Draft = {
   budget_usd: 1800,
   currency: "USD",
   diet: [],
-  passport_on_file: false,
   credits_usd: 0,
   whatsapp_fallback: true,
 };
@@ -85,7 +83,7 @@ export function toTripInput(d: Draft): TripInput {
     appetite: { tastings: d.tastings, sit_down: d.sit_down, lunch_main: d.lunch_main },
     budget: { per_person: d.budget_usd, currency: "USD" },
     diet: d.diet,
-    booking: { passport_on_file: d.passport_on_file, credits_usd: d.credits_usd, whatsapp_fallback: d.whatsapp_fallback },
+    booking: { credits_usd: d.credits_usd, whatsapp_fallback: d.whatsapp_fallback },
     refresh: "standard",
   };
 }
@@ -103,7 +101,6 @@ export function fromTrip(t: Trip): Draft {
     lunch_main: t.appetite?.lunch_main ?? LIMA_DEFAULTS.lunch_main,
     budget_usd: t.budget?.per_person ?? LIMA_DEFAULTS.budget_usd,
     diet: t.diet ?? [],
-    passport_on_file: t.booking?.passport_on_file ?? false,
     credits_usd: t.booking?.credits_usd ?? 0,
     whatsapp_fallback: t.booking?.whatsapp_fallback ?? true,
   };
