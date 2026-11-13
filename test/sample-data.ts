@@ -19,6 +19,16 @@ export async function sampleData(database: FileDatabase) {
   await attempt({ kind: "place.lookup", channel: "google.places", place: "la-mar-cebicheria", request: { public: { sku: "places.details.essentials" } } }, [
     ["live", () => "ChIJ"],
   ]);
+  // Steps that read our own data under a provider's channel: no call, no cost.
+  await attempt({ kind: "route.matrix", channel: "google.routes", request: { public: { city: "lima" } } }, [["estimate", () => [[12]]]]);
+  await attempt({ kind: "place.lookup", channel: "google.places", place: "isolina", request: { public: { city: "lima" } } }, [
+    ["known", () => "isolina"],
+  ]);
+  await attempt({ kind: "place.lookup", channel: "google.places", request: { public: { city: "lima" } } }, [
+    ["known", () => empty],
+    ["google", fail("error")],
+    ["area", () => "barranco"],
+  ]);
   await database.run((s) =>
     s.prepare("UPDATE fact SET checked_at = '2026-10-01T00:00:00Z' WHERE place = 'la-mar-cebicheria' AND field = 'hours'").run(),
   );

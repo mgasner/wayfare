@@ -6,11 +6,14 @@ How the interaction log reads:
 
 - One `attempt()` writes one `interaction` row per ladder step it tried. The first step's row has `parent` null; the later steps name it in `parent`. So `coalesce(parent, id)` groups the rows of one attempt.
 - `fallback` is the step that row tried (`live`, `last_good`, `unknown`, ...). The ladder stops at the first step whose `outcome` is `ok`, so that row's `fallback` is the step that produced the value. An attempt with no `ok` row produced nothing.
+- Only `live` and `google` steps call a provider. `last_good`, `unknown`, `estimate` (Routes' distance estimate), `known` and `area` (geocoding from our tables) and `places` (stays from our tables) read our own data, so the call and cost queries leave them out. A `live` row with outcome `blocked` was refused before or by the provider (`BLOCK_CHANNELS`, the per-person slot read cap, a 403).
 - Times are UTC ISO strings, and days below are UTC days.
 - Calls with no `place` put `city` in `request` when they know it, for the cost query.
 - Write conflicts on the database file (412 on upload) are in the function logs as `db.conflict`, not in this file.
 
 ## Failure rate by channel and day
+
+Provider calls only.
 
 ```sql
 SELECT substr(at, 1, 10) AS day, channel, count(*) AS calls,
@@ -18,6 +21,7 @@ SELECT substr(at, 1, 10) AS day, channel, count(*) AS calls,
   sum(outcome = 'blocked') AS blocked, sum(outcome = 'empty') AS empty,
   round(100.0 * sum(outcome IN ('error', 'timeout', 'blocked')) / count(*), 1) AS failure_pct
 FROM interaction
+WHERE fallback IN ('live', 'google')
 GROUP BY day, channel
 ORDER BY day DESC, failure_pct DESC
 ```
@@ -100,7 +104,7 @@ ORDER BY age_days DESC
 
 ## Model and API cost per city
 
-`unpriced` counts calls with no `cost_usd`, such as Google calls that record a `sku` in `request` for pricing later.
+Provider calls only. `unpriced` counts calls with no `cost_usd`, such as Google calls that record a `sku` in `request` for pricing later.
 
 ```sql
 SELECT coalesce(place.city, json_extract(interaction.request, '$.city'), '(none)') AS city,
@@ -108,7 +112,9 @@ SELECT coalesce(place.city, json_extract(interaction.request, '$.city'), '(none)
   round(sum(coalesce(interaction.cost_usd, 0)), 4) AS cost_usd,
   sum(interaction.cost_usd IS NULL) AS unpriced
 FROM interaction LEFT JOIN place ON place.id = interaction.place
-GROUP BY city, interaction.channel, month
+WHERE interaction.fallback IN ('live', 'google')
+-- By position: a bare "city" here would group by place.city, splitting calls that carry the city in request.
+GROUP BY 1, 2, 3
 ORDER BY month DESC, cost_usd DESC
 ```
 

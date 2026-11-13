@@ -39,9 +39,13 @@ describe("docs/queries.md", () => {
     await expect(run(sql)).resolves.toBeInstanceOf(Array);
   });
 
-  it("counts failures by channel", async () => {
-    const [mesa] = (await query("Failure rate by channel and day")).filter((r) => r.channel === "mesa247");
-    expect(mesa).toMatchObject({ calls: 9, errors: 1, timeouts: 1, blocked: 1, empty: 1, failure_pct: 33.3 });
+  it("counts failures by channel, over provider calls only", async () => {
+    const rows = await query("Failure rate by channel and day");
+    // 5 live reads; the last_good and unknown rows made no call.
+    expect(rows.find((r) => r.channel === "mesa247")).toMatchObject({ calls: 5, errors: 1, timeouts: 1, blocked: 1, empty: 0, failure_pct: 60 });
+    // The live lookup and the google step; known and area made no call.
+    expect(rows.find((r) => r.channel === "google.places")).toMatchObject({ calls: 2, errors: 1 });
+    expect(rows.find((r) => r.channel === "google.routes")).toBeUndefined();
   });
 
   it("says which step produced each value", async () => {
@@ -65,6 +69,7 @@ describe("docs/queries.md", () => {
   it("adds up cost per city", async () => {
     const rows = await query("Model and API cost per city");
     expect(rows.find((r) => r.channel === "gateway")).toMatchObject({ city: "lima", calls: 1, cost_usd: 0.0021, unpriced: 0 });
-    expect(rows.find((r) => r.channel === "google.places")).toMatchObject({ city: "lima", calls: 1, unpriced: 1 });
+    expect(rows.filter((r) => r.channel === "google.places").map((r) => [r.city, r.calls, r.unpriced])).toEqual([["lima", 2, 2]]);
+    expect(rows.find((r) => r.channel === "google.routes")).toBeUndefined();
   });
 });
