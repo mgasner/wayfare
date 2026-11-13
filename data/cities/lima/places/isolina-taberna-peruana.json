@@ -1,0 +1,171 @@
+{
+  "id": "isolina-taberna-peruana",
+  "area": "barranco",
+  "name": "Isolina Taberna Peruana",
+  "kind": "bookable",
+  "google_place_id": null,
+  "overture_id": "843c316e-1cba-48a0-bec2-261de42329e7",
+  "lat": -12.1476259,
+  "lng": -77.022316,
+  "channels": [
+    {
+      "type": "whatsapp",
+      "number": "+51943833031"
+    },
+    {
+      "type": "phone",
+      "number": "+5112475075"
+    },
+    {
+      "type": "email",
+      "address": "reservas@isolina.pe"
+    }
+  ],
+  "summary": "Lively, big-portion criollo tavern for casual lunch or dinner (ají de gallina, cebiche, stews) at ~US$30-45 each. Better for comfort food than a destination meal; some recent Reddit complaints about bland food and service.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://www.isolina.pe/"
+    },
+    {
+      "label": "Book online",
+      "url": "https://www.isolina.pe/reservas/isolina"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/isolinataberna"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://es.restaurantguru.com/Isolina-Miraflores"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://wanderlog.com/es/place/details/421909/isolina-taberna-peruana"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/Lima_Peru/comments/1wh7n1i/2_days_in_lima_where_i_ate/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/PERU/comments/1be5vt5"
+    },
+    {
+      "label": "theinfatuation.com",
+      "url": "https://www.theinfatuation.com/lima/reviews/isolina"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com.pe/Restaurant_Review-g294316-d7624206-Reviews-Isolina_Barranco-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://isolina.pe/?lang=es"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Lunch and dinner; weekend breakfast. Mon-Wed 12:00-22:00; Thu-Fri 12:00-23:00; Sat 9-11 and 12-23; Sun 9-11 and 12-19 (per site)",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 37,
+        "text": "Mini degustación S/125 (~US$37); a la carte mains ~S/58-143"
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Traditional Lima criollo home cooking (taberna), generous shared portions",
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Carta (partial)",
+        "items": [
+          {
+            "name": "Pan con chicharrón",
+            "description": "Sandwich, S/31"
+          },
+          {
+            "name": "Causa limeña",
+            "description": "Chilled potato terrine, S/58"
+          },
+          {
+            "name": "Lomo saltado",
+            "description": "S/98"
+          },
+          {
+            "name": "Seco de asado de tira",
+            "description": "Short-rib stew, S/143"
+          },
+          {
+            "name": "Ají de gallina",
+            "description": "Shredded chicken in ají amarillo cream; praised by The Infatuation (Aug 2025)"
+          },
+          {
+            "name": "Cebiche tradicional",
+            "description": "With octopus chicharrón and sweet potato (Infatuation, Aug 2025)"
+          }
+        ],
+        "as_of": "Nov 2026 prices via search snippet; full menu not machine-readable",
+        "source_url": "https://isolina.pe/?lang=es"
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "upscale-a-la-carte",
+        "format": "a la carte; also fixed 'Mini degustación Criolla' S/125",
+        "pros": [
+          "Classic criollo, shared portions",
+          "Moderate price",
+          "Central Barranco",
+          "Google ~4.6 on ~8k"
+        ],
+        "cons": [
+          "Weekend lunch waits",
+          "Some 2024-26 Reddit comments say bland/rude service",
+          "Deposit/cancellation policy unpublished"
+        ],
+        "accolades": [
+          "The Infatuation Lima review Aug 2025"
+        ],
+        "chef": "José del Castillo",
+        "how_to_book": "Choose type, party size 1-8, date, time. 8+ use WhatsApp. Surco branch has a separate URL (don't confuse).",
+        "reviews": {
+          "google": {
+            "rating": 4.6,
+            "count": 8010,
+            "summary": null
+          },
+          "critics": {
+            "rating": null,
+            "count": 1,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.5,
+            "count": null,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    }
+  ]
+}

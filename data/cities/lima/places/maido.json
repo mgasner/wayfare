@@ -1,0 +1,199 @@
+{
+  "id": "maido",
+  "area": "miraflores",
+  "name": "Maido",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": "396a6349-d1a3-4507-9d8c-bbc093a91432",
+  "lat": -12.1254663,
+  "lng": -77.0306015,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "maido.pe",
+      "slug": "maido",
+      "local_id": 2179
+    },
+    {
+      "type": "email",
+      "address": "reservas@maido.pe"
+    },
+    {
+      "type": "phone",
+      "number": "+5113135100"
+    }
+  ],
+  "summary": "Maido is the most polished Nikkei tasting experience in Lima, for diners who want a headline meal and like rich, saucy fusion cooking. Reviews are split: many love it, a recurring minority prefer Kjolle, Mérito or Central for ingredient storytelling and calmer service. It sells out early; the free per-shift waitlist on its booking page is the usual way in.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://maido.pe/"
+    },
+    {
+      "label": "Book online",
+      "url": "https://maido.pe/reservas/maido"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/mitsuharu_maido"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://maps.app.goo.gl/KKkV4YckFzNnVS5A6"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1txrey7/kjolle_or_maido/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1vhrr2m/maido/"
+    },
+    {
+      "label": "theinfatuation.com",
+      "url": "https://www.theinfatuation.com/lima/reviews/maido"
+    },
+    {
+      "label": "chefamazing.com",
+      "url": "https://www.chefamazing.com/charts/restaurants/world/maido"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d1759465-Reviews-Maido-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://www.tripadvisor.co.uk/Restaurant_Review-g294316-d1759465-Reviews-or600-Maido-Lima_Lima_Region.html"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:26Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Mon-Sat lunch and dinner; closed Sunday.",
+        "closed_days": [
+          0
+        ]
+      },
+      "checked_at": "2026-11-13T01:43:26Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 380,
+        "text": "Tasting S/ 1,295 pp (~US$380) without drinks; pairings S/ 1,659-2,525"
+      },
+      "checked_at": "2026-11-13T01:43:26Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Nikkei (Japanese-Peruvian)",
+      "checked_at": "2026-11-13T01:43:26Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Experiencia Maido (12 steps)",
+        "items": [
+          {
+            "name": "Bahuaja nut",
+            "description": "Opening course built on Amazonian Bahuaja nut"
+          },
+          {
+            "name": "Paiche ham",
+            "description": "Cured Amazonian paiche fish"
+          },
+          {
+            "name": "Bivalves",
+            "description": "Shellfish course"
+          },
+          {
+            "name": "Cebiche",
+            "description": "Nikkei-style raw fish with citrus and chile"
+          },
+          {
+            "name": "Moro crab",
+            "description": "Crab course"
+          },
+          {
+            "name": "Piglet",
+            "description": "Roast pork course"
+          },
+          {
+            "name": "Bull and uni sushi",
+            "description": "Nigiri-style sushi with beef and sea urchin"
+          },
+          {
+            "name": "Deep-sea mero",
+            "description": "Deep-water grouper"
+          },
+          {
+            "name": "Calf rack",
+            "description": "Veal main"
+          },
+          {
+            "name": "Mango",
+            "description": "Fruit dessert"
+          },
+          {
+            "name": "Chocolate, macambo, miso",
+            "description": "Chocolate dessert with Amazonian macambo and miso"
+          },
+          {
+            "name": "À la carte signatures (Oct 2026)",
+            "description": "Nissei ceviche, toro tartare with tofu de palta, flamed toro nigiri cut at table, 'A lo pobre' wagyu nigiri, 50-hour short rib nitsuke with chaufa blanco, gindara misoyaki, udon with langostino and octopus"
+          }
+        ],
+        "as_of": "2026 (exact date unknown; item list from Tripadvisor review menu text via search, not fully read; official site has no dish list)",
+        "source_url": "https://www.tripadvisor.co.uk/Restaurant_Review-g294316-d1759465-Reviews-or600-Maido-Lima_Lima_Region.html"
+      },
+      "checked_at": "2026-11-13T01:43:26Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "destination-tasting",
+        "format": "both: 12-step tasting 'Experiencia Maido' plus à la carte (sashimi, bar dishes, temaki, nigiri, mains)",
+        "pros": [
+          "Google 4.7 on 5,000+ reviews, Tripadvisor 4.6",
+          "World's 50 Best Best of the Best after #1 in 2025",
+          "Both 12-step tasting and à la carte exist",
+          "Cheaper than Central per Reddit commenters",
+          "Praised nigiri, short rib, lomo saltado, non-alcoholic pairing"
+        ],
+        "cons": [
+          "S/ 1,295 without drinks, S/ 1,985+ with wine",
+          "Some reviewers report rich over-sauced courses back to back, rushed explanations, slow drinks, loud cramped room",
+          "Opinions split vs Kjolle, Central, Mérito",
+          "Dress code, deposit and cancellation policy not verified"
+        ],
+        "accolades": [
+          "World's 50 Best #1 in 2025; inducted into 'Best of the Best' at the Nov 2026 ceremony, so not ranked in World's 50 Best 2026 or Latin America's 50 Best 2026 (per the50.com FAQ, El Comercio 2026-11-06)",
+          "Latin America's Best Restaurant 2017, 2018, 2019, 2023; Best Restaurant in South America 2024",
+          "Chefamazing Restaurant 100: 96/100 (Oct 2026)",
+          "Summum: not verified"
+        ],
+        "chef": "Mitsuharu 'Micha' Tsumura",
+        "how_to_book": "Party size 1-10, date, time on the widget. Single 'Salón' option, so tasting vs à la carte is not chosen at booking; ask by email or decide at the table. Same-day queries or changes by email/phone.",
+        "reviews": {
+          "google": {
+            "rating": 4.7,
+            "count": 5178,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.6,
+            "count": 4187,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:26Z"
+    }
+  ]
+}

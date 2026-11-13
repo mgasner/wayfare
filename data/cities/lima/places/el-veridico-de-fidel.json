@@ -1,0 +1,46 @@
+{
+  "id": "el-veridico-de-fidel",
+  "area": "la-victoria",
+  "name": "El Verídico de Fidel",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "894d7946-531b-4888-bc55-1dbd48ae0206",
+  "lat": -12.0687981,
+  "lng": -77.0218964,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "A popular La Victoria cevichería, packed at lunch with locals for ceviche, leche de tigre and chicharrón de pescado. Taxi there and back; it is a working neighborhood, not a tourist strip.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://www.veridicodefidel.com/locales/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.es/Restaurant_Review-g294316-d11958949-Reviews-El_Veridico_de_Fidel-Lima_Lima_Region.html"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Daily about 11:15-17:30, lunch only.",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Cevichería",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

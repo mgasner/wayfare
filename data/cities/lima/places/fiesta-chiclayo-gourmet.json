@@ -1,0 +1,194 @@
+{
+  "id": "fiesta-chiclayo-gourmet",
+  "area": "miraflores",
+  "name": "Fiesta Restaurant Gourmet",
+  "kind": "bookable",
+  "google_place_id": null,
+  "overture_id": "8ff9260c-185a-459a-96d8-e251ce0144b4",
+  "lat": -12.1312313,
+  "lng": -77.0236969,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "fiesta.mesa247.pe",
+      "slug": "fiesta_lima",
+      "local_id": 52
+    },
+    {
+      "type": "phone",
+      "number": "+5112429009"
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51932483302"
+    },
+    {
+      "type": "email",
+      "address": "informes@restaurantfiestagourmet.pe"
+    }
+  ],
+  "summary": "Pick for Chiclayan classics (arroz con pato, cabrito, ceviche caliente) in a formal, lunch-oriented room, with working online booking and no tasting-menu commitment. More regional-classics than destination tasting rooms.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://www.restaurantfiestagourmet.pe/"
+    },
+    {
+      "label": "Book online",
+      "url": "https://fiesta.mesa247.pe/reservas/fiesta_lima"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/fiestalima/"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://restaurantguru.com/Fiesta-Miraflores-Miraflores"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/food/comments/1nryqig"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/Lima_Peru/comments/1gwx8h8"
+    },
+    {
+      "label": "lomejordeperu.com",
+      "url": "https://www.lomejordeperu.com/es/lima/restaurantes/lima-rest-fiesta"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.es/Restaurant_Review-g294316-d812950-Reviews-Fiesta_Restaurant_Gourmet-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://cdn.mesa247.io/archivos/ficheros/52/1789402633.pdf"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:39Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Tue-Sun 12:00-18:00; closed Monday (one source also lists evenings).",
+        "closed_days": [
+          1
+        ]
+      },
+      "checked_at": "2026-11-13T01:43:39Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 44,
+        "text": "A la carte, roughly S/80-200 per person (~US$24-59)"
+      },
+      "checked_at": "2026-11-13T01:43:39Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Chiclayo/Lambayeque northern Peruvian (arroz con pato, cabrito, ceviche caliente a las brasas, seafood)",
+      "checked_at": "2026-11-13T01:43:39Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Carta Diaria Fiesta 2026 (partial)",
+        "items": [
+          {
+            "name": "Cebiche caliente, brasas de leña",
+            "description": "Mero murike ceviche cooked over wood embers; signature"
+          },
+          {
+            "name": "Arroz con pato (pato moshata)",
+            "description": "Chiclayo duck with green rice; 1/4 piece S/120 for two"
+          },
+          {
+            "name": "Cabrito de Batangrande, lechal",
+            "description": "Baby goat slow-cooked in puro loche sauce or oven-roasted; from 1:45 PM"
+          },
+          {
+            "name": "Mero murike entero y cortes",
+            "description": "Whole grouper in many preparations; jetas, cachetes"
+          },
+          {
+            "name": "Pankita de mero murike",
+            "description": "300 g grouper belly, S/139"
+          },
+          {
+            "name": "Arroz al fuego",
+            "description": "Moro-style rice grilled with murike and scallop, S/20"
+          },
+          {
+            "name": "Coral de choclo",
+            "description": "Corn in three textures with cachanga, S/25"
+          },
+          {
+            "name": "Shellfish by the piece",
+            "description": "Navajas, abanico, ostras, langostino"
+          },
+          {
+            "name": "Carnes de vacuno",
+            "description": "Bife ancho 200 g S/88; lomo fino 200 g S/80"
+          },
+          {
+            "name": "La Pastelería de la Casa",
+            "description": "King Kong, tarta de queso, Pomac III (loche ice cream), turrón de maní"
+          }
+        ],
+        "as_of": "2026 (undated)",
+        "source_url": "https://cdn.mesa247.io/archivos/ficheros/52/1789402633.pdf"
+      },
+      "checked_at": "2026-11-13T01:43:39Z"
+    },
+    {
+      "field": "dress",
+      "value": "Smart casual (Luxuria City only)",
+      "checked_at": "2026-11-13T01:43:39Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "upscale-a-la-carte",
+        "format": "a la carte",
+        "pros": [
+          "Strong signature dishes",
+          "Mid-range spend",
+          "Attentive service per Google",
+          "Street parking"
+        ],
+        "cons": [
+          "Mostly lunch-only, closed Mondays",
+          "Whole fish/cabrito add up fast",
+          "Some reviews mention inconsistency",
+          "No deposit/cancellation info",
+          "50 Best ranking is 2021"
+        ],
+        "accolades": [
+          "Latin America's 50 Best #39 (2021 list)",
+          "SUMMUM Best Regional Cuisine 2014 (per Luxuria City)"
+        ],
+        "chef": "Héctor Solís",
+        "how_to_book": "Party size 1-6 buttons, date, time, then details. Waitlist button exists. 11+ must use WhatsApp/email. Luxuria City's Resy link is wrong (Resy: venue not found).",
+        "reviews": {
+          "google": {
+            "rating": 4.6,
+            "count": 1035,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.3,
+            "count": 736,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:39Z"
+    }
+  ]
+}

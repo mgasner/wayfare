@@ -1,0 +1,203 @@
+{
+  "id": "cosme",
+  "area": "san-isidro",
+  "name": "Cosme",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": "dde4626a-096a-4377-91b6-b956b9aa5a7c",
+  "lat": -12.1080341,
+  "lng": -77.0403595,
+  "channels": [
+    {
+      "type": "meitre",
+      "venue_id": 117
+    },
+    {
+      "type": "phone",
+      "number": "+5114215228"
+    },
+    {
+      "type": "email",
+      "address": "administracion@cosme.com.pe"
+    },
+    {
+      "type": "email",
+      "address": "reservas@cosme.com.pe"
+    },
+    {
+      "type": "web",
+      "url": "https://cosme.meitre.com/"
+    }
+  ],
+  "summary": "Cosme is a relaxed shared-plates Peruvian restaurant for travelers who want a top-ranked Lima meal without formality or the highest tasting-menu prices, and it is much easier to book than the destination rooms. The 9-course tasting gets mixed reports, so order à la carte for consistency; skip it if you want precise avant-garde cooking.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://cosme.com.pe"
+    },
+    {
+      "label": "Book online",
+      "url": "https://cosme.meitre.com/"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/cosme.pe"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/search/?api=1&query=Cosme+Restaurante+y+Bar+Tudela+y+Varela+162+San+Isidro+Lima"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://restaurantguru.com/COSME-Lima"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://limeo.pe/restaurante/cosme-san-isidro"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1sci6b3/cosme_lima/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1lgjuo2/where_do_we_actually_go_in_lima/"
+    },
+    {
+      "label": "the50.com",
+      "url": "https://www.the50.com/restaurants/best-in-latin-america/the-list/cosme.html"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/somos/50-best-latam-2025-cuales-son-y-cuanto-cuesta-comer-en-los-mejores-restaurantes-peruanos-noticia/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.co/Restaurant_Review-g294316-d7607581-Reviews-Cosme-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://cosme.com.pe/wp-content/uploads/2025/02/menu-degustacion-v1.pdf"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-12T00:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Mon-Sat 12:30-22:45; Sunday 12:00-16:00.",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-12T00:00:00Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 132,
+        "text": "Chef's Choice 9-course tasting PEN 450 pp (~US$132); à la carte also available"
+      },
+      "checked_at": "2026-11-12T00:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Contemporary casual Peruvian (shared plates, modern Lima comfort food)",
+      "checked_at": "2026-11-12T00:00:00Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Menú degustación Cosme (9 courses)",
+        "items": [
+          {
+            "name": "Pan de quinua roja y chicha de jora",
+            "description": "Red quinoa bread with chicha de jora"
+          },
+          {
+            "name": "Concha a la parmesana",
+            "description": "Scallop with parmesan"
+          },
+          {
+            "name": "Torta de choclo, pescado, rocoto",
+            "description": "Corn cake with fish and rocoto"
+          },
+          {
+            "name": "Pan con chicharrón criollo",
+            "description": "Pork chicharrón sandwich"
+          },
+          {
+            "name": "Dumpling de tendón con maní / patita",
+            "description": "Beef tendon dumpling with peanut and pig's foot"
+          },
+          {
+            "name": "Pasta con erizo y sopa criolla",
+            "description": "Pasta with sea urchin and criolla soup"
+          },
+          {
+            "name": "Pescado en escabeche",
+            "description": "Fish escabeche"
+          },
+          {
+            "name": "Asado de tira 24h, ají de pallares",
+            "description": "24-hour short rib with lima bean ají"
+          },
+          {
+            "name": "Textura de chocolate",
+            "description": "Chocolate dessert (a la carte favorite: chocolate cake with Maras salt)"
+          },
+          {
+            "name": "A la carte favourites (50 Best / El Comercio 2025)",
+            "description": "Grilled Angus sweetbreads with corn, yellow chili and wine sauce; corn tacos with barbecue ribs; cau cau with prawns and scallops; arroz con pato; pork belly baos; frito miso; crema volteada"
+          }
+        ],
+        "as_of": "Official PDF uploaded Feb 2025 (v1); may be outdated",
+        "source_url": "https://cosme.com.pe/wp-content/uploads/2025/02/menu-degustacion-v1.pdf"
+      },
+      "checked_at": "2026-11-12T00:00:00Z"
+    },
+    {
+      "field": "deposit_policy",
+      "value": "No deposit or prepayment (allowDeposit false). A no-show charge appears in widget data (PEN 50 pp for à la carte slots; PEN 200 flag on Chef's Choice); trigger not confirmed.",
+      "checked_at": "2026-11-12T00:00:00Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "upscale-a-la-carte",
+        "format": "both: 9-course Chef's Choice tasting plus à la carte",
+        "pros": [
+          "Casual, fun, cheaper than Lima's top tasting rooms",
+          "No deposit",
+          "Popular dishes: crema volteada, tacos, pork bao, arroz con pato",
+          "Several Reddit users' favorite big-name Lima spot"
+        ],
+        "cons": [
+          "Apr 2026 Reddit diner found the tasting uneven and seating uncomfortable",
+          "Dress code, cancellation policy, à la carte spend not found",
+          "'2026 #9' label unverified (found #9 is the 2025 list)"
+        ],
+        "accolades": [
+          "Latin America's 50 Best 2025: #9 and Highest Climber"
+        ],
+        "chef": "James Berckemeyer",
+        "how_to_book": "Official site 'Reserva aquí' links to cosme.meitre.com. Chef's Choice reservable in widget (PDF says tasting needs 24h notice). Party 1-12; waitlist enabled.",
+        "reviews": {
+          "google": {
+            "rating": 4.6,
+            "count": 2469,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.5,
+            "count": 1012,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-12T00:00:00Z"
+    }
+  ]
+}

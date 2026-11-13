@@ -1,0 +1,38 @@
+{
+  "id": "q-de-lima",
+  "area": "centro",
+  "name": "El Emblemático Q de Lima (Queirolo)",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "d5199d07-a96b-4f57-aba6-4699fe486219",
+  "lat": -12.0513697,
+  "lng": -77.0366821,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "The old Bar Queirolo on Jirón Camaná, renamed in 2025 but still the Queirolo family's century-old bodega: pisco, criollo-Italian plates and a local after-work crowd.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://qdelima.pe/"
+    },
+    {
+      "label": "El Comercio",
+      "url": "https://elcomercio.pe/provecho/tendencias/el-queirolo-del-centro-de-lima-cambio-de-nombre-a-el-emblematico-q-de-lima-esta-es-la-razon-noticia/"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Criollo bar food",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

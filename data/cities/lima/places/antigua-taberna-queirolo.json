@@ -1,0 +1,199 @@
+{
+  "id": "antigua-taberna-queirolo",
+  "area": "pueblo-libre",
+  "name": "Antigua Taberna Queirolo",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "c3194391-ea89-4902-9dee-a7466546f36f",
+  "lat": -12.0776806,
+  "lng": -77.062973,
+  "channels": [
+    {
+      "type": "whatsapp",
+      "number": "+51965751282"
+    },
+    {
+      "type": "phone",
+      "number": "+5114600441"
+    },
+    {
+      "type": "web",
+      "url": "https://antiguatabernaqueirolo.com/reserva/"
+    },
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "Lima's best-documented criollo institution: an 1880 taberna with a large local following. Go for old-Lima atmosphere and honest classics (cau cau, papa rellena, butifarra, picarones), not refined cooking.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://antiguatabernaqueirolo.com"
+    },
+    {
+      "label": "Book online",
+      "url": "https://antiguatabernaqueirolo.com/reserva/"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/antiguatabernaqueirolo"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/dir/?api=1&destination=-12.07767520,-77.06302620"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://es.restaurantguru.com/Antigua-Taberna-Queirolo-Lima"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://carta.menu/restaurants/pueblo-libre/antigua-taberna-queirolo/reviews"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/PERU/comments/1n95kal"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/gastronomia/guias/critica-gastronomica-paola-miglio-antigua-taberna-queirolo-ecpm-noticia-672929-noticia/"
+    },
+    {
+      "label": "frommers.com",
+      "url": "https://www.frommers.com/destinations/lima/nightlife/antigua-taberna-queirolo/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d1075870-Reviews-Antigua_Taberna_Queirolo-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://antiguatabernaqueirolo.com/pdf/carta_virtual.pdf"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Mon-Wed 8:00-22:00, Thu to 23:00, Fri-Sat to midnight, Sun 8:00-17:00.",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 28,
+        "text": "About S/150-220 (~US$45-65) for two with a main each, a shared starter and drinks (my estimate)"
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Comida criolla / Lima home-style taberna plus pisco bar",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Carta virtual (official)",
+        "items": [
+          {
+            "name": "Cau cau (S/40)",
+            "description": "Home-style tripe stew with rice, a house specialty."
+          },
+          {
+            "name": "Ají de gallina (S/39)",
+            "description": "Shredded chicken in creamy yellow-chili sauce."
+          },
+          {
+            "name": "Lomo saltado (S/53)",
+            "description": "Wok-fried beef, onion, tomato, fries and rice."
+          },
+          {
+            "name": "Papa rellena (S/29)",
+            "description": "Stuffed potato with beef guiso."
+          },
+          {
+            "name": "Causa de pollo (S/32)",
+            "description": "Cold yellow-potato terrine with chicken."
+          },
+          {
+            "name": "Causa acebichada / langostinos (S/37)",
+            "description": "Causa topped with ceviche-style seafood or prawns."
+          },
+          {
+            "name": "Mondongo",
+            "description": "Aromatic tripe soup, cited by Miglio."
+          },
+          {
+            "name": "Escabeche de pescado",
+            "description": "Fried fish in onion and ají pickle."
+          },
+          {
+            "name": "Sánguche de jamón del país (butifarra)",
+            "description": "House ham sandwich with salsa criolla; signature."
+          },
+          {
+            "name": "Chilcano / pisco sour",
+            "description": "Build-your-own chilcano; Queirolo pisco on tap."
+          },
+          {
+            "name": "Picarones",
+            "description": "Sweet potato and squash fritters with syrup."
+          }
+        ],
+        "as_of": "2025-07",
+        "source_url": "https://antiguatabernaqueirolo.com/pdf/carta_virtual.pdf"
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "off-the-beaten-path",
+        "format": "Historic all-day taberna (c.1880), marble tables, à la carte",
+        "pros": [
+          "Long record, strong local following",
+          "Wide classic menu at moderate prices",
+          "All-day hours, walk-in friendly",
+          "Pisco shop attached; easy to pair with Museo Larco"
+        ],
+        "cons": [
+          "Slow service and noise at peak",
+          "Some dishes made early, some call food 'mid'",
+          "Tourist-popular"
+        ],
+        "accolades": [
+          "Paola Miglio / El Comercio 14/20 (2019)",
+          "Frommer's: one of Lima's oldest continuously operating bars",
+          "Pueblo Libre municipality and MINCETUR heritage inventories (founded 1880)"
+        ],
+        "how_to_book": "Form says reservations are confirmed by email; WhatsApp also listed. Needed only for weekend dinner or groups; 2 people can usually walk in at weekday lunch.",
+        "reviews": {
+          "google": {
+            "rating": 4.5,
+            "count": 12958,
+            "summary": null
+          },
+          "critics": {
+            "rating": 14,
+            "count": 1,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.3,
+            "count": 554,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    }
+  ]
+}

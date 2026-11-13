@@ -1,0 +1,50 @@
+{
+  "id": "sonia-chorrillos",
+  "area": "chorrillos",
+  "name": "Restaurant Sonia",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "040e4cf3-3ffa-4850-b5e3-83988a1a3448",
+  "lat": -12.1680851,
+  "lng": -77.0310593,
+  "channels": [
+    {
+      "type": "phone",
+      "number": "+5112496850"
+    },
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "A family cevichería by the Chorrillos fishermen's wharf, honored at the Summum awards for Sonia Bahamonde's seafood cooking. A long lunch by the sea, 15 minutes south of Barranco.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://restaurantsonia.com/contacto.html"
+    },
+    {
+      "label": "Perú21",
+      "url": "https://peru21.pe/gastronomia/reconocimiento-eterno-los-premios-summum-destacan-la-herencia-de-sonia-bahamonde/"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Daily 12:00-17:00, lunch only.",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Cevichería",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

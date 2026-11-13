@@ -1,0 +1,151 @@
+{
+  "id": "sapiens-lima",
+  "area": "san-isidro",
+  "name": "Sapiens",
+  "kind": "bookable",
+  "google_place_id": "ChIJw_LKnz7JBZER-9a46ycbHNY",
+  "overture_id": "ba7f5aa4-d017-47ac-bc44-12d6b5ca6239",
+  "lat": -12.1068773,
+  "lng": -77.0385437,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "sapiens.mesa247.pe",
+      "slug": "sapiens",
+      "local_id": 1595
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51959717899"
+    },
+    {
+      "type": "email",
+      "address": "reservas@sapienslima.com"
+    }
+  ],
+  "summary": "A fire-cooking dinner at a lower price and with less ceremony than Central or Maido, from Mayta's Jaime Pesaque. The 6-step menu is casual rather than a destination tasting, and its Google 4.1 is the lowest in this set.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://sapienslima.com.pe/"
+    },
+    {
+      "label": "Book online",
+      "url": "https://sapiens.mesa247.pe/reservas/sapiens"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/sapienslima/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/search/?api=1&query=Sapiens&query_place_id=ChIJw_LKnz7JBZER-9a46ycbHNY"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://limeo.pe/en/restaurante/sapiens-san-isidro"
+    },
+    {
+      "label": "mesa247.pe",
+      "url": "https://www.mesa247.pe/lima/restaurante/sapiens"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://elcomercio.pe/somos/sapiens-san-isidro-jaime-pesaque-una-experiencia-al-calor-del-fuego-experiencia-sapiens-menu-degustacion-de-seis-pasos-noticia/"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:50Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Daily; lunch 12:30-16:00, dinner 18:45-22:45 (official site)",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T01:43:50Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 67,
+        "text": "Experiencia Sapiens S/229 pp (~US$67), drinks extra"
+      },
+      "checked_at": "2026-11-13T01:43:50Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Open-fire / grill (7 m of grills)",
+      "checked_at": "2026-11-13T01:43:50Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Experiencia Sapiens (6 steps)",
+        "items": [
+          {
+            "name": "Beterraga rostizada y gazpacho",
+            "description": "Roasted beet with gazpacho"
+          },
+          {
+            "name": "Anticucho de guanciale a la brasa",
+            "description": "Grilled house guanciale, clam, burnt bread"
+          },
+          {
+            "name": "Collar de charela",
+            "description": "Fish collar with smoked oyster sauce and ají dulce"
+          },
+          {
+            "name": "Bife de chorizo",
+            "description": "Steak with algarrobo sauce"
+          },
+          {
+            "name": "Melón tostado",
+            "description": "Toasted melon, hibiscus flower, pisco"
+          },
+          {
+            "name": "Coco al fuego",
+            "description": "Fire-cooked coconut, green mango, white chocolate"
+          }
+        ],
+        "as_of": "2025-08-20",
+        "source_url": "https://elcomercio.pe/somos/sapiens-san-isidro-jaime-pesaque-una-experiencia-al-calor-del-fuego-experiencia-sapiens-menu-degustacion-de-seis-pasos-noticia/"
+      },
+      "checked_at": "2026-11-13T01:43:50Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "upscale-a-la-carte",
+        "format": "both: a la carte plus 6-step 'Experiencia Sapiens' tasting (Aug 2025); per El Comercio can be ordered on arrival",
+        "pros": [
+          "Tasting S/229",
+          "Open daily lunch and dinner",
+          "Pesaque pedigree"
+        ],
+        "cons": [
+          "Google 4.1",
+          "Tasting menu details date from Aug 2025",
+          "Not a destination tasting"
+        ],
+        "accolades": [
+          "Summum 2025 #18 (per Limeo)",
+          "Premios Somos 2026 nominee, best meat restaurant"
+        ],
+        "chef": "Jaime Pesaque (chef de cocina Gerson Moncada, El Comercio 2025-08-20)",
+        "how_to_book": "Mesa 24/7 widget at https://sapiens.mesa247.pe/ also works. Tasting can reportedly be ordered on arrival.",
+        "reviews": {
+          "google": {
+            "rating": 4.1,
+            "count": 521,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:50Z"
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "id": "kjolle",
+  "area": "barranco",
+  "name": "Kjolle",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": "ee7f8576-7214-46ea-9b24-29000f136b55",
+  "lat": -12.1527891,
+  "lng": -77.0225601,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "kjolle.mesa247.pe",
+      "slug": "kjolle",
+      "local_id": 873,
+      "consumption_id": 3926
+    },
+    {
+      "type": "phone",
+      "number": "+5112428575"
+    },
+    {
+      "type": "email",
+      "address": "reservas@kjolle.com"
+    }
+  ],
+  "summary": "Pía León's own kitchen, often described as friendlier and more comfortable than Central while still world-class. Best pick if you want a top-tier tasting without Central's heavy narrative.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://kjolle.com"
+    },
+    {
+      "label": "Book online",
+      "url": "https://kjolle.mesa247.pe/reservas/kjolle"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/kjollerest/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1txrey7/kjolle_or_maido/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/Lima_Peru/comments/1txrfbp/kjolle_or_maido/"
+    },
+    {
+      "label": "diariocorreo.pe",
+      "url": "https://diariocorreo.pe/gastronomia/pia-leon-sigue-abriendo-el-camino-noticia/"
+    },
+    {
+      "label": "elestimulo.com",
+      "url": "https://elestimulo.com/bienmesabe/resena/2026-05-28/kjolle-lima-peru/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d15076742-Reviews-Kjolle-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://elcomercio.pe/somos/historias/kjolle-por-dentro-pia-leon-favorita-en-los-50-best-y-los-secretos-detras-de-una-experiencia-gastronomica-que-recorre-todo-el-peru-apuesplan-noticia/"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:18Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Tue-Sat. Lunch 12:45-14:00, dinner 19:00-20:30.",
+        "closed_days": [
+          0,
+          1
+        ]
+      },
+      "checked_at": "2026-11-13T01:43:18Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 291,
+        "text": "Entorno Mater PEN 988 (~USD 291) per person"
+      },
+      "checked_at": "2026-11-13T01:43:18Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Contemporary Peruvian, ingredient/ecosystem-led (Mater)",
+      "checked_at": "2026-11-13T01:43:18Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Entorno Mater 2026 (9 moments)",
+        "items": [
+          {
+            "name": "Corvina",
+            "description": "with squid, rough lemon, mamey and maca"
+          },
+          {
+            "name": "Scallops",
+            "description": "with sea urchin, Madre de Dios nut, lime and airampo"
+          },
+          {
+            "name": "Lobster",
+            "description": "with cecina and crab"
+          },
+          {
+            "name": "Octopus",
+            "description": "with pork skin / cecina, sachatomate and sweet pepper"
+          },
+          {
+            "name": "Beef rib",
+            "description": "main course"
+          },
+          {
+            "name": "Arracacha",
+            "description": "with sour orange and Awajún vanilla (dessert)"
+          },
+          {
+            "name": "Theobromas Mater",
+            "description": "cacao, copoazú and macambo"
+          },
+          {
+            "name": "Entorno Mater Vegetal",
+            "description": "vegetarian version also bookable"
+          }
+        ],
+        "as_of": "2026-06 to 2026-11 (press)",
+        "source_url": "https://elcomercio.pe/somos/historias/kjolle-por-dentro-pia-leon-favorita-en-los-50-best-y-los-secretos-detras-de-una-experiencia-gastronomica-que-recorre-todo-el-peru-apuesplan-noticia/"
+      },
+      "checked_at": "2026-11-13T01:43:18Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "destination-tasting",
+        "format": "tasting",
+        "pros": [
+          "World's 50 Best 2026 #7",
+          "Cheaper than Central (S/988 vs S/1,630)",
+          "Vegetal menu option"
+        ],
+        "cons": [
+          "Shares building and Mater concept with Central, so doing both overlaps",
+          "Dinner mostly sold out",
+          "Closed Sun and Mon",
+          "No bar-only option found"
+        ],
+        "accolades": [
+          "World's 50 Best 2026: #7",
+          "Latin America's 50 Best: #2 (El Comercio, Feb 2026)"
+        ],
+        "chef": "Pía León",
+        "how_to_book": "Linked from kjolle.com/reservaciones. Choose Entorno Mater or Entorno Mater Vegetal.",
+        "reviews": {
+          "tripadvisor": {
+            "rating": 4.5,
+            "count": 218,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:18Z"
+    }
+  ]
+}

@@ -9,6 +9,8 @@ import { seed } from "../lib/seed.js";
 import { modules } from "../server/index.js";
 
 export const root = resolve(import.meta.dirname, "..");
+/** A small Lima (Central, Isolina, La Mar) that tests can rely on while data/cities changes by research PR. */
+export const fixtureCities = join(root, "test/fixtures/cities");
 
 export function tempPath(name = "test.db"): string {
   return join(mkdtempSync(join(tmpdir(), "dp-test-")), name);
@@ -18,7 +20,7 @@ export function tempPath(name = "test.db"): string {
 export async function seededDb(): Promise<FileDatabase> {
   const database = new FileDatabase(tempPath());
   await migrate(database, join(root, "db/migrations"));
-  await seed(database, join(root, "data/cities"));
+  await seed(database, fixtureCities);
   setDriver(driverFor(database));
   return database;
 }

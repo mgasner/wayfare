@@ -1,0 +1,183 @@
+{
+  "id": "chifa-titi-san-isidro",
+  "area": "san-isidro",
+  "name": "Chifa Titi",
+  "kind": "bookable",
+  "google_place_id": null,
+  "overture_id": "97c199a6-661c-4156-8e8d-446f9dbe0873",
+  "lat": -12.0901413,
+  "lng": -77.0157928,
+  "channels": [
+    {
+      "type": "whatsapp",
+      "number": "+51952770672"
+    },
+    {
+      "type": "web",
+      "url": "https://www.chifatiti.com/"
+    }
+  ],
+  "summary": "The best-supported upscale chifa pick: #1 on Summum 2026 and Somos 2026, Hakka family cooking in a polished room. For a classic shared-plates lunch or early dinner, far cheaper and less formal than Central or Maido; a la carte, not a chef-led tasting.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://www.chifatiti.com/"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/chifa.titi/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/search/?api=1&query=-12.0902021,-77.015743"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://restaurantguru.com/Chifa-TITI-Lima"
+    },
+    {
+      "label": "theinfatuation.com",
+      "url": "https://www.theinfatuation.com/lima/reviews/titi"
+    },
+    {
+      "label": "m.peru21.pe",
+      "url": "https://m.peru21.pe/gastronomia/premios-summum-2026-chifa-titi-lidera-el-top-15-de-chifas-y-cocina-china-mira-la-lista-completa/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d3721503-Reviews-Chifa_Titi-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://cdn.mesa247.io/archivos/ficheros/2713/1790901090.pdf"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Closed Mon. Lunch Tue-Sat 12:45-14:45, Sun 12:45-15:45; dinner Tue-Sat 18:45-20:30; no Sunday dinner listed",
+        "closed_days": [
+          1
+        ]
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 40,
+        "text": "~S/80-160 pp (US$24-47), third-party estimate"
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Chifa (Cantonese/Hakka-Peruvian)",
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Carta (current PDF, no readable prices)",
+        "items": [
+          {
+            "name": "Chaufa de la casa",
+            "description": "House fried rice with roasted pork"
+          },
+          {
+            "name": "Wantán frito",
+            "description": "Fried wontons; called among Lima's best by The Infatuation"
+          },
+          {
+            "name": "Pato asado",
+            "description": "Chinese BBQ duck, optionally with sweet-and-sour turnip"
+          },
+          {
+            "name": "Chancho asado",
+            "description": "Chinese BBQ pork"
+          },
+          {
+            "name": "Siu yok",
+            "description": "Crisp-skinned pork belly"
+          },
+          {
+            "name": "Pollo con nueces",
+            "description": "Chicken with cashews"
+          },
+          {
+            "name": "Dim sum",
+            "description": "Ja cau, siu mai, cocchay, cha siu pao"
+          },
+          {
+            "name": "Pichón a nuestro estilo",
+            "description": "Titi-style squab"
+          },
+          {
+            "name": "Costillas asadas",
+            "description": "BBQ ribs"
+          },
+          {
+            "name": "Hongos rellenos",
+            "description": "Stuffed Chinese mushrooms"
+          },
+          {
+            "name": "Wantán Titi soup",
+            "description": "Special wonton soup"
+          },
+          {
+            "name": "Fan si al estilo Szechuán",
+            "description": "Szechuan-style bean noodles"
+          }
+        ],
+        "as_of": "undated PDF linked from official site 2026-11-12",
+        "source_url": "https://cdn.mesa247.io/archivos/ficheros/2713/1790901090.pdf"
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "upscale-a-la-carte",
+        "format": "a la carte, family-style shared dishes, garden and terrace",
+        "pros": [
+          "#1 chifa Summum 2026 and Somos 2026",
+          "Recent awards and reviews confirm open",
+          "Inexpensive",
+          "Strong duck, wontons, chaufa"
+        ],
+        "cons": [
+          "Phone/WhatsApp booking only",
+          "Closed Mondays; early dinner cutoff",
+          "Not a tasting format",
+          "Some find it pricey/slow"
+        ],
+        "accolades": [
+          "#1 Chifa y Cocina China, Premios Summum 2026 (Peru21, 2026-10-01)",
+          "Best chifa, Premios Somos 2026 (El Comercio, repeat winner)",
+          "The Infatuation review Aug 2025"
+        ],
+        "chef": "Bruce Loo Chan (Chan family, third generation)",
+        "how_to_book": "No online booking. Ask for the San Isidro branch. Sunday is busy.",
+        "reviews": {
+          "google": {
+            "rating": 4.6,
+            "count": null,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.5,
+            "count": 615,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "id": "shizen",
+  "area": "san-isidro",
+  "name": "Shizen Restaurante Nikkei",
+  "kind": "bookable",
+  "google_place_id": null,
+  "overture_id": "dc19fac4-93f6-49d2-a6f1-5c723a73150c",
+  "lat": -12.1061506,
+  "lng": -77.0371094,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "shizen.mesa247.pe",
+      "slug": "shizen_barra_nikkei",
+      "local_id": 732
+    },
+    {
+      "type": "phone",
+      "number": "+51926855394"
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51913253692"
+    }
+  ],
+  "summary": "A relaxed, well-regarded Nikkei dinner for sharing many small plates, much cheaper than Maido. Pick it for a casual Nikkei night rather than a destination tasting; its #62 LatAm ranking sits below Maido and Central.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://shizen.mesa247.pe/"
+    },
+    {
+      "label": "Book online",
+      "url": "https://shizen.mesa247.pe/reservas/shizen_barra_nikkei"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/shizenperu/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/search/?api=1&query=Shizen+Restaurante+Nikkei+Av.+Los+Conquistadores+999+San+Isidro"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://wanderlog.com/es/place/details/440725/shizen-restaurante-nikkei"
+    },
+    {
+      "label": "the50.com",
+      "url": "https://www.the50.com/stories/News/latin-americas-50-best-restaurants-2025-51-100-list.html"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/provecho/restaurantes/shizen-y-clon-ingresan-a-la-lista-de-los-100-mejores-restaurantes-de-america-latina-latin-americas-50-best-restaurants-noticia/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.co/Restaurant_Review-g294316-d13476307-Reviews-Shizen_Restaurante_Nikkei-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://limeo.pe/restaurante/shizen-san-isidro/menu"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:46Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Tue-Sat lunch 12:30-15:00 and dinner 19:00-22:30; Monday dinner only; Sunday 13:00-16:00 (secondary source).",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T01:43:46Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 70,
+        "text": "A la carte; realistic ~US$50-90 pp with drinks (my estimate)"
+      },
+      "checked_at": "2026-11-13T01:43:46Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Nikkei (nigiri, ceviche, maki, udon, sashimi)",
+      "checked_at": "2026-11-13T01:43:46Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "A la carte (Limeo copy, 'updated Aug 20', year unstated)",
+        "items": [
+          {
+            "name": "Northern-Style Hamaguri",
+            "description": "4 clams, yuzu, olive oil, zarandaja textures. S/46"
+          },
+          {
+            "name": "Toro Tartare",
+            "description": "Balfegó tuna belly, sushi rice, avocado, shari cracker, garlic emulsion. S/105"
+          },
+          {
+            "name": "Akami Taco",
+            "description": "Bluefin loin, truffle oil, avocado, yolk, corn tortillas. S/85"
+          },
+          {
+            "name": "Scallop and Rocoto Tiradito",
+            "description": "Smoked rocoto leche de tigre, avocado, sweet potato crunch. S/50"
+          },
+          {
+            "name": "Chirashi Ceviche",
+            "description": "Sashimi over sushi rice, smoked ají amarillo leche de tigre, kakiage. S/59"
+          },
+          {
+            "name": "Nikkei Nigiri Karai/Andino/Carretillero",
+            "description": "2 pieces each, S/25"
+          },
+          {
+            "name": "Scallops with Truffle nigiri",
+            "description": "2 pieces. S/40"
+          },
+          {
+            "name": "Maki Tusán/Thaiyaki/Acevichado/Rocoto",
+            "description": "Breaded prawn, avocado, various toppings. 5 pcs S/30"
+          },
+          {
+            "name": "Uchucuta Udon",
+            "description": "Thick noodles, batayaki seafood, rocoto dressing. S/59"
+          },
+          {
+            "name": "Nikkei Kareudon",
+            "description": "Udon, Japanese curry, sliced beef, tenkatsu. S/55"
+          },
+          {
+            "name": "Moriawase sashimi",
+            "description": "Chef's selection 16 cuts S/120 / 20 cuts S/140"
+          },
+          {
+            "name": "Oysters",
+            "description": "Ponzu, ají amarillo or natural, S/22-24 each"
+          }
+        ],
+        "as_of": "2026-11-12 (read)",
+        "source_url": "https://limeo.pe/restaurante/shizen-san-isidro/menu"
+      },
+      "checked_at": "2026-11-13T01:43:46Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "upscale-a-la-carte",
+        "format": "a la carte (an omakase-style sequence is mentioned in one Google review; unconfirmed)",
+        "pros": [
+          "#62 Latin America's 50 Best 2025",
+          "Far cheaper than Maido",
+          "Google ~4.5 across ~1,100 ratings (aggregator)",
+          "Dim, quiet room"
+        ],
+        "cons": [
+          "Not a tasting-menu destination",
+          "Unsuitable for seafood allergy, celiac, veg",
+          "Some reviews: sweet cocktails, ordinary makis",
+          "Deposit/cancellation not public"
+        ],
+        "accolades": [
+          "Latin America's 50 Best Restaurants 2025: No. 62 (new entry)",
+          "50 Best Discovery (El Comercio, 2025)"
+        ],
+        "chef": "Renato Kanashiro, Jorge 'Coco' Tomita, Mayra Flores (co-founders)",
+        "how_to_book": "Choose 'A la Carta', then 'Salón', party size, date, time, then personal details (not entered). Menu selections can't be changed after confirmation; not suitable for fish/seafood allergy, celiac, vegetarian, vegan.",
+        "reviews": {
+          "google": {
+            "rating": 4.5,
+            "count": 1120,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:46Z"
+    }
+  ]
+}

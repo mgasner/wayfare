@@ -1,5 +1,106 @@
 [
-  { "id": "miraflores", "name": "Miraflores", "lat": -12.1211, "lng": -77.0297, "brief": "Clifftop parks over the Pacific, hotels and the densest cluster of restaurants." },
-  { "id": "barranco", "name": "Barranco", "lat": -12.1491, "lng": -77.0218, "brief": "The bohemian district: galleries, bars and several top tasting menus." },
-  { "id": "san-isidro", "name": "San Isidro", "lat": -12.0975, "lng": -77.0365, "brief": "Business district with an olive grove park and quieter dining rooms." }
+  {
+    "id": "barranco",
+    "name": "Barranco",
+    "lat": -12.1491,
+    "lng": -77.0218,
+    "brief": "The old seaside resort south of Miraflores: casonas, murals, galleries and bars around the main square, and three of Lima's top tasting rooms (Central, Kjolle, Mérito) within a few blocks. Walkable, best for an afternoon that runs into dinner. 30 to 45 minutes from Centro by car.",
+    "stops": [
+      { "name": "Puente de los Suspiros and the Bajada de Baños", "kind": "walk", "note": "The wooden bridge over the old ravine path down to the sea; walk the bajada to the beach and back up at sunset.", "lat": -12.14922, "lng": -77.022484, "url": "https://es.wikipedia.org/wiki/Puente_de_los_Suspiros_(Lima)" },
+      { "name": "Parque Municipal de Barranco", "kind": "park", "note": "The main square, with the library and church; Juanito's bar and the gelato shop are on its edges.", "lat": -12.153176, "lng": -77.020302 },
+      { "name": "MATE, Museo Mario Testino", "kind": "museum", "note": "Testino's photography in a restored casona on Pedro de Osma, a block from Central.", "lat": -12.154078, "lng": -77.023056 },
+      { "name": "Museo Pedro de Osma", "kind": "museum", "note": "Colonial art and silver in a Republican-era mansion with gardens.", "lat": -12.154753, "lng": -77.022865, "url": "https://museopedrodeosma.org" },
+      { "name": "Bars on Pedro de Osma and 28 de Julio", "kind": "bars", "note": "Piselli's 1915 bodega, BarBarian's craft beer and a run of small bars between the square and the bridge; busiest Thursday to Saturday." }
+    ]
+  },
+  {
+    "id": "miraflores",
+    "name": "Miraflores",
+    "lat": -12.1211,
+    "lng": -77.0297,
+    "brief": "Clifftop parks over the Pacific, hotels and the densest cluster of restaurants, from Maido and Mayta to the cevicherías on Avenida La Mar. Safe and easy on foot by day; most visitors stay here.",
+    "stops": [
+      { "name": "Malecón and Parque del Amor", "kind": "walk", "note": "The cliff path over the Costa Verde, with paragliders, the mosaic benches of Parque del Amor and Larcomar below.", "lat": -12.125969, "lng": -77.036629, "url": "https://es.wikipedia.org/wiki/Malec%C3%B3n_de_Miraflores" },
+      { "name": "Huaca Pucllana", "kind": "site", "note": "A pre-Inca adobe pyramid in the middle of the district, with guided visits and a site museum.", "lat": -12.111081, "lng": -77.033363, "url": "https://es.wikipedia.org/wiki/Huaca_Pucllana" },
+      { "name": "Parque Kennedy", "kind": "park", "note": "The central park and its cats, with La Lucha and Al Toke Pez a block away.", "lat": -12.121316, "lng": -77.029854, "url": "https://es.wikipedia.org/wiki/Parque_Kennedy" },
+      { "name": "Lugar de la Memoria", "kind": "museum", "note": "The museum of the 1980-2000 internal conflict, on the cliff at the end of Avenida La Mar.", "lat": -12.110075, "lng": -77.053726, "url": "https://lum.cultura.pe" }
+    ]
+  },
+  {
+    "id": "centro",
+    "name": "Centro",
+    "lat": -12.0464,
+    "lng": -77.0365,
+    "brief": "The historic center: Plaza Mayor, Plaza San Martín and Jirón de la Unión between them, colonial churches and old bars like Cordano and the Gran Hotel Bolívar's. Barrio Chino is a ten-minute walk east. Best by day; take a registered taxi at night.",
+    "stops": [
+      { "name": "Plaza Mayor", "kind": "plaza", "note": "Government Palace, cathedral and the changing of the guard at noon; Bar Cordano is on the corner behind the palace.", "lat": -12.0459394, "lng": -77.030568, "url": "https://es.wikipedia.org/wiki/Plaza_Mayor_de_Lima" },
+      { "name": "San Francisco church and catacombs", "kind": "site", "note": "The convent's ossuary tour and library; churros across the street afterwards.", "lat": -12.045423, "lng": -77.027649, "url": "https://es.wikipedia.org/wiki/Convento_de_San_Francisco_(Lima)" },
+      { "name": "Jirón de la Unión", "kind": "walk", "note": "The pedestrian street between the two plazas, Republican-era facades and balconies above the shops.", "url": "https://es.wikipedia.org/wiki/Jir%C3%B3n_de_la_Uni%C3%B3n" },
+      { "name": "Plaza San Martín", "kind": "plaza", "note": "The 1920s square in front of the Gran Hotel Bolívar, whose bar claims one of the first pisco sours.", "lat": -12.051744, "lng": -77.034653, "url": "https://es.wikipedia.org/wiki/Plaza_San_Mart%C3%ADn_(Lima)" }
+    ]
+  },
+  {
+    "id": "barrio-chino",
+    "name": "Barrio Chino",
+    "lat": -12.0518,
+    "lng": -77.0252,
+    "brief": "Lima's Chinatown around Calle Capón, next to the Mercado Central: old Cantonese chifas, dim sum on weekend mornings, bakeries and import shops. Crowded and fine by day; keep your bag close and leave by taxi after dark.",
+    "stops": [
+      { "name": "Calle Capón and its arch", "kind": "walk", "note": "The pedestrian block of Jirón Ucayali under the Chinese portal, with the Wa Lok, San Joy Lao and Salón Capón chifas around it.", "url": "https://es.wikipedia.org/wiki/Calle_Cap%C3%B3n" },
+      { "name": "Mercado Central", "kind": "market", "note": "The city's central market, a block from Capón: fruit, spices, and lunch counters upstairs.", "lat": -12.053667, "lng": -77.027588, "url": "https://es.wikipedia.org/wiki/Mercado_Central_de_Lima" }
+    ]
+  },
+  {
+    "id": "san-isidro",
+    "name": "San Isidro",
+    "lat": -12.0975,
+    "lng": -77.0365,
+    "brief": "The business district: office towers, an old olive grove and quieter dining rooms (Astrid y Gastón, Cosme, Osso, Verbena, Chifa Titi). Pleasant for a lunch and a walk; empty on Sunday evenings.",
+    "stops": [
+      { "name": "Bosque El Olivar", "kind": "park", "note": "A colonial-era olive grove turned park, a short walk from Cosme and Astrid y Gastón.", "lat": -12.10216, "lng": -77.035133, "url": "https://es.wikipedia.org/wiki/Bosque_El_Olivar" },
+      { "name": "Huaca Huallamarca", "kind": "site", "note": "A restored adobe pyramid with a small museum among the apartment blocks.", "lat": -12.097102, "lng": -77.040421, "url": "https://es.wikipedia.org/wiki/Huaca_Huallamarca" }
+    ]
+  },
+  {
+    "id": "surquillo",
+    "name": "Surquillo",
+    "lat": -12.1129,
+    "lng": -77.0213,
+    "brief": "Working district across the expressway from Miraflores: the Mercado N.º 1 ceviche stalls, Bran's anticuchos, and two small tasting counters (Piedra, Otôto).",
+    "stops": []
+  },
+  {
+    "id": "pueblo-libre",
+    "name": "Pueblo Libre",
+    "lat": -12.0742,
+    "lng": -77.0637,
+    "brief": "A quiet older district with the Antigua Taberna Queirolo and Museo Larco; pair the two for a half day.",
+    "stops": [
+      { "name": "Museo Larco", "kind": "museum", "note": "Pre-Columbian collection in an 18th-century mansion with gardens and a café.", "lat": -12.072098, "lng": -77.070984, "url": "https://www.museolarco.org" }
+    ]
+  },
+  {
+    "id": "la-victoria",
+    "name": "La Victoria",
+    "lat": -12.0685,
+    "lng": -77.0218,
+    "brief": "A busy commercial district south of Centro (Gamarra's garment blocks) with some of the most popular local cevicherías. Go by taxi at lunch.",
+    "stops": []
+  },
+  {
+    "id": "lince",
+    "name": "Lince",
+    "lat": -12.0855,
+    "lng": -77.0345,
+    "brief": "A residential middle-class district between Centro and San Isidro with criollo kitchens and soup houses.",
+    "stops": []
+  },
+  {
+    "id": "chorrillos",
+    "name": "Chorrillos",
+    "lat": -12.168,
+    "lng": -77.028,
+    "brief": "The fishing district south of Barranco, with its wharf and family cevicherías.",
+    "stops": []
+  }
 ]

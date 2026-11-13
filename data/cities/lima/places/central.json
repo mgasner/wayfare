@@ -3,13 +3,149 @@
   "area": "barranco",
   "name": "Central",
   "kind": "reserve_ahead",
-  "lat": -12.1497,
-  "lng": -77.0221,
-  "channels": [{ "type": "web", "url": "https://centralrestaurante.com.pe/en/reservations" }],
-  "summary": "Virgilio Martínez's tasting menu through Peru's altitudes, in Barranco.",
-  "links": [{ "label": "Reservations", "url": "https://centralrestaurante.com.pe/en/reservations" }],
+  "google_place_id": null,
+  "overture_id": "4e7eff8d-c240-41f1-997f-d621a2cdde24",
+  "lat": -12.1527557,
+  "lng": -77.0225449,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "central.mesa247.pe",
+      "slug": "central",
+      "local_id": 11,
+      "consumption_id": 3019
+    },
+    {
+      "type": "phone",
+      "number": "+5112428515"
+    },
+    {
+      "type": "email",
+      "address": "reservas@centralrestaurante.com.pe"
+    }
+  ],
+  "summary": "The most ambitious and research-driven meal in Lima, best for someone who wants the 'Peru by altitude' concept and will sit three hours. Reddit often ranks it above Kjolle for distinctiveness, though Kjolle is described as more relaxed.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://centralrestaurante.com.pe"
+    },
+    {
+      "label": "Book online",
+      "url": "https://central.mesa247.pe/reservas/central"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/centralrest/"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://www.thetravault.com/lima/eat/central"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1txrey7/kjolle_or_maido/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1sfy61g/central_lima/"
+    },
+    {
+      "label": "viagenseoutrashistorias.com.br",
+      "url": "https://www.viagenseoutrashistorias.com.br/review-do-jantar-no-central-em-lima/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d1798176-Reviews-Central_Restaurante-Lima_Lima_Region.html"
+    }
+  ],
   "facts": [
-    { "field": "status", "value": "open", "checked_at": "2026-11-12T22:00:00Z" },
-    { "field": "deposit_policy", "value": "Prepaid at booking", "checked_at": "2026-11-12T22:00:00Z" }
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:16Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Mon-Sat. Lunch seatings 12:45-13:30, dinner 19:00-20:30. Closed Sunday.",
+        "closed_days": [
+          0
+        ]
+      },
+      "checked_at": "2026-11-13T01:43:16Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 479,
+        "text": "Mundo en Desnivel PEN 1,630 (~USD 479) per person; Inmersión Central PEN 3,653 (~USD 1,074)"
+      },
+      "checked_at": "2026-11-13T01:43:16Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Contemporary Peruvian, ecosystem/altitude-based",
+      "checked_at": "2026-11-13T01:43:16Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Mundo en Desnivel",
+        "items": [
+          {
+            "name": "Mundo en Desnivel",
+            "description": "12 moments / 32 preparations organized by altitude from Pacific seabed to Andean passes above 4,000 m, ~3 hours; changes on a rolling basis"
+          },
+          {
+            "name": "Plantas Mater (vegetal variant)",
+            "description": "Plant-led alternative named in the widget; specific dishes not found"
+          }
+        ],
+        "as_of": "2026-09 (secondary source)",
+        "source_url": "https://www.thetravault.com/lima/eat/central"
+      },
+      "checked_at": "2026-11-13T01:43:16Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "destination-tasting",
+        "format": "tasting",
+        "pros": [
+          "Most distinctive concept in Lima, widely rated #1 by r/finedining posters",
+          "Tripadvisor 4.4 across 3,500+ reviews"
+        ],
+        "cons": [
+          "PEN 1,630 per person before pairings; pairing adds a lot",
+          "~3 hours with long explanations delivered quickly in accented English (Oct 2026 review)",
+          "Overlaps in style with Kjolle next door"
+        ],
+        "accolades": [
+          "World's 50 Best #1 in 2023, now in the Best of the Best hall of fame",
+          "TripAdvisor Travelers' Choice"
+        ],
+        "chef": "Virgilio Martínez",
+        "how_to_book": "Parties 1-6 online (7+ by email). Pick experience, party size, date, time. Widget offers a waitlist.",
+        "reviews": {
+          "google": {
+            "rating": 4.6,
+            "count": 3532,
+            "summary": null
+          },
+          "critics": {
+            "rating": 8.7,
+            "count": null,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.4,
+            "count": 3508,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:16Z"
+    }
   ]
 }

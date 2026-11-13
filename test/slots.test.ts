@@ -9,7 +9,7 @@ import { parse as parseMeitre, searchUrl as meitreUrl } from "../server/adapters
 import { parse as parseMesa, searchUrl as mesaUrl } from "../server/adapters/mesa247.js";
 import { setBlockedChannels } from "../server/adapters/slots.js";
 import { slotTargets } from "../server/slots.js";
-import { addUser, callAs, personalDataInInteractions, root, seededDb, tempPath } from "./helpers.js";
+import { addUser, callAs, fixtureCities, personalDataInInteractions, root, seededDb, tempPath } from "./helpers.js";
 
 const fixture = (name: string) => JSON.parse(readFileSync(join(root, "test/fixtures/slots", name), "utf8")) as unknown;
 
@@ -194,7 +194,7 @@ describe("slot refresh targets and cron", () => {
     const path = tempPath();
     const database = new FileDatabase(path);
     await migrate(database, join(root, "db/migrations"));
-    await seed(database, join(root, "data/cities"));
+    await seed(database, fixtureCities);
     const max = await addUser(database, "max@example.com");
     await tripWithPlaces(database, max.actor.kind === "person" ? max.actor.id : "");
     database.close();

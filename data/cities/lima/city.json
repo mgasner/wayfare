@@ -8,14 +8,31 @@
   "bbox": [-77.2, -12.3, -76.8, -11.9],
   "config": {
     "platforms": [
-      { "name": "Mesa 24/7", "notes": "Most bookable mid-range and many fine-dining rooms; slots readable per date and party." },
-      { "name": "Meitre", "notes": "Used by several fine-dining rooms." },
-      { "name": "Own site", "notes": "The top tasting menus book on their own sites, often with a prepaid deposit." }
+      {
+        "name": "Mesa 24/7",
+        "notes": "Most reservation places, each on its own <venue>.mesa247.pe widget or embedded on the restaurant's site (maido.pe, isolina.pe). Free to the diner. Slots are readable per date and party; sold-out shifts sometimes offer a waitlist. Guarantees and prepayment go through Culqi or PayU."
+      },
+      {
+        "name": "Meitre",
+        "notes": "Cosme. Hours readable per service (lunch, dinner) from its public JSON; some shifts carry a per-person no-show fee."
+      },
+      {
+        "name": "OpenTable",
+        "notes": "A few places list it (Sapiens) alongside Mesa 24/7 or WhatsApp."
+      },
+      {
+        "name": "WhatsApp",
+        "notes": "The fallback for almost every place, including those with a widget; staff reply in Spanish, usually within hours."
+      },
+      {
+        "name": "Walk-in",
+        "notes": "Cevicherías, anticucherías, chifas, sangucherías and bars take no bookings; arrive at opening or after the lunch peak."
+      }
     ],
     "messaging": ["whatsapp"],
-    "closures": "Many restaurants close Sunday dinner and Monday; cevicherías serve lunch only.",
-    "release_norms": "Tasting menus release tables weeks ahead; cancellations reappear close to the date.",
-    "card_notes": "Prepaid deposits and some bookings ask for a card and a passport or ID number.",
-    "tipping": "About 10% where no service charge is added."
+    "closures": "Most fine dining closes Sunday (a few open Sunday lunch only) and several close Monday. Cevicherías serve lunch only, roughly noon to 5 PM; anticucherías open in the late afternoon. Holidays and private events close rooms without notice on the widget.",
+    "release_norms": "Each restaurant sets its own window: Central books up to about four months ahead for parties of 1 to 6; the top tasting rooms fill weeks out and cancellations reappear close to the date. Maido runs a free waitlist per shift that closes at 23:59 the day before.",
+    "card_notes": "Online booking often needs a card guarantee or prepayment, and foreign cards are frequently declined (every US card failed in our run); WhatsApp or email is the way around it. Booking forms ask for a passport or DNI number and time out after about 5 minutes. Some counters are cash only.",
+    "tipping": "About 10% where no service charge is added; some tasting menus include service and tax in the price."
   }
 }

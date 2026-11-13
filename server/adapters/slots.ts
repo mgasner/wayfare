@@ -29,7 +29,7 @@ export function blockedChannelsFromEnv(value: string | undefined): string[] {
 
 /** GETs JSON; 403 and 429 count as blocked, other non-2xx as errors. */
 export async function getJson(url: string, headers: Record<string, string>, signal: AbortSignal): Promise<unknown> {
-  const res = await fetch(url, { headers: { "User-Agent": "Mozilla/5.0 (dining-planner)", Accept: "application/json", ...headers }, signal });
+  const res = await fetch(url, { headers: { "User-Agent": "Mozilla/5.0 (Wayfare)", Accept: "application/json", ...headers }, signal });
   if (res.status === 403 || res.status === 429) throw blocked(`HTTP ${res.status}`);
   if (!res.ok) throw new StepFailure("error", `HTTP ${res.status}`);
   const text = await res.text();

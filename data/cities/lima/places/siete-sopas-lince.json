@@ -1,0 +1,46 @@
+{
+  "id": "siete-sopas-lince",
+  "area": "lince",
+  "name": "Siete Sopas",
+  "kind": "informal",
+  "google_place_id": null,
+  "overture_id": "5b762dc0-bf70-421d-803c-632d7e48b05d",
+  "lat": -12.0879145,
+  "lng": -77.0342026,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "Acurio's soup house: one soup a day of the week plus criollo plates, cheap and quick. The Lince branch keeps long hours; the Angamos branch in Surquillo is the one open around the clock.",
+  "links": [
+    {
+      "label": "Limeo",
+      "url": "https://limeo.pe/restaurante/siete-sopas-lince"
+    },
+    {
+      "label": "Website",
+      "url": "https://sietesopasdemo.mesa247.pe/"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Daily 9:00-midnight, Saturday to 1:00.",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Peruvian soups, criollo",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

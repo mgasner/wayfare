@@ -1,0 +1,170 @@
+{
+  "id": "al-toke-pez",
+  "area": "miraflores",
+  "name": "Al Toke Pez",
+  "kind": "informal",
+  "google_place_id": "ChIJ9de_-RHIBZERlghiItiBogc",
+  "overture_id": "af46c5b5-557e-4bbe-8201-69e5f74b30f9",
+  "lat": -12.119812,
+  "lng": -77.0283508,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "Chef Matsufuji's ceviche and combinado counter, now near Parque Kennedy in Miraflores after leaving Surquillo. Fresh, cheap and well rated, but no longer a local secret: expect a tourist crowd and a line. Walk-in lunch only.",
+  "links": [
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/altokepez_oficial"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/search/?api=1&query=Al%20Toke%20Pez&query_place_id=ChIJ9de_-RHIBZERlghiItiBogc"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://limeo.pe/restaurante/al-toke-pez-miraflores"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://wanderlog.com/place/details/449631"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/PERU/comments/1fxu0tz"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/GoingToPeru/comments/1wsivmv/lugares_comida_buenos_y_convenientes/"
+    },
+    {
+      "label": "theinfatuation.com",
+      "url": "https://www.theinfatuation.com/lima/reviews/al-toke-pez"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/provecho/listas-y-rankings/nuevo-barrio-misma-esencia-asi-es-el-nuevo-espacio-de-al-toke-pez-en-miraflores-noticia/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d7109611-Reviews-Al_Toke_Pez-Lima_Lima_Region.html"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Daily 11:00-17:00, lunch only; can close early when the fish runs out.",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 12,
+        "text": "About S/70-95 for two (~US$20-28) for a combinado or ceviche each plus drinks"
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Peruvian cevichería / seafood huarique",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Carta (short, changes with catch)",
+        "items": [
+          {
+            "name": "Cebiche de pescado (S/32)",
+            "description": "Classic Limeño ceviche made in front of you."
+          },
+          {
+            "name": "Cebiche mixto (S/32)",
+            "description": "Fish plus seafood."
+          },
+          {
+            "name": "Arroz con mariscos (S/28)",
+            "description": "The house hot dish, seafood rice."
+          },
+          {
+            "name": "Combinado (S/35)",
+            "description": "Ceviche, fried seafood and seafood rice on one plate; most ordered."
+          },
+          {
+            "name": "Chicharrón de pota / pescado",
+            "description": "Crunchy fried squid or fish; price not listed."
+          },
+          {
+            "name": "Leche de tigre (S/10)",
+            "description": "Ceviche marinade in a glass."
+          },
+          {
+            "name": "Chicha (S/4)",
+            "description": "Soft drink by the glass."
+          },
+          {
+            "name": "Dish of the day",
+            "description": "Occasional special such as a saltado or sashimi (The Infatuation)."
+          }
+        ],
+        "as_of": "2025-09-15 prices; dishes reconfirmed May 2026",
+        "source_url": "https://elcomercio.pe/provecho/listas-y-rankings/nuevo-barrio-misma-esencia-asi-es-el-nuevo-espacio-de-al-toke-pez-en-miraflores-noticia/"
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "dress",
+      "value": "Casual",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "off-the-beaten-path",
+        "format": "Counter-service ceviche bar with open kitchen, first-come first-served, short menu",
+        "pros": [
+          "Fresh ceviche and combinado for ~S/30-35 a plate",
+          "Chef cooks in front of you",
+          "Central location, seating doubled after the move",
+          "No reservation hassle"
+        ],
+        "cons": [
+          "Line at peak times, no reservations",
+          "~80% tourists; original hole-in-the-wall feel gone",
+          "Lunch only; may close early if fish runs out",
+          "Hours conflict across sources; photos not visually confirmed"
+        ],
+        "accolades": [
+          "Netflix 'Street Food: Latinoamérica' (Lima episode)",
+          "Summum 2022 Mejores huariques (per Limeo)",
+          "Premios Somos 2026 nominee, Mejor Huarique (per Limeo)",
+          "The Infatuation Lima review (Aug 2025)"
+        ],
+        "chef": "Tomás 'Toshi' Matsufuji",
+        "how_to_book": "No reservations or verified phone/WhatsApp. Show up for lunch, expect to queue; weekends longest. Check Instagram for closures.",
+        "reviews": {
+          "google": {
+            "rating": 4.5,
+            "count": 3575,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.6,
+            "count": 325,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    }
+  ]
+}

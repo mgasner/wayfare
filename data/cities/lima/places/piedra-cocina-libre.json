@@ -1,0 +1,173 @@
+{
+  "id": "piedra-cocina-libre",
+  "area": "surquillo",
+  "name": "Piedra Cocina Libre",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": "7460cbf0-f1e2-4a64-93dd-ebb92979c31f",
+  "lat": -12.1097736,
+  "lng": -77.0190735,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "piedra.mesa247.pe",
+      "slug": "piedra-cocina-libre",
+      "local_id": 2196
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51994563911"
+    }
+  ],
+  "summary": "A daily-changing 8-step seafood tasting for roughly US$50-65 per person, one of the strongest values in Lima and the place its chef suggests to people who can't get into Maido. Lunch only and less polished than Maido or Mérito.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://piedra.com.pe/"
+    },
+    {
+      "label": "Book online",
+      "url": "https://piedra.mesa247.pe/reservas/piedra-cocina-libre"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/piedra.lima/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/place/Piedra+%7C+Cocina+Libre/@-12.1097792,-77.019079,17z/data=!3m1!4b1!4m6!3m5!1s0x9105c97e64b0ad89:0xc67eb426ce21c153!8m2!3d-12.1097792!4d-77.019079!16s%2Fg%2F11kk1889p6"
+    },
+    {
+      "label": "elpais.com",
+      "url": "https://elpais.com/elviajero/2026-04-17/surquillo-el-nuevo-iman-gastroturistico-de-lima.html"
+    },
+    {
+      "label": "gestion.pe",
+      "url": "https://gestion.pe/g-de-gestion/lifestyle/surquillo-el-distrito-gastronomico-que-no-se-detiene-piedra-y-los-primos-de-san-juan-virgilio-martinez-central-noticia/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com.pe/Restaurant_Review-g294316-d27165165-Reviews-Piedra_Cocina_Libre-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d27165165-Reviews-Piedra_Cocina_Libre-Lima_Lima_Region.html"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:59Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Lunch only, two seatings around 13:00 and 15:00.",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T01:43:59Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 65,
+        "text": "S/169 pp for the experience, average ticket ~S/220 pp (~US$50 / ~US$65)"
+      },
+      "checked_at": "2026-11-13T01:43:59Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Contemporary Peruvian seafood, menu changes daily with the catch",
+      "checked_at": "2026-11-13T01:43:59Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Menú degustación de 8 pasos (changes daily)",
+        "items": [
+          {
+            "name": "Sashimi de trucha con mantequilla batayaki",
+            "description": "The only dish served every day (Gestión)"
+          },
+          {
+            "name": "Tuna nigiri",
+            "description": "Seen in an Aug 2026 diner's meal"
+          },
+          {
+            "name": "Corvina tiradito",
+            "description": "Seen in an Aug 2026 diner's meal"
+          },
+          {
+            "name": "Scallop",
+            "description": "Seen in an Aug 2026 diner's meal"
+          },
+          {
+            "name": "Causa limeña",
+            "description": "Seen in an Aug 2026 diner's meal"
+          },
+          {
+            "name": "Robalo ceviche",
+            "description": "Seen in an Aug 2026 diner's meal"
+          },
+          {
+            "name": "Prawn encocado",
+            "description": "Seen in an Aug 2026 diner's meal"
+          },
+          {
+            "name": "Mixed seafood",
+            "description": "Seen in an Aug 2026 diner's meal; 8th course arroz chaufa called weakest by one reviewer"
+          }
+        ],
+        "as_of": "2026-08 (one diner's Aug 2026 meal on Tripadvisor)",
+        "source_url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d27165165-Reviews-Piedra_Cocina_Libre-Lima_Lima_Region.html"
+      },
+      "checked_at": "2026-11-13T01:43:59Z"
+    },
+    {
+      "field": "deposit_policy",
+      "value": "Not confirmed; booking page says reservation 'not yet confirmed, complete payment details', which suggests prepayment, no terms found",
+      "checked_at": "2026-11-13T01:43:59Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "destination-tasting",
+        "format": "tasting: 8-course surprise menu (~2 hours), no menu card, reservation only",
+        "pros": [
+          "Google 4.7 on 190 reviews, Tripadvisor 5.0",
+          "~US$50-65 pp",
+          "Online booking"
+        ],
+        "cons": [
+          "Surprise menu varies daily",
+          "No accommodation for fish allergy, celiac, veg",
+          "Lunch only",
+          "Deposit/cancellation unconfirmed",
+          "Surquillo, away from main restaurant districts",
+          "Opened ~2023, not a 2024-26 opening"
+        ],
+        "accolades": [
+          "El País Viajero (2026-04-17) features it as Surquillo's destination; chef calls it the 'consolation prize' for those who can't get into Maido",
+          "Gestión feature (Aug 2026)",
+          "Forbes Perú profile (2024)"
+        ],
+        "chef": "Sebastián Vega (owner)",
+        "how_to_book": "Choose guests (2), date, time, zone, then details. Not suitable for celiac, vegetarian, vegan, or fish/shellfish allergy. Groups over 10 or mobility needs: WhatsApp.",
+        "reviews": {
+          "google": {
+            "rating": 4.7,
+            "count": 190,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 5,
+            "count": 60,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:59Z"
+    }
+  ]
+}

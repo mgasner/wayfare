@@ -1,0 +1,212 @@
+{
+  "id": "el-mercado-lima",
+  "area": "miraflores",
+  "name": "El Mercado",
+  "kind": "bookable",
+  "google_place_id": null,
+  "overture_id": "1f485b46-591e-4219-96d0-d84d7bf767d0",
+  "lat": -12.1113739,
+  "lng": -77.0486069,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "elmercado.mesa247.pe",
+      "slug": "el-mercado",
+      "local_id": 2427
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51974779517"
+    },
+    {
+      "type": "email",
+      "address": "reservas@elmercado.pe"
+    }
+  ],
+  "summary": "Rafael Osterling's lively, lunch-only cevichería with a creative seafood menu and online booking. Expect a long lunch, pricier than a classic cevichería; some visitors find it a bit hyped.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://elmercado.pe"
+    },
+    {
+      "label": "Book online",
+      "url": "https://elmercado.mesa247.pe/reservas/el-mercado"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/elmercadorestaurante/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/search/El+Mercado+Hipolito+Unanue+203+Miraflores"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://es.restaurantguru.com/El-Mercado-Miraflores"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://luxuriacity.com/es/peru/lima/restaurants/el-mercado"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1x7fgqa/3_nights_in_lima/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1lgjuo2/where_do_we_actually_go_in_lima/"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/provecho/restaurantes/cuanto-cuesta-comer-en-el-mercado-de-rafael-osterling-mejores-restaurantes-de-america-latina-2024-guia-50-best-latam-noticia/"
+    },
+    {
+      "label": "hungrypost.com",
+      "url": "https://www.hungrypost.com/miami/news/our-top-restaurants-in-lima/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d1904421-Reviews-El_Mercado-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://elmercado.pe/la-carta"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:44:02Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Tue-Sun 12:30-17:00, lunch only; closed Monday.",
+        "closed_days": [
+          1
+        ]
+      },
+      "checked_at": "2026-11-13T01:44:02Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 50,
+        "text": "About S/300-400 for two (~US$90-120) for a full lunch with drinks; S/55 average per plate"
+      },
+      "checked_at": "2026-11-13T01:44:02Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Peruvian seafood / cevichería with Nikkei, chifa and Mediterranean touches",
+      "checked_at": "2026-11-13T01:44:02Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "La Carta (official)",
+        "items": [
+          {
+            "name": "Ceviche Mercado",
+            "description": "El Combinado: catch of the day in ají amarillo leche de tigre with calamari chicharrón."
+          },
+          {
+            "name": "Ceviche Neptuno",
+            "description": "Robalo, prawns, scallops, grilled octopus, rich leche de tigre."
+          },
+          {
+            "name": "Tiradito Samurai",
+            "description": "Tuna tataki, hondashi, pickled cucumber, avocado, caviar."
+          },
+          {
+            "name": "Tiradito Punta Hermosa",
+            "description": "Silverside, scallops, sea urchin, avocado, ají mochero, tropical tigresa."
+          },
+          {
+            "name": "Conchas Reggiana",
+            "description": "Grilled scallops, burnt-butter cream, parmesan, white wine, confit garlic."
+          },
+          {
+            "name": "Conchas del Griego",
+            "description": "Scallops in bubbling pisco butter, ají amarillo, fresh oregano."
+          },
+          {
+            "name": "Pulpo a la parrilla",
+            "description": "Smoky grilled octopus, parsley cream, potatoes, mushrooms."
+          },
+          {
+            "name": "Tuna Burger Bun",
+            "description": "Charcoal tuna burger, miso mayo, pickles."
+          },
+          {
+            "name": "Socarrat",
+            "description": "Bomba rice in concolón with octopus, scallops, prawns, clams, seafood broth."
+          },
+          {
+            "name": "Arroz verde piurano",
+            "description": "Green rice with black clams, clams, prawns, loche, chicha de jora."
+          },
+          {
+            "name": "Chaufa Fusión",
+            "description": "Suckling pig chicharrón, prawns, squid, clams, Shanghai-style fried plantain."
+          },
+          {
+            "name": "Churros del Mercado",
+            "description": "Churros with bubbling chocolate dip, dulce de leche, vanilla ice cream."
+          }
+        ],
+        "as_of": "2026-11-12",
+        "source_url": "https://elmercado.pe/la-carta"
+      },
+      "checked_at": "2026-11-13T01:44:02Z"
+    },
+    {
+      "field": "deposit_policy",
+      "value": "Not confirmed. A card is required to book online; whether a charge applies was not seen.",
+      "checked_at": "2026-11-13T01:44:02Z"
+    },
+    {
+      "field": "dress",
+      "value": "Smart casual (third-party listing)",
+      "checked_at": "2026-11-13T01:44:02Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "off-the-beaten-path",
+        "format": "Daytime-only à la carte lunch, indoor-outdoor room with long bar and cocktails",
+        "pros": [
+          "Wide creative seafood menu",
+          "Strong press and ~4.5-4.6 ratings",
+          "Lively room, serious cocktails"
+        ],
+        "cons": [
+          "Lunch only, closed Mondays",
+          "Pricey vs classic cevicherías; no published prices",
+          "Deposit/cancellation terms unconfirmed"
+        ],
+        "accolades": [
+          "Latin America's 50 Best Restaurants 2024: No. 93 (El Comercio)",
+          "Frommer's 2-star (via Restaurant Guru)"
+        ],
+        "chef": "Rafael Osterling",
+        "how_to_book": "Online booking for 1-6 guests; larger parties via WhatsApp/email. Researcher stopped at the time picker and entered no details. Weekend slots scarce.",
+        "reviews": {
+          "google": {
+            "rating": 4.6,
+            "count": 2695,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.5,
+            "count": 1776,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:44:02Z"
+    }
+  ]
+}

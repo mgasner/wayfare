@@ -1,0 +1,209 @@
+{
+  "id": "astrid-y-gaston",
+  "area": "san-isidro",
+  "name": "Astrid y Gastón",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": "621d6ebe-a384-43ad-ac4a-37f262e080a5",
+  "lat": -12.0965853,
+  "lng": -77.0349197,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "astridygaston.mesa247.pe",
+      "slug": "astrid_gaston",
+      "local_id": 93
+    },
+    {
+      "type": "email",
+      "address": "restaurante@astridygaston.com"
+    },
+    {
+      "type": "phone",
+      "number": "+5114422777"
+    }
+  ],
+  "summary": "The historic Lima fine-dining name, in a colonial hacienda with a theatrical tasting menu (tableside pisco sour, cuy Pekinés, bread flight, chocolate box). Best for a polished, playful celebratory meal; Reddit often suggests it as the more relaxed, easier-to-book alternative to Central, Maido or Kjolle, and some prefer à la carte or lunch for value.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://www.astridygaston.com"
+    },
+    {
+      "label": "Book online",
+      "url": "https://astridygaston.mesa247.pe/reservas/astrid_gaston"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/astrid_y_gaston/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/search/Astrid%26Gast%C3%B3n%2C%20Av.%20Paz%20Soldan%20290%2C%20San%20Isidro%2C%20Lima%2C%20Peru%2C%2047900"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://www.thebar.com/es-pe/venues/astrid-y-gaston"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://es.restaurantguru.com/Casa-Hacienda-Moreyra-Lima"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1x7fgqa/3_nights_in_lima/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1lgjuo2/where_do_we_actually_go_in_lima/"
+    },
+    {
+      "label": "stefangourmet.com",
+      "url": "https://stefangourmet.com/2026/11/04/astrid-y-gaston-lima-review/"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/provecho/restaurantes/cuanto-cuesta-comer-en-astrid-gaston-mejores-restaurantes-de-america-latina-2024-guia-50-best-latam-noticia/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.es/Restaurant_Review-g294316-d789991-Reviews-Astrid_Gaston-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://astridygaston.com/cartas/A&G_Carta_Web_Menu_Degustacion.pdf"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:30Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Tue-Sat lunch about 13:00-16:00 and dinner 19:00-23:00; Sunday lunch only; closed Monday.",
+        "closed_days": [
+          1
+        ]
+      },
+      "checked_at": "2026-11-13T01:43:30Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 220,
+        "text": "Seasonal tasting about S/748 (~US$220) before drinks; wine pairing S/599 (~US$175). Prices not published on the official site."
+      },
+      "checked_at": "2026-11-13T01:43:30Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Contemporary Peruvian",
+      "checked_at": "2026-11-13T01:43:30Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Menú Agasajo (longer) and Menú Encuentro (shorter), Otoño-Invierno 2026",
+        "items": [
+          {
+            "name": "Pisco sour hecho en mesa",
+            "description": "Pisco sour made at the table to open"
+          },
+          {
+            "name": "Navajas, pera, rocoto",
+            "description": "Razor clams, pear, rocoto pepper"
+          },
+          {
+            "name": "Concha, poro, huevas (Agasajo)",
+            "description": "Scallop, leek, roe"
+          },
+          {
+            "name": "Cangrejo, chifa amazónico",
+            "description": "Crab, Amazonian-chifa style"
+          },
+          {
+            "name": "Cuy Pekinés",
+            "description": "Guinea pig, Peking-duck style"
+          },
+          {
+            "name": "Lengua, papa, huacatay (Agasajo)",
+            "description": "Tongue, potato, huacatay"
+          },
+          {
+            "name": "Liebre, chocolate, ají amarillo (Agasajo)",
+            "description": "Hare with chocolate and yellow chili"
+          },
+          {
+            "name": "La leche de tigre del amor",
+            "description": "Southern sole, Huarochirí avocado, basil, mirasol chili bread; Agasajo adds a Marcona sea urchin and Virú asparagus version on brioche"
+          },
+          {
+            "name": "Los crustáceos del Perú",
+            "description": "Puerto Eten lobster with Lima-style vizcaína and coral foam, tuber bread; Agasajo adds shrimp hakao with Sichuan chupe"
+          },
+          {
+            "name": "El pescado de invierno (Agasajo)",
+            "description": "Deep-sea fish with pachamanca sauces, roasted oca, Porcón mushroom purée, huayro potato bread"
+          },
+          {
+            "name": "El cabrito de Piura",
+            "description": "Baby goat in a mole of Peruvian chiles, corn pepián, pickles, blood sausage bread"
+          },
+          {
+            "name": "El mundo dulce de Astrid",
+            "description": "Dessert course: El dulce Edén and the chocolate box"
+          }
+        ],
+        "as_of": "Official PDF, autumn-winter 2026 edition, current as of 2026-11-12",
+        "source_url": "https://astridygaston.com/cartas/A&G_Carta_Web_Menu_Degustacion.pdf"
+      },
+      "checked_at": "2026-11-13T01:43:30Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "fine-dining",
+        "format": "both: two seasonal tasting menus (Agasajo, Encuentro) plus à la carte",
+        "pros": [
+          "Lunch and dinner bookable on most days",
+          "Theatrical bread- and dessert-led tasting; praised service and setting",
+          "Two tasting lengths plus à la carte",
+          "Simple online booking"
+        ],
+        "cons": [
+          "LatAm 50 Best only No. 81 in 2025",
+          "Some Reddit diners found dishes uneven or pricey, less distinctive than Central or Kjolle",
+          "Small portions; half-pour pairings",
+          "Lively music made English service harder to follow",
+          "Closed Mondays; Sundays lunch only",
+          "Prices not published, deposit policy unknown"
+        ],
+        "accolades": [
+          "Latin America's 50 Best 2025: No. 81. 2026 LatAm result not found.",
+          "Relais & Châteaux member",
+          "TripAdvisor Travellers' Choice 2024",
+          "World's 50 Best 2026: no entry found in coverage read, not verified against full list",
+          "Summum: not verified"
+        ],
+        "chef": "Founders Gastón Acurio and Astrid Gutsche. Current head chef unverified: PromPerú guide names Juan David Ocampo, an El Comercio piece (2026-11-06) mentions Diego Muñoz, official site names none.",
+        "how_to_book": "Party size 1-6 in widget, date, time, then experience (A la Carta, Menú Agasajo, Menú Encuentro), then guest details. 9+ guests must email/call.",
+        "reviews": {
+          "google": {
+            "rating": 4.6,
+            "count": 7800,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.4,
+            "count": 6958,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:30Z"
+    }
+  ]
+}

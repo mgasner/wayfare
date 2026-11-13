@@ -1,0 +1,38 @@
+{
+  "id": "juanito-de-barranco",
+  "area": "barranco",
+  "name": "Juanito de Barranco",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "a3e52588-b73a-4c08-b45c-7de8e4a01ac3",
+  "lat": -12.1496487,
+  "lng": -77.0206985,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "A wood-paneled old bar on Avenida Grau facing Barranco's main square, serving ham and turkey sandwiches and chilcanos since the 1930s. A drink, not a meal.",
+  "links": [
+    {
+      "label": "barsforKings",
+      "url": "https://barsforkings.com/bars/lima/juanito-de-barranco/"
+    },
+    {
+      "label": "El Comercio",
+      "url": "https://elcomercio.pe/gastronomia/recetas/receta-almuerzos-juanito-barranco-419132-noticia/"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Bar, sandwiches",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

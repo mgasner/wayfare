@@ -1,0 +1,190 @@
+{
+  "id": "wa-lok-barrio-chino",
+  "area": "barrio-chino",
+  "name": "Chifa Wa Lok",
+  "kind": "walk_in",
+  "google_place_id": "ChIJ60FqfLrIBZERJuak5krBWOI",
+  "overture_id": "47108e1a-6a9a-46e8-a71b-6d796cc5721a",
+  "lat": -12.0522146,
+  "lng": -77.025116,
+  "channels": [
+    {
+      "type": "phone",
+      "number": "+5114272750"
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51946221044"
+    },
+    {
+      "type": "web",
+      "url": "https://walok.pe"
+    },
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "The best-documented old-school chifa in Barrio Chino: a ~30-year-old family-run Cantonese-Peruvian hall praised by El Comercio and local Redditors. Treat it as a big shared-plate lunch (taypa, tallarín sam si, chaufa especial, duck), not a refined meal; some locals prefer Won King for dim sum.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://walok.pe"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/place/?q=place_id:ChIJ60FqfLrIBZERJuak5krBWOI"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://wanderlog.com/place/details/1277856/chifa-wa-lok"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://es.restaurantguru.com/Chifa-Wa-Lok-Lima"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/Lima_Peru/comments/1qyrwic/mejor_chifa_de_lima/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/Lima_Peru/comments/1pba74y/restaurantes_favoritos_en_lima/"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/provecho/listas-y-rankings/recorrido-gastronomico-por-el-barrio-chino-de-lima-3-chifas-imperdibles-video-noticia/"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/somos/gastronomia/estos-son-los-10-mejores-chifas-de-lima-guia-premios-somos-2025-ano-nuevo-chino-noticia/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d1028650-Reviews-Wa_Lok-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://walok.pe/archivos/CARTA_WA_LOK_ABRIL_2022_MESA.pdf"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Mon-Sat 9:30-21:15; Sunday 9:30-20:00.",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 25,
+        "text": "Roughly S/150-200 for two (~US$45-60), estimate"
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Chifa / Cantonese-Peruvian, dim sum",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Carta Wa Lok (April 2022, table menu)",
+        "items": [
+          {
+            "name": "Ja kao (S/25)",
+            "description": "Steamed rice-paste dumplings with prawns."
+          },
+          {
+            "name": "Sui kao frito (S/26)",
+            "description": "Fried pork and prawn dumplings."
+          },
+          {
+            "name": "Dim sum surtido (S/55)",
+            "description": "Assorted dim sum platter."
+          },
+          {
+            "name": "Cha siu pao (S/16.50)",
+            "description": "Bun with roast pork."
+          },
+          {
+            "name": "Arroz chaufa especial (S/28)",
+            "description": "Fried rice with egg, pork, prawns, chicken, scallion."
+          },
+          {
+            "name": "Pato pekines, medio (S/86)",
+            "description": "Half Peking duck in two courses."
+          },
+          {
+            "name": "Pato asado, medio (S/80)",
+            "description": "Half roast duck."
+          },
+          {
+            "name": "Canasta sam si (S/58)",
+            "description": "Stir-fry of green beans, mushroom, pork, duck in a crispy basket."
+          },
+          {
+            "name": "Lomo de res a la plancha (S/75)",
+            "description": "Griddled beef tenderloin with vegetables."
+          },
+          {
+            "name": "Taypa a la plancha",
+            "description": "Griddled mix of chicken, pork, duck, prawns, vegetables; house favorite (El Comercio 2024)."
+          },
+          {
+            "name": "Tallarín sam si",
+            "description": "Flamed noodles with vegetables, chicken, pork, black mushrooms (El Comercio 2024)."
+          }
+        ],
+        "as_of": "2022-04 (old; prices likely higher)",
+        "source_url": "https://walok.pe/archivos/CARTA_WA_LOK_ABRIL_2022_MESA.pdf"
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "off-the-beaten-path",
+        "format": "Large family-style chifa dining hall, walk-in, shared plates, ~300-dish menu",
+        "pros": [
+          "Open in 2026, long-running institution",
+          "Huge shared portions, good value",
+          "Wide menu with duck, dim sum, tallarines",
+          "Locals name it a top Barrio Chino chifa"
+        ],
+        "cons": [
+          "Slow, inconsistent service and queues at peak",
+          "Loud, crowded room",
+          "Menu prices are from 2022 only",
+          "Barrio Chino needs urban awareness after dark; photos are Wanderlog copies"
+        ],
+        "accolades": [
+          "El Comercio / Premios Somos 2025 best chifas list",
+          "El Comercio Provecho 'Barrio Chino: 3 chifas imperdibles' (Aug 2024)"
+        ],
+        "how_to_book": "No online booking found. Walk in or WhatsApp ahead; whether they take small-party bookings is unverified.",
+        "reviews": {
+          "google": {
+            "rating": 4.2,
+            "count": 4638,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 3.9,
+            "count": 380,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    }
+  ]
+}

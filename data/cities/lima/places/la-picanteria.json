@@ -1,0 +1,25 @@
+{
+  "id": "la-picanteria",
+  "area": "surquillo",
+  "name": "La Picantería",
+  "kind": "bookable",
+  "google_place_id": null,
+  "overture_id": "1b75f4e2-c16d-442e-842a-8036e515b136",
+  "lat": -12.1167278,
+  "lng": -77.0237732,
+  "channels": [],
+  "summary": "Héctor Solís's Surquillo picantería, closed in May 2026 after 14 years; a return is planned for 2027. His Saldelmar in Miraflores is the successor.",
+  "links": [],
+  "facts": [
+    {
+      "field": "status",
+      "value": "closed",
+      "checked_at": "2026-11-12T00:30:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Northern Peruvian seafood",
+      "checked_at": "2026-11-12T00:30:00Z"
+    }
+  ]
+}

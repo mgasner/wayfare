@@ -1,0 +1,209 @@
+{
+  "id": "canta-rana-barranco",
+  "area": "barranco",
+  "name": "Canta Rana",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "70ab0433-354d-4363-9516-900bb7cbc479",
+  "lat": -12.1467819,
+  "lng": -77.0222244,
+  "channels": [
+    {
+      "type": "whatsapp",
+      "number": "+51923841016"
+    },
+    {
+      "type": "email",
+      "address": "admin@cantarana.pe"
+    },
+    {
+      "type": "phone",
+      "number": "+51961771473"
+    },
+    {
+      "type": "web",
+      "url": "https://cantarana.pe/reservas/"
+    },
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "A 40-year Barranco institution that locals still recommend, and a recent Mejor Huarique winner: honest ceviche (try the apaltado) and seafood rice without tasting-menu prices. Not a hidden spot, and loud at peak lunch.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://cantarana.pe/"
+    },
+    {
+      "label": "Book online",
+      "url": "https://cantarana.pe/reservas/"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/cantaranaoficial/"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://limeo.pe/restaurante/canta-rana-barranco"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://es.restaurantguru.com/Canta-Rana-Lima"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1v9rlcn/peru_on_a_budget/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/GoingToPeru/comments/1toablz/what_to_do_in_lima_staying_for_4_days/"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/somos/gastronomia/canta-rana-se-convierte-en-el-mejor-huarique-de-los-premios-somos-2026-noticia/"
+    },
+    {
+      "label": "latimes.com",
+      "url": "https://www.latimes.com/food/list/lima-peru-food-guide-one-of-worlds-best-destinations"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d1075886-Reviews-Canta_Rana-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://cantarana.pe/nuesta-carta/"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Tue-Sat about 9:00-22:00, Sunday to 20:00, Monday to 18:00 (the site lists two schedules).",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 26,
+        "text": "About S/150-200 for two (US$45-60) for a shared ceviche plus a main each with a drink, before tip (my estimate)"
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Peruvian cevichería / seafood with Argentine touches",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Carta Canta Rana Barranco",
+        "items": [
+          {
+            "name": "Ceviche apaltado (S/60)",
+            "description": "Fish ceviche with avocado cream; house signature."
+          },
+          {
+            "name": "Ceviche de pescado (S/50)",
+            "description": "Classic Lima-style ceviche."
+          },
+          {
+            "name": "Ceviche de erizos (S/60)",
+            "description": "Sea urchin ceviche."
+          },
+          {
+            "name": "Ceviche Guardia Imperial (S/70)",
+            "description": "Fish ceviche topped with grilled octopus."
+          },
+          {
+            "name": "Conchitas a la parmesana (S/65)",
+            "description": "Scallops gratinéed with parmesan."
+          },
+          {
+            "name": "Causa Punta Hermosa (S/50)",
+            "description": "Causa with fried calamari."
+          },
+          {
+            "name": "Chicharrón de pescado (S/50)",
+            "description": "Fried fish; jalea personal S/80."
+          },
+          {
+            "name": "Pulpo a la parrilla (S/70)",
+            "description": "Grilled octopus."
+          },
+          {
+            "name": "Arroz con mariscos (S/55)",
+            "description": "Seafood rice, most recommended on Reddit."
+          },
+          {
+            "name": "Tacu tacu con picante de mariscos (S/65)",
+            "description": "Pan-fried rice and beans with spicy seafood sauce."
+          },
+          {
+            "name": "Chupe de pescados (S/54)",
+            "description": "Fish chowder; parihuela especial S/95."
+          },
+          {
+            "name": "Leche de tigre (S/30-50)",
+            "description": "Tigre / Pantera / Levántate Lázaro cups."
+          }
+        ],
+        "as_of": "2026-11-12",
+        "source_url": "https://cantarana.pe/nuesta-carta/"
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "deposit_policy",
+      "value": "S/50 per reservation, deducted from bill, forfeited if cancelled under 24 hours",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "off-the-beaten-path",
+        "format": "Casual neighborhood bodegón/huarique, shared tables, noisy, football memorabilia",
+        "pros": [
+          "Award and local recommendations in 2026",
+          "Wide carta, mains mostly S/50-70",
+          "Open all day, not lunch-only",
+          "Safe, walkable Barranco"
+        ],
+        "cons": [
+          "Official hours conflict",
+          "Busy and loud at peak, possible waits",
+          "S/50 reservation deposit",
+          "Ratings and Reddit are second-hand; coordinates from OSM"
+        ],
+        "accolades": [
+          "Mejor Huarique, Premios Somos (El Comercio) 2026, Aug 11 2026 public vote",
+          "LA Times Lima food guide (Jul 2026)",
+          "Recommended by Nelson Freitas and Virgilio Martínez (Fine Dining Lovers 2024)"
+        ],
+        "chef": "Vicente Furgiuele Cárdenas (Argentine founder-owner, opened 1985)",
+        "how_to_book": "Reservations only for 9-11 AM and 6-10 PM arrivals. No slot picker found. WhatsApp with date, time, party of 2, or walk in at opening.",
+        "reviews": {
+          "google": {
+            "rating": 4.3,
+            "count": 2954,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.1,
+            "count": 1054,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    }
+  ]
+}

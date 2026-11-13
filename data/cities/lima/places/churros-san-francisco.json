@@ -1,0 +1,38 @@
+{
+  "id": "churros-san-francisco",
+  "area": "centro",
+  "name": "Churros San Francisco",
+  "kind": "informal",
+  "google_place_id": null,
+  "overture_id": "d99f2487-7568-4790-8df4-8d035a2c51c1",
+  "lat": -12.0454884,
+  "lng": -77.0287247,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "A churro counter half a block from the San Francisco church, frying Spanish-style churros filled with manjar blanco or pastry cream to order. A five-minute stop after the catacombs.",
+  "links": [
+    {
+      "label": "Buenazo",
+      "url": "https://buenazo.pe/dato-buenazo/2020/08/27/dato-buenazo-churros-espanoles-churros-san-francisco-119"
+    },
+    {
+      "label": "La República",
+      "url": "https://larepublica.pe/sociedad/2022/09/08/centro-de-lima-conoce-los-mejores-lugares-en-donde-se-venden-los-churros-mas-ricos-san-francisco"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Churros",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "central",
+  "area": "barranco",
+  "name": "Central",
+  "kind": "reserve_ahead",
+  "lat": -12.1497,
+  "lng": -77.0221,
+  "channels": [{ "type": "web", "url": "https://centralrestaurante.com.pe/en/reservations" }],
+  "summary": "Virgilio Martínez's tasting menu through Peru's altitudes, in Barranco.",
+  "links": [{ "label": "Reservations", "url": "https://centralrestaurante.com.pe/en/reservations" }],
+  "facts": [
+    { "field": "status", "value": "open", "checked_at": "2026-11-12T22:00:00Z" },
+    { "field": "deposit_policy", "value": "Prepaid at booking", "checked_at": "2026-11-12T22:00:00Z" }
+  ]
+}

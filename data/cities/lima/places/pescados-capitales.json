@@ -1,0 +1,50 @@
+{
+  "id": "pescados-capitales",
+  "area": "miraflores",
+  "name": "Pescados Capitales",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "81d65cb8-21f5-4816-8b7c-565b996bc107",
+  "lat": -12.1094151,
+  "lng": -77.0495987,
+  "channels": [
+    {
+      "type": "phone",
+      "number": "+51965459033"
+    },
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "A long-running seafood house on Avenida La Mar with a playful menu named after the deadly sins: ceviches, tiraditos, rice and the catch of the day. Walk in for lunch, or call ahead on weekends.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://pescadoscapitales.com/locales/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com.pe/Restaurant_Review-g294316-d798901-Reviews-Pescados_Capitales-Lima_Lima_Region.html"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Mon-Sat 12:00-23:00; Sun 12:00-18:00.",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Peruvian seafood",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}
