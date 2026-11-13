@@ -8,6 +8,7 @@ import { Button } from "../../components/Button";
 import { Stale } from "../../components/Stale";
 import { StatusChip } from "../../components/StatusChip";
 import { TripMealChip } from "../../components/PlaceRow";
+import { VoiceInput } from "../../components/VoiceInput";
 import { closedOn, timesFor, tripMealFor, type MealSlot } from "../../data/availability";
 import { cuisine, hours, isClosed, menu, notes, priceUsd, tierLabel } from "../../data/facts";
 import { usePlace, useRefreshSlots, useToggleSave, useTravelMinutes } from "../../data/hooks";
@@ -90,6 +91,7 @@ export function PlaceDetail() {
               </div>
             </div>
             {p.summary && <p className="pd-summary">{p.summary}</p>}
+            <VoiceInput intent={{ screen: "place", place: p.id, ...(trip ? { trip: trip.trip.id } : {}) }} placeholder="Something changed? “They close at 4:30 now”" placeName={(x) => (x === p.id ? p.name : x)} />
           </div>
           <div className="pd-main pd-side">{trip && p.slots.length > 0 && <Availability place={p} trip={trip} onPick={setAdd} />}</div>
           <div className="pd-main pd-rest">

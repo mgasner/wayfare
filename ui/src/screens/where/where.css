@@ -1,0 +1,135 @@
+.where-cal {
+  margin: 8px 12px 4px;
+  padding: 4px 12px;
+  font-size: 13.5px;
+}
+.where-cal-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+.where-cal-row + .where-cal-row {
+  border-top: 1px solid var(--line);
+}
+.where-add-ics {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0 6px;
+  color: var(--accent);
+  font-weight: 600;
+  border-top: 1px solid var(--line);
+  width: 100%;
+}
+.where-ics {
+  display: flex;
+  gap: 8px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+}
+.where-ics input {
+  flex: 1;
+  min-width: 0;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+.where-cal .muted {
+  font-size: 12.5px;
+}
+.where-days {
+  padding: 4px 12px 8px;
+  display: flex;
+  flex-direction: column;
+}
+.where-day {
+  padding: 8px 4px;
+  border-top: 1px solid var(--line);
+}
+.where-day:first-child {
+  border-top: 0;
+}
+.where-day-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 650;
+  margin-bottom: 2px;
+}
+.where-day-title .count {
+  font-size: 12px;
+  padding: 0 7px;
+  border-radius: 8px;
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.where-tl {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.where-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  font-size: 14px;
+  border-radius: 8px;
+  padding: 0 4px;
+}
+.where-row svg {
+  flex: none;
+}
+.where-row.anchor {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 6px 4px 6px 8px;
+}
+.where-row.anchor > svg {
+  color: var(--warn);
+}
+.where-row.anchor .grow {
+  display: flex;
+  flex-direction: column;
+}
+.where-quote {
+  font-size: 12.5px;
+}
+.where-row.meal {
+  font-size: 13px;
+}
+.where-time {
+  width: 74px;
+  flex: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.tone-text-ok {
+  color: var(--ok);
+}
+.tone-text-warn {
+  color: var(--warn);
+}
+.tone-text-info {
+  color: var(--info);
+}
+.tone-text-danger {
+  color: var(--danger);
+}
+.tone-text-casual {
+  color: var(--casual);
+}
+@media (min-width: 1024px) {
+  .where-day {
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .where-day.on {
+    background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+  }
+}

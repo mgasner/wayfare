@@ -48,7 +48,7 @@ export interface Summary {
 export function availabilitySummary(p: PlaceCard, start: string, end: string, meal?: MealSlot): Summary {
   if (!hasSlotData(p)) {
     const h = hours(p);
-    const first = h?.text.split(/[.;(]/)[0]?.trim();
+    const first = h?.text.replace(/^Hours[^:]*:\s*/i, "").split(/[.;(]/)[0]?.trim();
     return { tone: "muted", text: first ? first : "No live availability; ask by message" };
   }
   const days = dateRange(start, end);
