@@ -28,7 +28,11 @@ Plan: https://app.indent.com/reports/01a1d244-d12d-7998-a0e6-0439927ce1b1 (local
 | `input.interpret` | mutation | `{ text, context: { screen, trip?, date?, place? } }` | `{ changes: Change[], undo: string }` | C |
 | `input.undo` | mutation | `{ undo }` | `{ ok: true }` | C |
 | `calendar.*` | | see C's PR | | C |
-| `agent.*` | | see B's PR | | B |
+| `agent.recordFacts` | mutation | `{ facts: { place, field, value, source?, checked_at? }[] }` (source `research` \| `overture` \| `live:<channel>`) | `{ written, unchanged, unknown_places }` | B |
+| `agent.listStale` | query | `{ city, fields?, older_than_days?, only_on_trip?, limit? }` | `{ checked_at, places: { id, name, kind, area, on_trip, stale: { field, checked_at \| null }[] }[] }` | B |
+| `agent.expireFacts` | mutation | `{ facts?: { place, field, source }[], user_facts_before? }` | `{ deleted }` | B |
+
+`agent.*` takes `Authorization: Bearer $AGENT_TOKEN` and runs as the `indent` actor. Fact values per field: `shared/facts.ts`.
 
 `Change` is `{ kind: "anchor" | "save" | "fact" | "meal" | "trip", op: "created" | "updated" | "deleted", record: unknown }`.
 
