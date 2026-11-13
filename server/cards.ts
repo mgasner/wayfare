@@ -10,7 +10,8 @@ export type CardOptions = {
 
 /**
  * Places as cards for `viewer` (an app_user id, or null when signed out), in the order of `ids`.
- * Facts reduce to the newest per field among sources the viewer may see: shared ones and their own.
+ * Facts reduce to one per field among sources the viewer may see: their own report if they made one, else the newest
+ * shared fact. A report stays visible to its author until it is promoted or expires.
  */
 export async function placeCards(ids: string[], viewer: string | null, options: CardOptions = {}): Promise<PlaceCard[]> {
   const unique = [...new Set(ids)];
@@ -38,7 +39,9 @@ export async function placeCards(ids: string[], viewer: string | null, options: 
   for (const f of facts.rows) {
     const byField = newest.get(f.place) ?? {};
     const current = byField[f.field];
-    if (!current || f.checked_at > current.checked_at) {
+    const mine = f.source === own;
+    const currentMine = current?.source === own;
+    if (!current || (mine && !currentMine) || (mine === currentMine && f.checked_at > current.checked_at)) {
       byField[f.field] = { value: f.value, source: f.source, checked_at: f.checked_at };
     }
     newest.set(f.place, byField);
