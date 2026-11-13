@@ -11,6 +11,7 @@ import { usePlaces, useSaves, useToggleSave, useTravelMinutes } from "../../data
 import { shellTrip, tripKicker, useTripView } from "../../data/trip";
 import { Link } from "../../lib/router";
 import "../discover/discover.css";
+import { SaveOptions } from "./SaveOptions";
 import "./saved.css";
 
 /** Want to visit: every save, grouped by area so a day in one area shows what's near. */
@@ -75,7 +76,7 @@ export function Saved() {
                 {a?.brief && <p className="muted disc-group-sub">{a.brief}</p>}
                 <div className="card disc-card">
                   {list.map(({ save, place }) => (
-                    <div key={place.id} className={fresh.includes(place.id) ? "flash" : undefined} onMouseEnter={() => setSel(place.id)}>
+                    <div key={place.id} className={`saved-item${sel === place.id ? " selected" : ""}${fresh.includes(place.id) ? " flash" : ""}`} onMouseEnter={() => setSel(place.id)}>
                       <PlaceRow
                         place={place}
                         areaName={a?.name}
@@ -86,6 +87,7 @@ export function Saved() {
                         selected={sel === place.id}
                         onToggleSave={() => toggle.mutate({ place: place.id, saved: false })}
                       />
+                      <SaveOptions save={save} place={place} />
                     </div>
                   ))}
                 </div>

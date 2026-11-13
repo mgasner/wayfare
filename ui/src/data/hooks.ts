@@ -130,6 +130,35 @@ export function useToggleSave() {
   });
 }
 
+/** Edits a save's note or nearby flag, showing the change before the server answers. */
+export function useUpdateSave() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (input: In<"saves.update">) => api("saves.update", input),
+    onMutate: async (input) => {
+      await qc.cancelQueries({ queryKey: ["saves.list"] });
+      const before = qc.getQueriesData<Out<"saves.list">>({ queryKey: ["saves.list"] });
+      qc.setQueriesData<Out<"saves.list">>({ queryKey: ["saves.list"] }, (list) =>
+        list?.map((x) =>
+          x.save.place !== input.place
+            ? x
+            : {
+                ...x,
+                save: {
+                  ...x.save,
+                  ...(input.note !== undefined ? { note: input.note?.trim() || null } : {}),
+                  ...(input.notify_nearby !== undefined ? { notify_nearby: input.notify_nearby } : {}),
+                },
+              },
+        ),
+      );
+      return { before };
+    },
+    onError: (_e, _input, ctx) => ctx?.before.forEach(([k, v]) => qc.setQueryData(k, v)),
+    onSettled: () => invalidate(qc, "saves.list"),
+  });
+}
+
 /** Live slot read; merges the fresh reads into every cached card for that place. */
 export function useRefreshSlots() {
   const qc = useQueryClient();

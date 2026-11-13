@@ -55,7 +55,7 @@ function seed(): State {
     note,
     updated_at: t0,
   });
-  const save = (place: string, note: string | null, source: string | null): Save => ({ owner: ME.id, place, source, note, notify_nearby: true, created_at: t0 });
+  const save = (place: string, note: string | null, source: string | null, notify_nearby = true): Save => ({ owner: ME.id, place, source, note, notify_nearby, created_at: t0 });
   return {
     trips: [
       {
@@ -113,7 +113,7 @@ function seed(): State {
     saves: [
       save("anticuchos-grimanesa-lima", "A friend says go after five", "friend"),
       save("al-toke-pez", null, "reddit"),
-      save("wa-lok-barrio-chino", null, null),
+      save("wa-lok-barrio-chino", null, null, false),
       save("antigua-taberna-queirolo", "Pisco after Museo Larco", null),
       save("la-mar-cebicheria", null, null),
       save("canta-rana-barranco", null, null),
@@ -434,10 +434,28 @@ const handlers: Handlers = {
       .map((save) => ({ save, seed: placeById(save.place) }))
       .filter((x): x is { save: Save; seed: CardSeed } => !!x.seed && (!city || x.seed.city === city))
       .map(({ save, seed: s }) => ({ save, place: card(s) })),
-  "saves.add": ({ place, note, source }) => {
+  "saves.add": ({ place, note, source, notify_nearby }) => {
     const prev = state.saves.find((x) => x.place === place);
-    const save: Save = { owner: ME.id, place, note: note ?? prev?.note ?? null, source: source ?? prev?.source ?? null, notify_nearby: prev?.notify_nearby ?? false, created_at: prev?.created_at ?? now() };
+    const save: Save = {
+      owner: ME.id,
+      place,
+      note: note ?? prev?.note ?? null,
+      source: source ?? prev?.source ?? null,
+      notify_nearby: notify_nearby ?? prev?.notify_nearby ?? false,
+      created_at: prev?.created_at ?? now(),
+    };
     state.saves = state.saves.filter((x) => x.place !== place).concat(save);
+    persist();
+    return save;
+  },
+  "saves.update": ({ place, note, notify_nearby }) => {
+    const prev = state.saves.find((x) => x.place === place) ?? fail(`No save for ${place}`);
+    const save: Save = {
+      ...prev,
+      ...(note !== undefined ? { note: note?.trim() || null } : {}),
+      ...(notify_nearby !== undefined ? { notify_nearby } : {}),
+    };
+    state.saves = state.saves.map((x) => (x.place === place ? save : x));
     persist();
     return save;
   },
