@@ -1,7 +1,9 @@
 import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
+import { AppProviders } from "./AppProviders.js";
 import { call, type Output } from "./api.js";
+import { routes } from "./routes.js";
 import { SignIn } from "./SignIn.js";
 
 type Me = Output<"me.get">;
@@ -13,22 +15,14 @@ function Shell() {
   }, []);
   if (me === undefined) return null;
   if (me === null) return <SignIn />;
-  return (
-    <main>
-      <Outlet context={me} />
-    </main>
-  );
-}
-
-function Home() {
-  return <h1>Wayfare</h1>;
+  return <Outlet context={me} />;
 }
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Shell />,
-    children: [{ index: true, element: <Home /> }],
+    element: <AppProviders />,
+    children: [{ element: <Shell />, children: routes }],
   },
 ]);
 

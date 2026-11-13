@@ -1,0 +1,133 @@
+/*
+ * Theme tokens. A theme sets only these variables (palette, fonts, label style, corner radii);
+ * components read nothing else, so a city theme is a drop-in block below.
+ * Status colors (--ok, --warn, --info, --danger, --casual) keep the same meaning in every theme.
+ */
+
+:root,
+[data-theme="garua"] {
+  --bg: #e9ecec;
+  --surface: #f7f8f7;
+  --surface-2: #e0e6e6;
+  --ink: #1e2a30;
+  --muted: #66737a;
+  --line: #d3dada;
+  --on-ink: #fff;
+
+  --accent: #2e5b68;
+  --accent-soft: #dbe7ea;
+  --on-accent: #fff;
+
+  --ok: #3f7a5e;
+  --ok-soft: #dde9e2;
+  --warn: #a2733f;
+  --warn-soft: #efe7dc;
+  --info: #5d7783;
+  --info-soft: #dfe6ea;
+  --danger: #b03a2e;
+  --danger-soft: #f3e1de;
+  --casual: #6f7f68;
+  --casual-soft: #e3e7de;
+  --stale: #9a6a1c;
+
+  --pick-bg: #24343b;
+  --pick-act: #1c2a30;
+  --pick-kicker: #a9c7cf;
+
+  --font-body: "IBM Plex Sans", -apple-system, system-ui, sans-serif;
+  --font-display: "IBM Plex Sans", -apple-system, system-ui, sans-serif;
+  --font-label: "IBM Plex Mono", ui-monospace, monospace;
+  --display-weight: 600;
+  --display-tracking: -0.02em;
+  --label-weight: 600;
+  --label-tracking: 0.04em;
+
+  --radius-sheet: 22px;
+  --radius-card: 14px;
+  --radius-btn: 12px;
+  --radius-chip: 999px;
+  --radius-icon: 10px;
+
+  --strip-height: 34px;
+  --strip-bg: linear-gradient(#f2f4f3, #e4e8e7);
+  --shadow-card: none;
+  --shadow-sheet: 0 -8px 30px rgba(30, 42, 48, 0.18);
+  --backdrop: rgba(30, 42, 48, 0.32);
+
+  color-scheme: light;
+}
+
+[data-theme="fachada"] {
+  --bg: #fbf5ec;
+  --surface: #fffdf9;
+  --surface-2: #f6ece4;
+  --ink: #2b2230;
+  --muted: #7d6f72;
+  --line: #eadfd2;
+  --accent: #b5266d;
+  --accent-soft: #f9e4ee;
+  --ok: #2f855a;
+  --ok-soft: #e7f2ea;
+  --warn: #c98a1d;
+  --warn-soft: #fbefd6;
+  --info: #2d5c8c;
+  --info-soft: #e3ebf3;
+  --danger: #b4232a;
+  --danger-soft: #f8e9e7;
+  --casual: #5f7a4f;
+  --casual-soft: #e9eedf;
+  --stale: #a86f12;
+  --pick-bg: #23486e;
+  --pick-act: #1c3b5b;
+  --pick-kicker: #f7b6d2;
+  --font-body: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-label: -apple-system, system-ui, sans-serif;
+  --display-weight: 600;
+  --display-tracking: -0.015em;
+  --label-weight: 700;
+  --label-tracking: 0.06em;
+  --strip-bg: #fbefd9;
+  --shadow-card: 0 1px 2px rgba(43, 34, 48, 0.06);
+  --backdrop: rgba(43, 34, 48, 0.3);
+}
+
+[data-theme="chancay"] {
+  --bg: #f2e9d8;
+  --surface: #fbf6ec;
+  --surface-2: #ece0ca;
+  --ink: #2a1c12;
+  --muted: #7a6650;
+  --line: #e0d1b6;
+  --accent: #a33b22;
+  --accent-soft: #f3ddd0;
+  --ok: #3f7a4a;
+  --ok-soft: #e2ead6;
+  --warn: #b77a1c;
+  --warn-soft: #f4e6c8;
+  --info: #5b6b7a;
+  --info-soft: #e3e3dc;
+  --danger: #a3221d;
+  --danger-soft: #f3d9d2;
+  --casual: #8a7a4a;
+  --casual-soft: #ebe3cc;
+  --stale: #a26a10;
+  --pick-bg: #2a1c12;
+  --pick-act: #1f140c;
+  --pick-kicker: #e7b07a;
+  --font-body: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-label: "Bricolage Grotesque", system-ui, sans-serif;
+  --display-weight: 780;
+  --display-tracking: -0.03em;
+  --label-weight: 800;
+  --label-tracking: 0.09em;
+  --radius-sheet: 10px;
+  --radius-card: 8px;
+  --radius-btn: 8px;
+  --radius-chip: 6px;
+  --radius-icon: 4px;
+  --strip-height: 22px;
+  --strip-bg: transparent;
+  --backdrop: rgba(42, 28, 18, 0.32);
+}

@@ -1,3 +1,6 @@
+import { ThemeStrip } from "./theme/motifs.js";
+import "./sign-in.css";
+
 const reasons: Record<string, string> = {
   access_denied: "Sign-in was cancelled.",
   state: "That sign-in link expired. Try again.",
@@ -13,13 +16,21 @@ export function SignIn() {
   const next = location.pathname + (query ? `?${query}` : "");
   return (
     <section className="sign-in">
-      <h1>Wayfare</h1>
-      <p>Plan where to eat on your trip, on your phone and your laptop.</p>
-      <a className="sign-in-button" href={`/api/auth/login?next=${encodeURIComponent(next)}`}>
-        Sign in with Google
-      </a>
-      <p className="sign-in-note">We read your Google Calendar to see where you'll be. We never change it.</p>
-      {error && <p role="alert">{reasons[error] ?? "Sign-in failed. Try again."}</p>}
+      <ThemeStrip />
+      <div className="sign-in-body">
+        <div className="label sign-in-kicker">Where to eat, by trip</div>
+        <h1 className="display">Wayfare</h1>
+        <p>Plan where to eat on your trip, on your phone and your laptop.</p>
+        <a className="btn btn-primary btn-lg btn-block" href={`/api/auth/login?next=${encodeURIComponent(next)}`}>
+          Sign in with Google
+        </a>
+        <p className="muted sign-in-note">We read your Google Calendar to see where you'll be. We never change it.</p>
+        {error && (
+          <p role="alert" className="sign-in-error">
+            {reasons[error] ?? "Sign-in failed. Try again."}
+          </p>
+        )}
+      </div>
     </section>
   );
 }

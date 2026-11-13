@@ -1,0 +1,95 @@
+.g-head {
+  padding: 18px 16px 12px;
+}
+.g-kicker {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.g-title {
+  font-size: 32px;
+  margin-top: 2px;
+}
+.g-sec {
+  padding: 14px 16px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.g-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.g-sw {
+  display: inline-flex;
+}
+.g-sw i {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  margin-right: -3px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.g-sw i:last-child {
+  margin-right: 4px;
+}
+.g-list {
+  overflow: hidden;
+}
+.g-li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+}
+.g-li + .g-li {
+  border-top: 1px solid var(--line);
+}
+.g-pick {
+  background: var(--pick-bg);
+  color: #fff;
+  border-radius: 18px;
+  padding: 14px;
+}
+.g-pick-k {
+  color: var(--pick-kicker);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.g-pick-t {
+  font-size: 24px;
+  margin: 4px 0 12px;
+}
+.g-pick-act {
+  display: flex;
+  gap: 8px;
+}
+.g-page {
+  margin: 0 4px;
+  padding: 18px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+@media (min-width: 1024px) {
+  .g-head,
+  .g-sec {
+    max-width: 720px;
+  }
+  .g-head {
+    padding: 28px 32px 12px;
+  }
+  .g-sec {
+    padding: 14px 32px 4px;
+  }
+}
