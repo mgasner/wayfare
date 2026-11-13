@@ -1,4 +1,4 @@
-import { keepPreviousData, useMutation, useQuery, useQueryClient, type QueryClient, type UseQueryOptions } from "@tanstack/react-query";
+import { keepPreviousData, useMutation, useQueries, useQuery, useQueryClient, type QueryClient, type UseQueryOptions } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import type { Change } from "../../../shared/actions.js";
 import type { PlaceCard, SlotRead } from "../../../shared/records";
@@ -33,6 +33,23 @@ export const useConflicts = (trip: string | null) => useApi("anchors.conflicts",
 export const useWhereAt = (input: In<"anchors.whereAt"> | null) => useApi("anchors.whereAt", input);
 export const useTravelMinutes = (input: In<"travel.minutes"> | null) =>
   useApi("travel.minutes", input && input.places.length ? input : null, { placeholderData: keepPreviousData });
+
+/** Lunch-to-dinner rides, one travel.minutes call per day, keyed by date. */
+export function useTravelHops(trip: string | null, hops: { date: string; from: string; to: string; time: string }[]) {
+  return useQueries({
+    queries: hops.map(({ date, from, to, time }) => {
+      const input: In<"travel.minutes"> = { trip: trip ?? "", date, time, places: [to], from: { place: from } };
+      return { queryKey: key("travel.minutes", input), queryFn: () => api("travel.minutes", input), enabled: !!trip, staleTime: 10 * 60_000 };
+    }),
+    combine: (results) =>
+      Object.fromEntries(
+        hops.flatMap((h, i) => {
+          const r = results[i]?.data;
+          return r ? [[h.date, { minutes: r.minutes[h.to] ?? null, estimated: r.estimated }]] : [];
+        }),
+      ),
+  });
+}
 
 const TRIP_KEY = "dp-current-trip";
 

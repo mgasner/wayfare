@@ -70,7 +70,7 @@ function DayView({ view, row }: { view: TripView; row: Row }) {
       <Slot view={view} cell={row.lunch} />
       {row.hop !== null && (
         <div className={`tl-hop${row.hop >= FAR_HOP_MIN ? " far" : ""}`}>
-          <Car size={15} /> {row.hop} min between lunch and dinner{row.hop >= FAR_HOP_MIN ? ", a long ride" : ""}
+          <Car size={15} /> {row.hopEstimated ? "About " : ""}{row.hop} min from lunch to dinner{row.hop >= FAR_HOP_MIN ? ", a long ride" : ""}
         </div>
       )}
       <Slot view={view} cell={row.dinner} />

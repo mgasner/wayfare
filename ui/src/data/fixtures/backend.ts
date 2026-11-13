@@ -446,8 +446,14 @@ const handlers: Handlers = {
   },
   "anchors.whereAt": ({ trip, date, time }) => whereAt(trip, date, time),
   "anchors.conflicts": ({ trip }) => conflicts(trip),
-  "travel.minutes": ({ trip, date, time, places }) => {
-    const from = whereAt(trip, date, time);
+  "travel.minutes": ({ trip, date, time, places, from: given }) => {
+    const origin = given && "place" in given ? placeById(given.place) : null;
+    if (given && "place" in given && origin?.lat == null) fail(`No coordinates for ${given.place}`);
+    const from: Out<"travel.minutes">["from"] = !given
+      ? whereAt(trip, date, time)
+      : "place" in given
+        ? { lat: origin!.lat!, lng: origin!.lng!, label: origin!.name, anchor: null }
+        : { lat: given.lat, lng: given.lng, label: given.label ?? "Pin", anchor: null };
     const minutes = Object.fromEntries(
       places.map((id) => {
         const p = placeById(id);

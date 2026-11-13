@@ -4,11 +4,11 @@ import { AppShell } from "../../components/AppShell";
 import { Stale } from "../../components/Stale";
 import { STATUS_TONE, StatusTally } from "../../components/StatusChip";
 import { mealWhen } from "../../data/availability";
-import { useConflicts, usePlaces } from "../../data/hooks";
+import { useConflicts, usePlaces, useTravelHops } from "../../data/hooks";
 import { shellTrip, tripKicker, useTripView } from "../../data/trip";
 import { dayOfMonth, time12, weekday } from "../../lib/dates";
 import { Link, useLocation, useNavigate } from "../../lib/router";
-import { buildBoard, FAR_HOP_MIN, showClosures, spend, tally, type Cell, type Row } from "./board";
+import { buildBoard, FAR_HOP_MIN, hopQueries, showClosures, spend, tally, withHops, type Cell, type Row } from "./board";
 import { DaySheet } from "./DaySheet";
 import "./board.css";
 
@@ -16,7 +16,9 @@ export function Board() {
   const { view, isLoading } = useTripView();
   const places = usePlaces(view ? { city: view.city.id, trip: view.trip.id } : null);
   const conflicts = useConflicts(view?.trip.id ?? null);
-  const rows = useMemo(() => (view ? buildBoard(view, places.data ?? [], conflicts.data ?? []) : []), [view, places.data, conflicts.data]);
+  const grid = useMemo(() => (view ? buildBoard(view, places.data ?? [], conflicts.data ?? []) : []), [view, places.data, conflicts.data]);
+  const hops = useTravelHops(view?.trip.id ?? null, useMemo(() => hopQueries(grid), [grid]));
+  const rows = useMemo(() => withHops(grid, hops), [grid, hops]);
   const { query } = useLocation();
   const navigate = useNavigate();
   const day = query.get("day");
@@ -129,8 +131,9 @@ function GridCell({ c }: { c: Cell }) {
 function Hop({ r }: { r: Row }) {
   if (r.hop === null) return <span className="ghop muted">·</span>;
   return (
-    <span className={`ghop num${r.hop >= FAR_HOP_MIN ? " far" : ""}`}>
+    <span className={`ghop num${r.hop >= FAR_HOP_MIN ? " far" : ""}`} title={r.hopEstimated ? "Distance estimate" : undefined}>
       <Car size={14} />
+      {r.hopEstimated ? "~" : ""}
       {r.hop}m
     </span>
   );
@@ -246,7 +249,7 @@ function DesktopBoard({ rows, onOpen }: { rows: Row[]; onOpen: (d: string) => vo
         <span className="lg casual">Want</span>
         <span className="lg danger">Failed</span>
         <span className="grow" />
-        <span>Hops are taxi estimates between lunch and dinner.</span>
+        <span>Hops are taxi minutes from lunch to dinner; ~ marks a distance estimate.</span>
       </div>
     </div>
   );
