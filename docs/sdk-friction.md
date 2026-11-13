@@ -200,3 +200,14 @@ await db.execute(...writes, insertUndo);
 // after: entrypoints run inside the caller's transaction
 await db.transaction(async (tx) => { await facts.report.run(tx, { place, field, value }, context); ... });
 ```
+
+### 16. `Intl` time zones are not listed in the runtime (unclear)
+
+Anchors and meals are wall-clock times in the city (`America/Lima`); the Routes API wants an instant, and calendar events arrive as instants. `server/time.ts` converts with `Intl.DateTimeFormat({ timeZone })`, the only zone-aware API in a runtime with no Node modules. The runtime's Has list doesn't name `Intl`, and an isolate built without ICU data would turn every Lima time into UTC, five hours off, with no error.
+
+```ts nocheck
+// server/time.ts
+new Intl.DateTimeFormat("en-US", { timeZone: tz, hourCycle: "h23", ... }).formatToParts(at);
+// fix: list Intl with full ICU in spec/38-apps.md#server-runtime, or ship Temporal
+Temporal.ZonedDateTime.from({ timeZone: "America/Lima", year: 2026, month: 11, day: 23, hour: 21 }).toInstant();
+```
