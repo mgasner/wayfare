@@ -1,0 +1,14 @@
+{
+  "id": "la-mar-cebicheria",
+  "area": "miraflores",
+  "name": "La Mar Cebichería",
+  "kind": "walk_in",
+  "lat": -12.1133,
+  "lng": -77.0453,
+  "channels": [{ "type": "walk_in" }],
+  "summary": "Gastón Acurio's cebichería; lunch only, expect a line at peak.",
+  "facts": [
+    { "field": "status", "value": "open", "checked_at": "2026-11-12T22:41:00Z" },
+    { "field": "hours", "value": { "mon-sun": "12:00-17:00" }, "checked_at": "2026-11-12T22:41:00Z" }
+  ]
+}
