@@ -10,6 +10,7 @@ pnpm dev               # Vite and the API on one port (PORT, default 5173)
 pnpm typecheck
 pnpm test
 bin/sql "select id, name, kind from place"   # add --json for JSON
+bin/load-overture lima # Overture eat-and-drink places as uncurated rows; matches curated ones
 ```
 
 The database is one SQLite file per environment in R2 (`prod.db`, `dev.db`; `DB_KEY` defaults by `VERCEL_ENV`), or a local file with `DB_FILE`. Each function instance keeps a copy in `/tmp`, revalidates it once per request, and uploads it with `If-Match` after each write; on a conflict it downloads again and replays the write, up to 5 times. Vercel builds run `bin/migrate` and `bin/seed` first (`pnpm vercel-build`).
@@ -24,3 +25,4 @@ The database is one SQLite file per environment in R2 (`prod.db`, `dev.db`; `DB_
 - `ui/src/api.ts`: `call("trips.get", { id })`, typed from the server modules.
 - Third-party calls go through `attempt()` (`lib/attempt.ts`): one `interaction` row per ladder step, `request.public` to `interaction.request` (strings that look like a phone, email or passport number are redacted), `request.private` and `ctx.privately()` to `interaction_private`. `docs/queries.md` has the saved queries; a test runs each one.
 - `docs/sdk-friction.md`: where `lib/nexus.ts` differs from nexus-sdk, and why.
+- `bin/load-overture <city>` reads the latest Overture release (DuckDB, anonymous S3) inside the city's bbox, upserts eat-and-drink places as uncurated rows (`ov-<overture id>`), and matches curated places by name within 150 m, writing the match's `overture_id` and coordinates into the DB and into `data/cities/<city>/places/*.json` (`--no-files` to skip). Seeding a curated place absorbs any uncurated row with the same Overture or Google id.
