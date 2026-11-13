@@ -1,21 +1,16 @@
-import { StrictMode, useEffect, useState } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
 import { AppProviders } from "./AppProviders.js";
-import { call, type Output } from "./api.js";
+import { useMe } from "./data/hooks.js";
 import { routes } from "./routes.js";
 import { SignIn } from "./SignIn.js";
 
-type Me = Output<"me.get">;
-
 function Shell() {
-  const [me, setMe] = useState<Me | undefined>(undefined);
-  useEffect(() => {
-    call("me.get").then(setMe, () => setMe(null));
-  }, []);
-  if (me === undefined) return null;
-  if (me === null) return <SignIn />;
-  return <Outlet context={me} />;
+  const me = useMe();
+  if (me.isPending) return null;
+  if (!me.data) return <SignIn />;
+  return <Outlet context={me.data} />;
 }
 
 const router = createBrowserRouter([
