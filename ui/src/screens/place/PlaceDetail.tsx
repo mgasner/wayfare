@@ -1,5 +1,5 @@
 import { Bookmark, BookmarkCheck, ChevronLeft, CreditCard, ExternalLink, Globe, Mail, MessageCircle, Phone, Plus, Utensils } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import type { Channel, PlaceCard, TripView } from "../../../../shared/records";
 import { AddToTripSheet, type AddInitial } from "../../components/AddToTripSheet";
@@ -9,11 +9,11 @@ import { Stale } from "../../components/Stale";
 import { StatusChip } from "../../components/StatusChip";
 import { TripMealChip } from "../../components/PlaceRow";
 import { VoiceInput } from "../../components/VoiceInput";
-import { closedOn, timesFor, tripMealFor, type MealSlot } from "../../data/availability";
+import { closedOn, hasReadableSlots, timesFor, tripMealFor, type MealSlot } from "../../data/availability";
 import { cuisine, hours, isClosed, menu, notes, priceUsd, tierLabel } from "../../data/facts";
-import { usePlace, useRefreshSlots, useToggleSave, useTravelMinutes } from "../../data/hooks";
+import { useFirstSlotReads, usePlace, useRefreshSlots, useToggleSave, useTravelMinutes } from "../../data/hooks";
 import { shellTrip, useTripView } from "../../data/trip";
-import { dateRange, dayLabel, dayOfMonth, time12, weekday } from "../../lib/dates";
+import { dateRange, dayLabel, dayOfMonth, time12, upcoming, weekday } from "../../lib/dates";
 import { useNavigate } from "../../lib/router";
 import { PEN_PER_USD } from "../wizard/draft";
 import "./place.css";
@@ -93,7 +93,7 @@ export function PlaceDetail() {
             {p.summary && <p className="pd-summary">{p.summary}</p>}
             <VoiceInput intent={{ screen: "place", place: p.id, ...(trip ? { trip: trip.trip.id } : {}) }} placeholder="Something changed? “They close at 4:30 now”" placeName={(x) => (x === p.id ? p.name : x)} />
           </div>
-          <div className="pd-main pd-side">{trip && p.slots.length > 0 && <Availability place={p} trip={trip} onPick={setAdd} />}</div>
+          <div className="pd-main pd-side">{trip && (p.slots.length > 0 || hasReadableSlots(p)) && <Availability place={p} trip={trip} onPick={setAdd} />}</div>
           <div className="pd-main pd-rest">
             <Booking place={p} />
             {h && (
@@ -136,11 +136,23 @@ export function PlaceDetail() {
   );
 }
 
+function pickFirst(place: PlaceCard, days: string[]): { date: string; slot: MealSlot } {
+  const date = days.find((d) => timesFor(place, d, "dinner").times.length) ?? days.find((d) => timesFor(place, d, "lunch").times.length) ?? days[0]!;
+  return { date, slot: timesFor(place, date, "dinner").times.length ? "dinner" : "lunch" };
+}
+
 function Availability({ place, trip, onPick }: { place: PlaceCard; trip: TripView; onPick: (a: AddInitial) => void }) {
   const days = dateRange(trip.trip.start_date, trip.trip.end_date);
-  const firstOpen = days.find((d) => timesFor(place, d, "dinner").times.length) ?? days.find((d) => timesFor(place, d, "lunch").times.length) ?? days[0]!;
-  const [sel, setSel] = useState<{ date: string; slot: MealSlot }>(() => ({ date: firstOpen, slot: timesFor(place, firstOpen, "dinner").times.length ? "dinner" : "lunch" }));
+  const [sel, setSel] = useState<{ date: string; slot: MealSlot }>(() => pickFirst(place, days));
   const refresh = useRefreshSlots();
+  const first = useFirstSlotReads([place], upcoming(trip.trip.start_date, trip.trip.end_date, trip.city.tz, 14), trip.trip.party);
+  const checking = first.has(place.id);
+  const readCount = place.slots.length;
+  useEffect(() => {
+    // The first read just landed: move to the first day with tables.
+    if (readCount === 0) return;
+    setSel((cur) => (timesFor(place, cur.date, cur.slot).times.length ? cur : pickFirst(place, days)));
+  }, [readCount]);
   const [pendingDates, setPending] = useState<string[]>([]);
   const recheck = (dates: string[]) => {
     setPending(dates);
@@ -168,7 +180,8 @@ function Availability({ place, trip, onPick }: { place: PlaceCard; trip: TripVie
       <div className="pd-sec-head">
         <span className="label muted">Availability for {trip.trip.party}</span>
         <span className="muted pd-src">
-          {channel === "meitre" ? "Meitre" : "Mesa 24/7"} {oldest && <Stale at={oldest} always onRecheck={() => recheck(days)} pending={pendingDates.length === days.length} />}
+          {channel === "meitre" ? "Meitre" : "Mesa 24/7"}{" "}
+          {checking ? <span className="pd-checking">Checking…</span> : oldest && <Stale at={oldest} always onRecheck={() => recheck(days)} pending={pendingDates.length === days.length} />}
         </span>
       </div>
       <div className="card pd-card">
@@ -215,7 +228,7 @@ function Availability({ place, trip, onPick }: { place: PlaceCard; trip: TripVie
             ))}
             {t.times.length === 0 && (
               <span className="muted">
-                {t.waitlist.length ? `Waitlist for ${t.waitlist.map((x) => time12(x, { short: true })).join(", ")}` : closedOn(place, sel.date) ? "Closed this day" : "Nothing open"}
+                {checking && !t.read ? "Checking tables…" : t.waitlist.length ? `Waitlist for ${t.waitlist.map((x) => time12(x, { short: true })).join(", ")}` : closedOn(place, sel.date) ? "Closed this day" : "Nothing open"}
               </span>
             )}
             {t.times.length === 0 && t.waitlist.length > 0 && (

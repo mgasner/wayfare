@@ -38,6 +38,8 @@ interface State {
   icsFeeds: string[];
   /** Only whether a passport was given: fixtures never keep the number. */
   passportOnFile: boolean;
+  /** Start with no slot reads, as a new trip does; only places.refreshSlots adds them. */
+  noSeedReads?: boolean;
 }
 
 const t0 = "2026-11-12T22:00:00Z";
@@ -134,6 +136,13 @@ if (typeof location !== "undefined" && new URLSearchParams(location.search).has(
   persist();
   localStorage.removeItem("dp-current-trip");
 }
+// ?no-slot-reads (with ?reset-fixtures) starts without any slot reads, to exercise first reads.
+if (typeof location !== "undefined" && new URLSearchParams(location.search).has("no-slot-reads")) setNoSeedReads(true);
+
+export function setNoSeedReads(on: boolean) {
+  state.noSeedReads = on;
+  persist();
+}
 
 function load(): State {
   try {
@@ -167,7 +176,9 @@ function card(seedCard: CardSeed): PlaceCard {
     const cur = facts[f.field];
     if (!cur || cur.checked_at < f.checked_at || f.source.startsWith("user:")) facts[f.field] = { value: f.value, source: f.source, checked_at: f.checked_at };
   }
-  const slots = seedCard.slots.map((s) => state.slotReads.find((r) => r.place === s.place && r.date === s.date) ?? s);
+  const slots = state.noSeedReads
+    ? state.slotReads.filter((r) => r.place === seedCard.id)
+    : seedCard.slots.map((s) => state.slotReads.find((r) => r.place === s.place && r.date === s.date) ?? s);
   return { ...seedCard, facts, slots, saved: state.saves.some((s) => s.place === seedCard.id) };
 }
 

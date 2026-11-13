@@ -84,3 +84,16 @@ describe("fixtures backend", () => {
     expect(p.facts.hours.value.closes).toBe("16:30");
   });
 });
+
+describe("fixtures without slot reads", () => {
+  it("starts with no reads and keeps what places.refreshSlots reads", async () => {
+    resetFixtures();
+    const { setNoSeedReads } = await import("./backend");
+    setNoSeedReads(true);
+    expect((await call("places.get", { id: "central" })).slots).toEqual([]);
+    const reads = await call("places.refreshSlots", { place: "central", dates: ["2026-11-16"], party: 2 });
+    expect(reads).toHaveLength(1);
+    expect((await call("places.get", { id: "central" })).slots.map((s: { date: string }) => s.date)).toEqual(["2026-11-16"]);
+    setNoSeedReads(false);
+  });
+});

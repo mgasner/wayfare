@@ -8,7 +8,7 @@ import { seed } from "../lib/seed.js";
 import { parse as parseMeitre, searchUrl as meitreUrl } from "../server/adapters/meitre.js";
 import { parse as parseMesa, searchUrl as mesaUrl } from "../server/adapters/mesa247.js";
 import { setBlockedChannels } from "../server/adapters/slots.js";
-import { slotTargets } from "../server/slots.js";
+import { LIVE_READS_PER_MINUTE, slotTargets } from "../server/slots.js";
 import { addUser, callAs, fixtureCities, personalDataInInteractions, root, seededDb, tempPath } from "./helpers.js";
 
 const fixture = (name: string) => JSON.parse(readFileSync(join(root, "test/fixtures/slots", name), "utf8")) as unknown;
@@ -108,6 +108,20 @@ describe("places.refreshSlots", () => {
     // A second tap within a minute doesn't call Mesa again.
     await callAs(max, "places.refreshSlots", { place: "mesa-place", dates: ["2026-11-21"], party: 2 });
     expect(calls).toHaveLength(2);
+  });
+
+  it("caps live reads per person per minute, then answers from the last good read", async () => {
+    const dates = Array.from({ length: 70 }, (_, i) => new Date(Date.UTC(2026, 11, 1 + i)).toISOString().slice(0, 10));
+    const calls = fakeFetch(Object.fromEntries(dates.map((d) => [mesaUrl(mesaChannel, d, 2), fixture("mesa-central-2026-11-21.json")])));
+    for (let i = 0; i < 70; i += 14) {
+      expect((await callAs(max, "places.refreshSlots", { place: "mesa-place", dates: dates.slice(i, i + 14), party: 2 })).status).toBe(200);
+    }
+    expect(calls).toHaveLength(LIVE_READS_PER_MINUTE);
+    const over = await database.run((s) => s.prepare("SELECT count(*) AS n FROM interaction WHERE fallback = 'live' AND outcome = 'blocked'").get());
+    expect(over).toEqual({ n: 70 - LIVE_READS_PER_MINUTE });
+    const other = await addUser(database, "other@example.com");
+    await callAs(other, "places.refreshSlots", { place: "mesa-place", dates: ["2027-03-01"], party: 2 });
+    expect(calls).toHaveLength(LIVE_READS_PER_MINUTE + 1);
   });
 
   it("falls back to the last good read when Mesa is blocked, with its old checked_at", async () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { PlaceCard, SlotRead } from "../../../shared/records";
-import { availabilitySummary, closedOn, mealWhen, shortDates, timesFor } from "./availability";
+import { availabilitySummary, closedOn, firstReadTargets, mealWhen, shortDates, timesFor } from "./availability";
 
 const read = (date: string, times: string[], waitlist: string[] = []): SlotRead => ({ place: "p", date, party: 2, service: "", times, waitlist, checked_at: "2026-11-13T00:12:00Z", interaction: "ix" });
 
@@ -47,8 +47,12 @@ describe("availability", () => {
   });
 
   it("summarizes the trip in one line", () => {
-    expect(availabilitySummary(p, "2026-11-13", "2026-11-23")).toEqual({ tone: "ok", text: "Lunch 4 days, dinner Nov 16 and 19" });
-    expect(availabilitySummary(p, "2026-11-13", "2026-11-23", "dinner")).toEqual({ tone: "warn", text: "Dinner Nov 16 and 19" });
+    expect(availabilitySummary(p, "2026-11-16", "2026-11-20")).toEqual({ tone: "ok", text: "Lunch 4 days, dinner Nov 16 and 19" });
+    expect(availabilitySummary(p, "2026-11-16", "2026-11-20", "dinner")).toEqual({ tone: "warn", text: "Dinner Nov 16 and 19" });
+    // Days without a read are not called closed.
+    expect(availabilitySummary(p, "2026-11-13", "2026-11-23")).toEqual({ tone: "ok", text: "Lunch 4 days, dinner Nov 16 and 19 · 5 of 11 days read" });
+    expect(availabilitySummary(place([read("2026-11-21", ["20:00"])]), "2026-11-21", "2026-11-23")).toEqual({ tone: "warn", text: "Dinner Nov 21 · 1 of 3 days read" });
+    expect(availabilitySummary(place([read("2026-11-21", [])]), "2026-11-21", "2026-11-23")).toEqual({ tone: "muted", text: "Nothing open · 1 of 3 days read" });
     expect(availabilitySummary(p, "2026-11-20", "2026-11-20")).toEqual({ tone: "danger", text: "Fully booked. Waitlist on 1 day" });
   });
 
@@ -64,5 +68,23 @@ describe("availability", () => {
   it("formats a meal's time", () => {
     expect(mealWhen({ date: "2026-11-13", time: "15:00", slot: "lunch" })).toBe("Fri 3 PM");
     expect(mealWhen({ date: "2026-11-19", time: null, slot: "dinner" })).toBe("Thu dinner");
+  });
+});
+
+describe("first slot reads", () => {
+  const mesa = { type: "mesa247", host: "x.mesa247.pe", slug: "x", local_id: 1 } as const;
+  const at = (id: string, channels: PlaceCard["channels"], slots: SlotRead[] = []): PlaceCard => ({ ...place(slots), id, channels });
+
+  it("reads readable places with no read on the dates shown, at most max, in list order", () => {
+    const places = [
+      at("walk-in", [{ type: "walk_in" }]),
+      at("read-already", [mesa], [read("2026-11-21", ["20:00"])]),
+      at("read-other-day", [mesa], [read("2026-11-14", ["20:00"])]),
+      at("never-read", [{ type: "meitre", venue_id: 1 }]),
+      at("never-read-2", [mesa]),
+    ];
+    expect(firstReadTargets(places, ["2026-11-21"], 12)).toEqual(["read-other-day", "never-read", "never-read-2"]);
+    expect(firstReadTargets(places, ["2026-11-21"], 2)).toEqual(["read-other-day", "never-read"]);
+    expect(firstReadTargets(places, [], 12)).toEqual([]);
   });
 });

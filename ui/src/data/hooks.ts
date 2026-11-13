@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import type { Change } from "../../../shared/actions.js";
 import type { PlaceCard, SlotRead } from "../../../shared/records";
 import type { Input as In, Name, Output as Out } from "../api.js";
+import { firstReadTargets } from "./availability";
 import { api } from "./client";
 
 const key = <N extends Name>(name: N, input?: In<N>) => (input === undefined ? [name] : [name, input]);
@@ -159,18 +160,70 @@ export function useUpdateSave() {
   });
 }
 
+function mergeReads(qc: QueryClient, place: string, reads: SlotRead[]) {
+  const merge = (c: PlaceCard): PlaceCard => (c.id !== place ? c : { ...c, slots: mergeSlots(c.slots, reads) });
+  qc.setQueriesData<PlaceCard>({ queryKey: ["places.get"] }, (c) => (c ? merge(c) : c));
+  qc.setQueriesData<PlaceCard[]>({ queryKey: ["places.search"] }, (cs) => cs?.map(merge));
+  qc.setQueriesData<Out<"trips.get">>({ queryKey: ["trips.get"] }, (v) => (v ? { ...v, places: v.places.map(merge) } : v));
+}
+
 /** Live slot read; merges the fresh reads into every cached card for that place. */
 export function useRefreshSlots() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (input: In<"places.refreshSlots">) => api("places.refreshSlots", input),
-    onSuccess: (reads, { place }) => {
-      const merge = (c: PlaceCard): PlaceCard => (c.id !== place ? c : { ...c, slots: mergeSlots(c.slots, reads) });
-      qc.setQueriesData<PlaceCard>({ queryKey: ["places.get"] }, (c) => (c ? merge(c) : c));
-      qc.setQueriesData<PlaceCard[]>({ queryKey: ["places.search"] }, (cs) => cs?.map(merge));
-      qc.setQueriesData<Out<"trips.get">>({ queryKey: ["trips.get"] }, (v) => (v ? { ...v, places: v.places.map(merge) } : v));
-    },
+    onSuccess: (reads, { place }) => mergeReads(qc, place, reads),
   });
+}
+
+
+// First reads run two at a time, once per place, party and dates in this tab; the server also caps a person's live reads.
+const FIRST_READS_AT_ONCE = 2;
+const firstReadsAsked = new Set<string>();
+let firstReadsRunning = 0;
+const firstReadsWaiting: (() => void)[] = [];
+
+async function oneAtATime<T>(fn: () => Promise<T>): Promise<T> {
+  if (firstReadsRunning >= FIRST_READS_AT_ONCE) await new Promise<void>((r) => firstReadsWaiting.push(r));
+  firstReadsRunning++;
+  try {
+    return await fn();
+  } finally {
+    firstReadsRunning--;
+    firstReadsWaiting.shift()?.();
+  }
+}
+
+/**
+ * A first live read for readable places shown with no read on any of `dates`, at most `max` of them.
+ * Returns the ids being checked now.
+ */
+export function useFirstSlotReads(places: PlaceCard[], dates: string[], party: number | null, max = 12): ReadonlySet<string> {
+  const qc = useQueryClient();
+  const [checking, setChecking] = useState<ReadonlySet<string>>(new Set());
+  const dateKey = dates.join(",");
+  const need = firstReadTargets(places, dates, max).join(",");
+  useEffect(() => {
+    if (!party || !dateKey || !need) return;
+    const ds = dateKey.split(",");
+    for (const id of need.split(",")) {
+      const k = `${id}|${party}|${dateKey}`;
+      if (firstReadsAsked.has(k)) continue;
+      firstReadsAsked.add(k);
+      setChecking((s) => new Set(s).add(id));
+      void oneAtATime(() => api("places.refreshSlots", { place: id, dates: ds, party }))
+        .then((reads) => mergeReads(qc, id, reads))
+        .catch(() => {})
+        .finally(() =>
+          setChecking((s) => {
+            const n = new Set(s);
+            n.delete(id);
+            return n;
+          }),
+        );
+    }
+  }, [need, dateKey, party, qc]);
+  return checking;
 }
 
 export function mergeSlots(cur: SlotRead[], reads: SlotRead[]): SlotRead[] {
