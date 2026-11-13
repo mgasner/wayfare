@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { attempt } from "./attempt.js";
-import { databaseFromEnv, driverFor } from "./db.js";
+import { databaseFromEnv, driverFor, type Database } from "./db.js";
 import { authorizeUrl, googleEnv, idClaims, pkce, TOKEN_URL, tokenRequest, TokenResponse } from "./google.js";
 import { Auth, db, setDriver, sql } from "./nexus.js";
 import { cookie, readCookie, SESSION_COOKIE, SESSION_DAYS, sessionToken, sessionUser, sign, verify } from "./session.js";
@@ -13,8 +13,12 @@ let driverReady = false;
 
 /** Installs the environment's database as the db driver, once per process. */
 export function ensureDriver(): void {
-  if (driverReady) return;
-  setDriver(driverFor(databaseFromEnv()));
+  if (!driverReady) installDatabase(databaseFromEnv());
+}
+
+/** Installs `database` as the db driver in place of the environment's. */
+export function installDatabase(database: Database): void {
+  setDriver(driverFor(database));
   driverReady = true;
 }
 

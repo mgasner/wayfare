@@ -21,7 +21,7 @@ function Shell() {
 }
 
 function Home() {
-  return <h1>Dining planner</h1>;
+  return <h1>Wayfare</h1>;
 }
 
 const router = createBrowserRouter([

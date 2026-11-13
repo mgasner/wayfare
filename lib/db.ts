@@ -9,16 +9,41 @@ import { R2Store, type BlobStore } from "./store.js";
 /** The environment's SQLite file. `run` is one transaction; a write may run `fn` again after a conflict. */
 export type Database = {
   run<T>(fn: (db: DatabaseSync) => T): Promise<T>;
+  /** Uploads writes held for the request; a no-op for a local file. */
+  flush(): Promise<void>;
   close(): void;
 };
 
 export const MAX_TRIES = 5;
 
-const requestScope = new AsyncLocalStorage<{ revalidated: boolean }>();
+type Scope = { revalidated: Set<Database>; written: Set<Database> };
+const requestScope = new AsyncLocalStorage<Scope>();
 
-/** Runs `fn` as one request: the stored file is revalidated at most once inside it. */
-export function inRequest<T>(fn: () => Promise<T>): Promise<T> {
-  return requestScope.run({ revalidated: false }, fn);
+/**
+ * Runs `fn` as one request, cron run or bin invocation: the stored file is revalidated at most
+ * once, writes apply to the local copy, and the file is uploaded once when `fn` settles.
+ * A failed upload rejects, even if `fn` succeeded.
+ */
+export async function inRequest<T>(fn: () => Promise<T>): Promise<T> {
+  const scope: Scope = { revalidated: new Set(), written: new Set() };
+  let result: T;
+  try {
+    result = await requestScope.run(scope, fn);
+  } finally {
+    // Writes already applied are uploaded even when fn throws, as they were when each execute uploaded.
+    for (const database of scope.written) await database.flush();
+  }
+  return result;
+}
+
+/** inRequest for an HTTP handler: a failed upload answers 503, since the handler's answer did not stick. */
+export async function serveInRequest(fn: () => Promise<Response>): Promise<Response> {
+  try {
+    return await inRequest(fn);
+  } catch (error) {
+    console.error(error);
+    return Response.json({ error: { code: "unavailable", message: "Could not save; try again" } }, { status: 503 });
+  }
 }
 
 class Mutex {
@@ -47,17 +72,26 @@ export class FileDatabase implements Database {
     });
   }
 
+  async flush() {}
+
   close() {
     this.sqlite?.close();
     this.sqlite = null;
   }
 }
 
-/** A copy of the stored file in `path`, uploaded with If-Match after each write. */
+/**
+ * A copy of the stored file in `path`. Writes in a request apply locally and are kept in order;
+ * `flush` uploads the file with If-Match on the ETag it was read at. On a 412 it downloads the
+ * file again and replays the kept writes, each in its own transaction, up to MAX_TRIES uploads.
+ * Outside a request, each write uploads at once.
+ */
 export class SyncedDatabase implements Database {
   private sqlite: DatabaseSync | null = null;
   private etag: string | null = null;
   private mutex = new Mutex();
+  /** Writes applied locally and not yet uploaded, from every request on this instance. */
+  private pending: ((db: DatabaseSync) => unknown)[] = [];
 
   constructor(
     readonly store: BlobStore,
@@ -66,17 +100,28 @@ export class SyncedDatabase implements Database {
   ) {}
 
   run<T>(fn: (db: DatabaseSync) => T): Promise<T> {
-    return this.mutex.run(async () => {
-      const scope = requestScope.getStore();
-      if (!scope?.revalidated || !this.sqlite) {
+    const scope = requestScope.getStore();
+    const result = this.mutex.run(async () => {
+      if (!scope?.revalidated.has(this) || !this.sqlite) {
         await this.revalidate();
-        if (scope) scope.revalidated = true;
+        scope?.revalidated.add(this);
       }
+      const sqlite = this.open();
+      const before = totalChanges(sqlite);
+      const value = transaction(sqlite, () => fn(sqlite));
+      if (totalChanges(sqlite) !== before) {
+        this.pending.push(fn);
+        scope?.written.add(this);
+      }
+      return value;
+    });
+    return scope ? result : result.then(async (value) => (await this.flush(), value));
+  }
+
+  flush(): Promise<void> {
+    return this.mutex.run(async () => {
       for (let attempt = 1; attempt <= MAX_TRIES; attempt++) {
-        const sqlite = this.open();
-        const before = totalChanges(sqlite);
-        const result = transaction(sqlite, () => fn(sqlite));
-        if (totalChanges(sqlite) === before) return result;
+        if (this.pending.length === 0) return;
         let put;
         try {
           put = await this.store.put(readFileSync(this.path), this.etag);
@@ -86,9 +131,10 @@ export class SyncedDatabase implements Database {
         }
         if (put.status === "ok") {
           this.etag = put.etag;
-          return result;
+          this.pending = [];
+          return;
         }
-        this.log({ event: "db.conflict", store: this.store.name, attempt, etag: this.etag });
+        this.log({ event: "db.conflict", store: this.store.name, attempt, etag: this.etag, replaying: this.pending.length });
         await this.revalidate(true);
       }
       this.discard();
@@ -109,6 +155,7 @@ export class SyncedDatabase implements Database {
     return this.sqlite;
   }
 
+  /** Takes the stored file if it changed, then replays writes not yet uploaded on top of it. */
   private async revalidate(force = false) {
     const cached = !force && this.etag && existsSync(this.path) ? this.etag : undefined;
     const got = await this.store.get(cached);
@@ -123,12 +170,22 @@ export class SyncedDatabase implements Database {
       writeFileSync(this.path, got.body);
       this.etag = got.etag;
     }
+    if (this.pending.length === 0) return;
+    const sqlite = this.open();
+    try {
+      for (const fn of this.pending) transaction(sqlite, () => fn(sqlite));
+    } catch (error) {
+      this.log({ event: "db.replay_failed", store: this.store.name, error: String(error) });
+      this.discard();
+      throw toolError("unavailable", `A write no longer applies to ${this.store.name}: ${String(error)}`, { cause: error });
+    }
   }
 
   private discard() {
     this.close();
     rmSync(this.path, { force: true });
     this.etag = null;
+    this.pending = [];
   }
 }
 
@@ -157,5 +214,5 @@ export function r2StoreFromEnv(env: NodeJS.ProcessEnv = process.env): R2Store {
 
 export function databaseFromEnv(env: NodeJS.ProcessEnv = process.env): Database {
   if (env.DB_FILE) return new FileDatabase(env.DB_FILE);
-  return new SyncedDatabase(r2StoreFromEnv(env), `/tmp/dining-planner/${dbKey(env)}`);
+  return new SyncedDatabase(r2StoreFromEnv(env), `/tmp/wayfare/${dbKey(env)}`);
 }
