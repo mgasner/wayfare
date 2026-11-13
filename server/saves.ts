@@ -21,21 +21,47 @@ export const list = query({
   },
 });
 
-/** Saves a place; saving it again keeps the first save's time and replaces the note or source given. */
+/** Saves a place; saving it again keeps the first save's time and replaces the note, source or nearby flag given. */
 export const add = mutation({
-  input: z.object({ place: z.string(), note: z.string().optional(), source: z.string().optional() }),
-  async handler({ place, note, source }, context): Promise<Save> {
+  input: z.object({ place: z.string(), note: z.string().optional(), source: z.string().optional(), notify_nearby: z.boolean().optional() }),
+  async handler({ place, note, source, notify_nearby }, context): Promise<Save> {
     const me = person(context);
     const now = new Date().toISOString();
+    const nearby = notify_nearby === undefined ? null : notify_nearby ? 1 : 0;
     const [{ rows }] = await db.execute(sql(SaveRow)`
-      INSERT INTO save (owner, place, source, note, created_at)
-      SELECT ${me.id}, ${place}, ${source ?? null}, ${note ?? null}, ${now}
+      INSERT INTO save (owner, place, source, note, notify_nearby, created_at)
+      SELECT ${me.id}, ${place}, ${source ?? null}, ${note ?? null}, coalesce(${nearby}, 0), ${now}
       WHERE EXISTS (SELECT 1 FROM place WHERE id = ${place})
       ON CONFLICT (owner, place) DO UPDATE SET
-        note = coalesce(excluded.note, save.note), source = coalesce(excluded.source, save.source)
+        note = coalesce(excluded.note, save.note), source = coalesce(excluded.source, save.source),
+        notify_nearby = coalesce(${nearby}, save.notify_nearby)
       RETURNING *`);
     const save = rows[0];
     if (!save) throw toolError("not_found", `No place ${place}`);
+    return save;
+  },
+});
+
+/** Changes a save's note (null or blank clears it) or nearby flag; fields not given stay. */
+export const update = mutation({
+  input: z.object({
+    place: z.string(),
+    note: z.string().max(500).nullable().optional(),
+    notify_nearby: z.boolean().optional(),
+  }),
+  async handler({ place, note, notify_nearby }, context): Promise<Save> {
+    const me = person(context);
+    const setNote = note !== undefined;
+    const text = note?.trim() ? note.trim() : null;
+    const nearby = notify_nearby === undefined ? null : notify_nearby ? 1 : 0;
+    const [{ rows }] = await db.execute(sql(SaveRow)`
+      UPDATE save SET
+        note = CASE WHEN ${setNote} THEN ${text} ELSE note END,
+        notify_nearby = coalesce(${nearby}, notify_nearby)
+      WHERE owner = ${me.id} AND place = ${place}
+      RETURNING *`);
+    const save = rows[0];
+    if (!save) throw toolError("not_found", `No save for ${place}`);
     return save;
   },
 });

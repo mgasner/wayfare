@@ -21,7 +21,8 @@ Plan: https://app.indent.com/reports/01a1d244-d12d-7998-a0e6-0439927ce1b1 (local
 | `meals.set` | mutation | Meal minus updated_at, `id` optional | `Meal` | A |
 | `meals.remove` | mutation | `{ id }` | `{ ok: true }` | A |
 | `saves.list` | query | `{ city? }` | `{ save: Save, place: PlaceCard }[]` | A |
-| `saves.add` / `saves.remove` | mutation | `{ place, note?, source? }` / `{ place }` | `Save` / `{ ok: true }` | A |
+| `saves.add` / `saves.remove` | mutation | `{ place, note?, source?, notify_nearby? }` / `{ place }` | `Save` / `{ ok: true }` | A |
+| `saves.update` | mutation | `{ place, note?: string \| null, notify_nearby? }` | `Save` (404 if not saved) | E |
 | `anchors.list` | query | `{ trip }` | `Anchor[]` | C |
 | `anchors.add` / `anchors.remove` | mutation | Anchor minus id / `{ id }` | `Anchor` / `{ ok: true }` | C |
 | `anchors.whereAt` | query | `{ trip, date, time }` | `{ lat, lng, label, anchor: string \| null }` | C |

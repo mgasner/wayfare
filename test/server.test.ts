@@ -127,6 +127,26 @@ describe("saves", () => {
     expect((await callAs(max, "saves.list")).body).toEqual([]);
   });
 
+  it("sets the nearby flag on add and keeps it when saved again without one", async () => {
+    expect((await callAs(max, "saves.add", { place: "isolina", notify_nearby: true })).body.notify_nearby).toBe(true);
+    expect((await callAs(max, "saves.add", { place: "isolina", note: "lamb" })).body).toMatchObject({ notify_nearby: true, note: "lamb" });
+    expect((await callAs(max, "saves.add", { place: "isolina", notify_nearby: false })).body).toMatchObject({ notify_nearby: false, note: "lamb" });
+  });
+
+  it("updates the note and nearby flag of your own save only", async () => {
+    const created = (await callAs(max, "saves.add", { place: "isolina", note: "lamb", source: "friend" })).body;
+    const nearby = await callAs(max, "saves.update", { place: "isolina", notify_nearby: true });
+    expect(nearby.body).toEqual({ ...created, notify_nearby: true });
+    const noted = await callAs(max, "saves.update", { place: "isolina", note: "  the lamb, after five  " });
+    expect(noted.body).toMatchObject({ note: "the lamb, after five", notify_nearby: true, source: "friend", created_at: created.created_at });
+    expect((await callAs(max, "saves.update", { place: "isolina", note: " " })).body.note).toBeNull();
+    expect((await callAs(max, "saves.update", { place: "isolina", note: "x", notify_nearby: false })).body).toMatchObject({ note: "x", notify_nearby: false });
+    expect((await callAs(max, "saves.update", { place: "isolina", note: null })).body.note).toBeNull();
+    expect((await callAs(other, "saves.update", { place: "isolina", notify_nearby: true })).status).toBe(404);
+    expect((await callAs(max, "saves.update", { place: "central", notify_nearby: true })).status).toBe(404);
+    expect((await callAs(max, "saves.list")).body[0].save).toMatchObject({ note: null, notify_nearby: false });
+  });
+
   it("shows a user's own facts only to them, newest per field", async () => {
     const id = max.actor.kind === "person" ? max.actor.id : "";
     await database.run((s) =>
