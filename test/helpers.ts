@@ -45,3 +45,14 @@ export async function callAs(auth: Auth | null, name: string, input: unknown = {
   );
   return { status: res.status, body: (await res.json()) as any };
 }
+
+/** Strings in interaction.request that look like a phone number, email or passport number. */
+export async function personalDataInInteractions(database: FileDatabase): Promise<string[]> {
+  const { personalKinds, strings } = await import("../lib/attempt.js");
+  const rows = await database.run((s) => s.prepare("SELECT id, request FROM interaction WHERE request IS NOT NULL").all());
+  return rows.flatMap((r) =>
+    strings(JSON.parse(r.request as string)).flatMap(({ path, text }) =>
+      personalKinds(text).map((kind) => `${r.id} ${path}: ${kind} in ${JSON.stringify(text)}`),
+    ),
+  );
+}

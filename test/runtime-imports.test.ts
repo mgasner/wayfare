@@ -47,8 +47,8 @@ async function nodeImports(entryPoints: string[] | { contents: string; resolveDi
 }
 
 describe("server runtime", () => {
-  it("bundles server/ with no Node built-ins", async () => {
-    const files = serverFiles(join(root, "server"));
+  it("bundles server/ and lib/attempt.ts with no Node built-ins", async () => {
+    const files = [...serverFiles(join(root, "server")), join(root, "lib/attempt.ts")];
     expect(files.length).toBeGreaterThan(0);
     expect(await nodeImports(files)).toEqual([]);
   });
