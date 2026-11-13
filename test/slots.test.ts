@@ -212,6 +212,7 @@ describe("slot refresh targets and cron", () => {
     const max = await addUser(database, "max@example.com");
     await tripWithPlaces(database, max.actor.kind === "person" ? max.actor.id : "");
     database.close();
+    vi.stubEnv("WAYFARE_ENV", "local");
     vi.stubEnv("DB_FILE", path);
     vi.stubEnv("CRON_SECRET", "s3cret");
     const { GET, localDate } = await import("../api/cron/slots.js");

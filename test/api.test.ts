@@ -9,6 +9,7 @@ describe("api/route.ts", () => {
   it("serves entrypoints from DB_FILE as DEV_USER", async () => {
     const path = tempPath();
     await migrate(new FileDatabase(path), `${root}/db/migrations`);
+    vi.stubEnv("WAYFARE_ENV", "local");
     vi.stubEnv("DB_FILE", path);
     vi.stubEnv("DEV_USER", "dev@example.com");
     const { GET } = await import("../api/route.js");

@@ -174,10 +174,16 @@ describe("callback", () => {
 });
 
 describe("authenticate", () => {
-  it("uses DEV_USER only off Vercel", async () => {
+  it("uses DEV_USER only with WAYFARE_ENV=local, not because Vercel's variables are missing", async () => {
     const plain = new Request("http://localhost/api/me/get");
-    expect((await authenticate(plain, { DEV_USER: "dev@example.com" }))?.actor).toMatchObject({ email: "dev@example.com" });
-    expect(await authenticate(plain, { DEV_USER: "dev@example.com", VERCEL: "1" })).toBeNull();
+    const dev = { DEV_USER: "dev@example.com" };
+    expect((await authenticate(plain, { ...dev, WAYFARE_ENV: "local" }))?.actor).toMatchObject({ email: "dev@example.com" });
+    // A deployment without Vercel's system variables, with DEV_USER copied into its env:
+    expect(await authenticate(plain, dev)).toBeNull();
+    expect(await authenticate(plain, { ...dev, WAYFARE_ENV: "production" })).toBeNull();
+    expect(await authenticate(plain, { ...dev, WAYFARE_ENV: "preview" })).toBeNull();
+    expect(await authenticate(plain, { ...dev, WAYFARE_ENV: "Local" })).toBeNull();
+    expect(await authenticate(plain, { ...dev, WAYFARE_ENV: "local", VERCEL: "1" })).toBeNull();
     expect(await authenticate(plain, {})).toBeNull();
   });
 

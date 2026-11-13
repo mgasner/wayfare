@@ -32,8 +32,8 @@ export async function authenticate(request: Request, env: NodeJS.ProcessEnv = pr
     const [{ rows }] = await db.execute(sql(Person)`SELECT id, name, email FROM app_user WHERE id = ${uid}`);
     if (rows[0]) return Auth.create({ kind: "person", ...rows[0] });
   }
-  // VERCEL is set in every Vercel build and function, so the bypass only works off Vercel.
-  if (env.DEV_USER && !env.VERCEL) return devAuth(env.DEV_USER);
+  // Only an explicit local environment signs anyone in without a session; VERCEL is a second check when Vercel exposes it.
+  if (env.DEV_USER && env.WAYFARE_ENV === "local" && !env.VERCEL) return devAuth(env.DEV_USER);
   return null;
 }
 
