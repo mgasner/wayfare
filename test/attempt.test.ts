@@ -159,6 +159,20 @@ describe("personal data in interaction.request", () => {
     }
   });
 
+  it("never reads an id as a phone number", () => {
+    for (let i = 0; i < 20_000; i++) {
+      const id = crypto.randomUUID();
+      expect(personalKinds(id), id).toEqual([]);
+      expect(personalKinds(`trip ${id} on 2026-11-21`), id).toEqual([]);
+      expect(personalKinds(id.toUpperCase()), id).toEqual([]);
+      expect(personalKinds(id.replace(/-/g, "")), id).toEqual([]);
+    }
+    for (const id of ["g1a2b3c4d:f1", "el-chinito-52894e5f", "01HZX3K9M2Q8R7T6V5W4Y3Z2A1", "ov-08f2a1-4533-9463-815", "LA2470-20261123"]) {
+      expect(personalKinds(id), id).toEqual([]);
+    }
+    expect(personalKinds("call +51 987 654 321, trip 52894e5f-f9aa-4533-9463-81575c475ffd")).toEqual(["phone"]);
+  });
+
   it("no string in any interaction.request row looks personal", async () => {
     const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
     const spec = { kind: "slots.read", channel: "mesa247", owner } as const;

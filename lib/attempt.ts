@@ -69,11 +69,17 @@ export const personalPatterns: Record<string, RegExp> = {
   passport: /(?<![\w])[A-Z]{1,2}\d{6,9}(?![\w])/,
 };
 
+// UUIDs are never personal. Other tokens that mix letters and digits (hashes, slugs, place ids) are
+// ids whose digit groups are not phone numbers; passports mix them too, so only the phone check skips those.
+const uuids = /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/gi;
+const ids = /[\w-]*(?:[A-Za-z][\w-]*\d|\d[\w-]*[A-Za-z])[\w-]*/g;
+
 /** Which kinds of personal data `text` seems to hold. */
 export function personalKinds(text: string): string[] {
-  const stripped = text.replace(datesAndTimes, " ");
+  const stripped = text.replace(datesAndTimes, " ").replace(uuids, " ");
+  const withoutIds = stripped.replace(ids, " ");
   return Object.entries(personalPatterns).flatMap(([kind, re]) => {
-    const match = re.exec(stripped);
+    const match = re.exec(kind === "phone" ? withoutIds : stripped);
     if (!match) return [];
     if (kind === "phone") {
       const digits = match[0].replace(/\D/g, "").length;
