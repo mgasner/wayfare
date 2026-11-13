@@ -207,6 +207,16 @@
   background: var(--surface-2);
   color: var(--ink);
 }
+.av-cell.taken {
+  box-shadow: inset 0 -3px 0 var(--warn);
+}
+.av-taken {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  margin: 2px 0 6px;
+}
 .av-cell.sel {
   border: 2px solid var(--ink);
 }
@@ -234,6 +244,10 @@
 }
 .av-legend i.closed {
   background: repeating-linear-gradient(135deg, var(--line) 0 2px, transparent 2px 4px);
+}
+.av-legend i.taken {
+  box-shadow: inset 0 -3px 0 var(--warn);
+  outline: 1px solid var(--line);
 }
 .av-sel {
   margin-top: 10px;

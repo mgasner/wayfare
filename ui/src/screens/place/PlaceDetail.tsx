@@ -9,7 +9,7 @@ import { Stale } from "../../components/Stale";
 import { StatusChip } from "../../components/StatusChip";
 import { TripMealChip } from "../../components/PlaceRow";
 import { VoiceInput } from "../../components/VoiceInput";
-import { closedOn, hasReadableSlots, timesFor, tripMealFor, type MealSlot } from "../../data/availability";
+import { closedOn, hasReadableSlots, slotMeals, timesFor, tripMealFor, type MealSlot } from "../../data/availability";
 import { cuisine, hours, isClosed, menu, notes, priceUsd, tierLabel } from "../../data/facts";
 import { useFirstSlotReads, usePlace, useRefreshSlots, useToggleSave, useTravelMinutes } from "../../data/hooks";
 import { shellTrip, useTripView } from "../../data/trip";
@@ -160,17 +160,21 @@ function Availability({ place, trip, onPick }: { place: PlaceCard; trip: TripVie
   };
   const oldest = place.slots.reduce<string | null>((o, s) => (!o || s.checked_at < o ? s.checked_at : o), null);
   const t = timesFor(place, sel.date, sel.slot);
-  const mealAt = (d: string, s: MealSlot) => trip.meals.find((m) => m.date === d && m.slot === s && m.status !== "skipped");
+  const mealsAt = (d: string, s: MealSlot) => slotMeals(trip.meals, trip.places, place.id, d, s);
+  const selMeals = mealsAt(sel.date, sel.slot);
   const channel = place.channels.find((c) => c.type === "mesa247" || c.type === "meitre")?.type;
 
   const cell = (d: string, s: MealSlot) => {
     const x = timesFor(place, d, s);
-    const m = mealAt(d, s);
+    const { own, other } = mealsAt(d, s);
     const closed = closedOn(place, d) || (!x.read && !x.times.length);
-    const cls = ["av-cell", "num", x.times.length ? "open" : x.waitlist.length ? "wait" : closed ? "closed" : "none", m && "meal", sel.date === d && sel.slot === s && "sel"].filter(Boolean).join(" ");
+    const cls = ["av-cell", "num", x.times.length ? "open" : x.waitlist.length ? "wait" : closed ? "closed" : "none", own && "meal", !own && other && "taken", sel.date === d && sel.slot === s && "sel"]
+      .filter(Boolean)
+      .join(" ");
+    const label = own ? "your meal here" : other ? `taken by ${other.name}` : `${x.times.length} open`;
     return (
-      <button key={`${d}${s}`} type="button" className={cls} aria-label={`${dayLabel(d)} ${s}: ${x.times.length} open`} onClick={() => setSel({ date: d, slot: s })}>
-        {m ? <Utensils size={13} /> : x.times.length ? x.times.length : x.waitlist.length ? "W" : ""}
+      <button key={`${d}${s}`} type="button" className={cls} aria-label={`${dayLabel(d)} ${s}: ${label}`} title={other && !own ? `Taken by ${other.name}` : undefined} onClick={() => setSel({ date: d, slot: s })}>
+        {own ? <Utensils size={13} /> : x.times.length ? x.times.length : x.waitlist.length ? "W" : ""}
       </button>
     );
   };
@@ -212,6 +216,9 @@ function Availability({ place, trip, onPick }: { place: PlaceCard; trip: TripVie
           <span>
             <i className="closed" /> closed or none
           </span>
+          <span>
+            <i className="taken" /> meal elsewhere
+          </span>
         </div>
         <div className="av-sel">
           <div className="pd-sec-head">
@@ -220,6 +227,11 @@ function Availability({ place, trip, onPick }: { place: PlaceCard; trip: TripVie
             </b>
             {t.checkedAt && <Stale at={t.checkedAt} onRecheck={() => recheck([sel.date])} pending={pendingDates.includes(sel.date) && pendingDates.length === 1} />}
           </div>
+          {!selMeals.own && selMeals.other && (
+            <div className="av-taken muted">
+              <Utensils size={13} /> Taken by {selMeals.other.name}, {selMeals.other.meal.status === "confirmed" ? "booked" : selMeals.other.meal.status}
+            </div>
+          )}
           <div className="add-times">
             {t.times.map((x) => (
               <button key={x} type="button" className="time-chip num" onClick={() => onPick({ date: sel.date, slot: sel.slot, time: x })}>
