@@ -4,7 +4,7 @@ A city dining planner, piloted on Lima. Plan: https://app.indent.com/reports/01a
 
 ```sh
 pnpm install
-cp .env.example .env   # DB_FILE=./local.db, DEV_USER=<your email>
+cp .env.example .env   # WAYFARE_ENV=local, DB_FILE=./local.db, DEV_USER=<your email>
 pnpm db:setup          # bin/migrate && bin/seed
 pnpm dev               # Vite and the API on one port (PORT, default 5173)
 pnpm typecheck
@@ -13,11 +13,11 @@ bin/sql "select id, name, kind from place"   # add --json for JSON
 bin/load-overture lima # Overture eat-and-drink places as uncurated rows; matches curated ones
 ```
 
-The database is one SQLite file per environment in R2 (`prod.db`, `dev.db`; `DB_KEY` defaults by `VERCEL_ENV`), or a local file with `DB_FILE`. Each function instance keeps a copy in `/tmp` and revalidates it once per request. Writes in a request (an API call, a cron run) apply to the copy and upload once when the request ends, with `If-Match`; on a conflict it downloads again and replays the request's writes in order, up to 5 uploads. Outside a request (`bin/migrate`, `bin/seed`) each write uploads at once. Vercel builds run `bin/migrate` and `bin/seed` first (`pnpm vercel-build`).
+The database is one SQLite file per environment in R2 (`prod.db`, `dev.db`; `DB_KEY` defaults by `WAYFARE_ENV`), or a local file with `DB_FILE`. `WAYFARE_ENV` (`production`, `preview`, `local`) is required: set it for Production and Preview in the Vercel project; without it every request and `bin/*` fails. Each function instance keeps a copy in `/tmp` and revalidates it once per request. Writes in a request (an API call, a cron run) apply to the copy and upload once when the request ends, with `If-Match`; on a conflict it downloads again and replays the request's writes in order, up to 5 uploads. Outside a request (`bin/migrate`, `bin/seed`) each write uploads at once. Vercel builds run `bin/migrate` and `bin/seed` first (`pnpm vercel-build`).
 
 - Schema changes: a new `db/migrations/NNNN_name.sql`, plus the columns in `server/tables.ts` (a test compares them).
 - City data: `data/cities/<city>/{city.json,areas.json,places/<id>.json}`, shaped by `shared/research.ts`. Seeding upserts and never deletes.
-- Sign-in: Google OAuth in `api/auth/{login,callback,logout}.ts`; the session is an HMAC-signed cookie with the user id (no session table). The refresh token for Calendar is in `calendar_link.credentials` (`{refresh_token, scope, sub}`, provider `google`, ref = email). Off Vercel, `DEV_USER` signs in requests that have no session.
+- Sign-in: Google OAuth in `api/auth/{login,callback,logout}.ts`; the session is an HMAC-signed cookie with the user id (no session table). The refresh token for Calendar is in `calendar_link.credentials` (`{refresh_token, scope, sub}`, provider `google`, ref = email). With `WAYFARE_ENV=local`, `DEV_USER` signs in requests that have no session.
 
 - `server/<file>.ts` exports `query(...)` and `mutation(...)` from `lib/nexus.ts`, served at `/api/<file>/<export>`. Add each new file to `server/index.ts`.
 - `server/` runs in the nexus-sdk server runtime's subset; `test/runtime-imports.test.ts` fails on any Node built-in it reaches.

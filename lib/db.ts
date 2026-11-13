@@ -213,8 +213,21 @@ export function driverFor(database: Database): Driver {
   return { execute: (statements) => database.run((sqlite) => runStatements(sqlite, statements)) };
 }
 
+export type WayfareEnv = "production" | "preview" | "local";
+
+/**
+ * Which deployment this is, from WAYFARE_ENV, which every environment sets explicitly (Vercel's own
+ * variables are only there when a project setting allows). Unset or unknown throws, so nothing opens a database.
+ */
+export function wayfareEnv(env: NodeJS.ProcessEnv = process.env): WayfareEnv {
+  const value = env.WAYFARE_ENV;
+  if (value === "production" || value === "preview" || value === "local") return value;
+  throw new Error(`Set WAYFARE_ENV to production, preview or local (got ${value === undefined ? "nothing" : JSON.stringify(value)})`);
+}
+
 export function dbKey(env: NodeJS.ProcessEnv = process.env): string {
-  return env.DB_KEY ?? (env.VERCEL_ENV === "production" ? "prod.db" : "dev.db");
+  const mode = wayfareEnv(env);
+  return env.DB_KEY ?? (mode === "production" ? "prod.db" : "dev.db");
 }
 
 export function r2StoreFromEnv(env: NodeJS.ProcessEnv = process.env): R2Store {
@@ -233,6 +246,10 @@ export function r2StoreFromEnv(env: NodeJS.ProcessEnv = process.env): R2Store {
 }
 
 export function databaseFromEnv(env: NodeJS.ProcessEnv = process.env): Database {
-  if (env.DB_FILE) return new FileDatabase(env.DB_FILE);
+  const mode = wayfareEnv(env);
+  if (env.DB_FILE) {
+    if (mode !== "local") throw new Error(`DB_FILE is for WAYFARE_ENV=local, not ${mode}`);
+    return new FileDatabase(env.DB_FILE);
+  }
   return new SyncedDatabase(r2StoreFromEnv(env), `/tmp/wayfare/${dbKey(env)}`);
 }

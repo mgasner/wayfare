@@ -1,4 +1,4 @@
-// bin/migrate, bin/seed and bin/sql. DB_FILE selects a local file; otherwise R2 with DB_KEY (default by VERCEL_ENV).
+// bin/migrate, bin/seed and bin/sql. DB_FILE selects a local file (WAYFARE_ENV=local only); otherwise R2 with DB_KEY (default by WAYFARE_ENV).
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { databaseFromEnv, dbKey, r2StoreFromEnv } from "./db.js";
