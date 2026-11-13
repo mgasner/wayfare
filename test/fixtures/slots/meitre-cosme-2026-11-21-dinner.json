@@ -1,0 +1,94 @@
+{
+ "left": {
+  "closedNoResults": false,
+  "type": "no-results",
+  "slots": [
+   {
+    "hour": "19:00",
+    "type": "No",
+    "serviceType": "dinner"
+   },
+   {
+    "hour": "19:30",
+    "type": "No",
+    "serviceType": "dinner"
+   },
+   {
+    "hour": "19:45",
+    "type": "No",
+    "serviceType": "dinner"
+   },
+   {
+    "hour": "20:00",
+    "type": "No",
+    "serviceType": "dinner"
+   },
+   {
+    "hour": "20:30",
+    "type": "No",
+    "serviceType": "dinner"
+   },
+   {
+    "hour": "20:45",
+    "type": "No",
+    "serviceType": "dinner"
+   },
+   {
+    "hour": "21:00",
+    "type": "No",
+    "serviceType": "dinner"
+   }
+  ]
+ },
+ "center": {
+  "closedNoResults": false,
+  "type": "no-results",
+  "slots": [
+   {
+    "hour": "19:00",
+    "type": "No",
+    "serviceType": null
+   },
+   {
+    "hour": "19:30",
+    "type": "No",
+    "serviceType": "dinner"
+   },
+   {
+    "hour": "19:45",
+    "type": "No",
+    "serviceType": "dinner"
+   },
+   {
+    "hour": "20:00",
+    "type": "No",
+    "serviceType": "dinner"
+   },
+   {
+    "hour": "20:30",
+    "type": "No",
+    "serviceType": "dinner"
+   },
+   {
+    "hour": "20:45",
+    "type": "No",
+    "serviceType": "dinner"
+   },
+   {
+    "hour": "21:00",
+    "type": "No",
+    "serviceType": "dinner"
+   }
+  ]
+ },
+ "right": {
+  "closedNoResults": true,
+  "type": "no-results-all-day",
+  "slots": []
+ },
+ "generalInfo": {
+  "showWaitingList": true,
+  "centerDayClosed": false,
+  "allServiceCutOffReached": false
+ }
+}

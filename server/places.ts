@@ -1,7 +1,8 @@
 import { z } from "zod";
-import { db, query, sql, toolError, type Context, type Statement, type Value } from "../lib/nexus.js";
-import { IsoDate, PlaceKind, type PlaceCard } from "../shared/records.js";
+import { db, mutation, query, sql, toolError, type Context, type Statement, type Value } from "../lib/nexus.js";
+import { IsoDate, PlaceKind, type PlaceCard, type SlotRead } from "../shared/records.js";
 import { placeCards, type CardOptions } from "./cards.js";
+import { refreshPlaceSlots } from "./slots.js";
 
 const accents: [string, string][] = [
   ["á", "a"], ["é", "e"], ["í", "i"], ["ó", "o"], ["ú", "u"], ["ü", "u"], ["ñ", "n"], ["ô", "o"], ["è", "e"], ["à", "a"],
@@ -104,5 +105,21 @@ export const get = query({
     const [card] = await placeCards([id], viewer, await tripSlots(trip, viewer));
     if (!card) throw toolError("not_found", `No place ${id}`);
     return card;
+  },
+});
+
+/**
+ * Reads slots live for a place (the clock icon's tap), falling back to the last good read per date.
+ * Dates the ladder couldn't answer have no read in the result; dates read in the last minute aren't read again.
+ */
+export const refreshSlots = mutation({
+  input: z.object({ place: z.string(), dates: z.array(IsoDate).min(1).max(14), party: z.number().int().min(1).max(20) }),
+  async handler({ place, dates, party }, context): Promise<SlotRead[]> {
+    const actor = context.auth?.actor;
+    if (actor?.kind !== "person" && actor?.kind !== "indent") throw toolError("no_user", "Sign in to read slots");
+    const [{ rows }] = await db.execute(sql(z.object({ id: z.string() }))`SELECT id FROM place WHERE id = ${place}`);
+    if (!rows.length) throw toolError("not_found", `No place ${place}`);
+    const results = await refreshPlaceSlots(place, dates, party, actor.kind === "person" ? actor.id : null);
+    return results.flatMap((r) => r.reads);
   },
 });

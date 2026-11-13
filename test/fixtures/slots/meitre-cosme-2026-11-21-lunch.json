@@ -1,0 +1,130 @@
+{
+ "left": {
+  "closedNoResults": false,
+  "type": "results",
+  "slots": [
+   {
+    "hour": "12:30",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:00",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:15",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:30",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:45",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "14:00",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "15:00",
+    "type": "traditional",
+    "serviceType": "lunch"
+   }
+  ]
+ },
+ "center": {
+  "closedNoResults": false,
+  "type": "results",
+  "slots": [
+   {
+    "hour": "12:30",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:00",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:15",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:30",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:45",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "14:00",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "15:00",
+    "type": "traditional",
+    "serviceType": "lunch"
+   }
+  ]
+ },
+ "right": {
+  "closedNoResults": false,
+  "type": "results",
+  "slots": [
+   {
+    "hour": "12:30",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:00",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:15",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:30",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "13:45",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "14:00",
+    "type": "traditional",
+    "serviceType": "lunch"
+   },
+   {
+    "hour": "15:00",
+    "type": "traditional",
+    "serviceType": "lunch"
+   }
+  ]
+ },
+ "generalInfo": {
+  "showWaitingList": null,
+  "centerDayClosed": false,
+  "allServiceCutOffReached": false
+ }
+}

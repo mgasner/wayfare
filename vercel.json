@@ -12,5 +12,16 @@
       "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/slots",
+      "schedule": "*/15 * * * *"
+    }
+  ],
+  "functions": {
+    "api/cron/slots.ts": {
+      "maxDuration": 300
+    }
+  }
 }
