@@ -113,6 +113,24 @@ describe("callback", () => {
     const session = cookiesOf(res).dp_session!;
     const auth = await authenticate(new Request("https://app.example.com/api/me/get", { headers: { cookie: `dp_session=${session}` } }), env);
     expect(auth?.actor).toEqual({ kind: "person", id: user!.id, name: "Max G", email: "max@example.com" });
+
+    const logged = await database.run((s) => s.prepare("SELECT channel, kind, outcome, request FROM interaction").all());
+    expect(logged).toEqual([{ channel: "google.oauth", kind: "token.exchange", outcome: "ok", request: null }]);
+  });
+
+  it("sends the user back with auth_error=token when the exchange fails", async () => {
+    const start = await login(new Request("https://app.example.com/api/auth/login"), env);
+    const state = new URL(start.headers.get("Location")!).searchParams.get("state");
+    vi.stubGlobal("fetch", vi.fn(async () => new Response("bad", { status: 400 })));
+    const res = await callback(
+      new Request(`https://app.example.com/api/auth/callback?code=c&state=${state}`, {
+        headers: { cookie: `dp_oauth=${encodeURIComponent(cookiesOf(start).dp_oauth!)}` },
+      }),
+      env,
+    );
+    expect(res.headers.get("Location")).toBe("/?auth_error=token");
+    const logged = await database.run((s) => s.prepare("SELECT outcome, error FROM interaction").get());
+    expect(logged).toEqual({ outcome: "error", error: "Token endpoint answered 400" });
   });
 
   it("keeps the stored refresh token when Google sends none", async () => {

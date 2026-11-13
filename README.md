@@ -22,3 +22,5 @@ The database is one SQLite file per environment in R2 (`prod.db`, `dev.db`; `DB_
 - `server/` runs in the nexus-sdk server runtime's subset; `test/runtime-imports.test.ts` fails on any Node built-in it reaches.
 - Relative imports end in `.js` (Node ESM on Vercel), even for `.ts` files.
 - `ui/src/api.ts`: `call("trips.get", { id })`, typed from the server modules.
+- Third-party calls go through `attempt()` (`lib/attempt.ts`): one `interaction` row per ladder step, `request.public` to `interaction.request` (strings that look like a phone, email or passport number are redacted), `request.private` and `ctx.privately()` to `interaction_private`. `docs/queries.md` has the saved queries; a test runs each one.
+- `docs/sdk-friction.md`: where `lib/nexus.ts` differs from nexus-sdk, and why.

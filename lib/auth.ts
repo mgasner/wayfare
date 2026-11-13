@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { attempt } from "./attempt.js";
 import { databaseFromEnv, driverFor } from "./db.js";
 import { authorizeUrl, googleEnv, idClaims, pkce, TOKEN_URL, tokenRequest, TokenResponse } from "./google.js";
 import { Auth, db, setDriver, sql } from "./nexus.js";
@@ -95,12 +96,21 @@ export async function callback(request: Request, env: NodeJS.ProcessEnv = proces
   if (!code) return failed("code", next);
 
   const g = googleEnv(request, env);
-  const res = await fetch(TOKEN_URL, { ...tokenRequest(g, code, verifier), signal: AbortSignal.timeout(10_000) });
-  if (!res.ok) {
-    console.error(JSON.stringify({ event: "auth.token_failed", status: res.status }));
+  let tokens: TokenResponse;
+  try {
+    ({ value: tokens } = await attempt({ kind: "token.exchange", channel: "google.oauth", timeoutMs: 10_000 }, [
+      [
+        "live",
+        async ({ signal }) => {
+          const res = await fetch(TOKEN_URL, { ...tokenRequest(g, code, verifier), signal });
+          if (!res.ok) throw new Error(`Token endpoint answered ${res.status}`);
+          return TokenResponse.parse(await res.json());
+        },
+      ],
+    ]));
+  } catch {
     return failed("token", next);
   }
-  const tokens = TokenResponse.parse(await res.json());
   const claims = idClaims(tokens.id_token, g);
   const now = new Date().toISOString();
   const name = claims.name ?? claims.email.split("@")[0] ?? claims.email;
