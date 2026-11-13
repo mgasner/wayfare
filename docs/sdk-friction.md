@@ -149,4 +149,54 @@ The slot cron reads 17 Lima places over 4 days: 68 `attempt()` calls, each writi
 await db.execute(...rows.flatMap(statements));
 // after: rows that only need to land if the call finishes, committed with its last write
 db.defer(...rows.flatMap(statements));       // or: a call-scoped transaction the runtime commits on return
+
+### 12. A bound value cannot be binary (missing type)
+
+`/api/voice` stores each clip in `media.bytes`, a `blob` column. `Value` is `string | number | boolean | null`, so `sql` cannot bind a `Uint8Array`. `lib/voice.ts` casts the bytes to `Value`, which works only because the local driver hands parameters to `node:sqlite` unchanged. Base64 in a text column would grow every clip by a third in a file that is uploaded whole on each write.
+
+```ts nocheck
+// before (lib/voice.ts)
+sql`INSERT INTO media (id, owner, kind, mime, bytes, created_at) VALUES (${id}, ${owner}, 'voice', ${mime}, ${bytes as unknown as Value}, ${now})`;
+// after
+export type Value = string | number | boolean | null | Uint8Array;
+```
+
+### 13. Server code cannot read a secret by name, or ask whether one is set (missing call)
+
+Interpretation calls the AI Gateway with a key; `travel.minutes` uses the Routes API when `GOOGLE_MAPS_KEY` exists and a distance estimate when it doesn't. Item 7 covers plain settings; keys are different because the spec attaches credentials at egress by host, which covers the first case if the gateway's host is registered, but gives code no way to branch on whether a credential exists. `lib/env.ts` reads `process.env` through `globalThis` when the host has one.
+
+```ts nocheck
+// before (lib/env.ts, server/adapters/routes.ts)
+const key = env("GOOGLE_MAPS_KEY");
+if (key) steps.push(["live", () => routes(key, ...)]);
+// after: egress credentials, plus a presence check
+if (secrets.has("google-maps")) steps.push(["live", () => fetch(ROUTES_URL, ...)]); // header added at egress
+```
+
+### 14. A transaction cannot read before it writes (missing case)
+
+`input.interpret` applies every action in one `db.execute` and stores an undo record with each row's prior value. `db.execute` takes a fixed list of statements, so the prior rows are read in a separate call first; a write landing between the two makes the undo record stale. The same shape blocks "update this meal if its status is still X, else tell me what it is now" without encoding the check into each statement.
+
+```ts nocheck
+// before (server/input.ts)
+const before = await db.execute(...reads);          // call 1
+await db.execute(...writes(before), insertUndo);    // call 2
+// after: an interactive transaction, retried as a whole on conflict
+await db.transaction(async (tx) => {
+  const before = await tx.execute(...reads);
+  await tx.execute(...writes(before), insertUndo);
+});
+```
+
+### 15. One entrypoint cannot call another inside its transaction (missing call)
+
+Interpretation turns "La Mar closes at 4:30 now" into a user fact, which `facts.report` owns. Calling the entrypoint would commit separately from the anchor and save written alongside it, so `server/facts.ts` exports `reportFactStatement`, the write without the commit, and both paths use it. Each entrypoint another one composes needs that split by hand.
+
+```ts nocheck
+// before (server/facts.ts, server/input.ts)
+export function reportFactStatement(userId, place, field, value, at): Statement<Fact> { ... }
+writes.push(reportFactStatement(owner, place, field, value, now));
+await db.execute(...writes, insertUndo);
+// after: entrypoints run inside the caller's transaction
+await db.transaction(async (tx) => { await facts.report.run(tx, { place, field, value }, context); ... });
 ```

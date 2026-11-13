@@ -1,12 +1,12 @@
 import { z } from "zod";
 import { InputContext, type InterpretResult, type VoiceResult } from "../shared/actions.js";
-import { db, sql, type Auth, type Value } from "./nexus.js";
+import { db, isToolError, sql, type Auth, type Value } from "./nexus.js";
 import { transcribe, type TranscribeEnv } from "./transcribe.js";
 
 // 60 s at the recorder's 64 kbit/s is about 0.5 MB; Vercel caps request bodies at 4.5 MB.
 export const MAX_AUDIO_BYTES = 4_000_000;
 
-export type Interpret = (text: string, context: InputContext, auth: Auth) => Promise<InterpretResult>;
+export type Interpret = (text: string, context: InputContext, auth: Auth, options: { media: string }) => Promise<InterpretResult>;
 
 export type VoiceDeps = { env: TranscribeEnv; interpret?: Interpret };
 
@@ -81,6 +81,12 @@ export async function handleVoice(request: Request, auth: Auth | null, deps: Voi
 
   const empty: VoiceResult = { transcript, changes: [], undo: "" };
   if (!transcript || !deps.interpret) return Response.json(empty);
-  const result = await deps.interpret(transcript, context, auth);
-  return Response.json({ transcript, ...result } satisfies VoiceResult);
+  try {
+    const result = await deps.interpret(transcript, context, auth, { media });
+    return Response.json({ transcript, ...result } satisfies VoiceResult);
+  } catch (error) {
+    if (!isToolError(error)) throw error;
+    const status = { invalid_input: 400, no_user: 401, not_found: 404 }[error.code as string] ?? 502;
+    return fail(status, error.code, error.message);
+  }
 }

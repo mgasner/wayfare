@@ -175,6 +175,12 @@ export const calendarLink = table(
   { key: ["owner", "provider", "ref"], people: ["credentials"] },
 );
 
+export const inputUndo = table(
+  "input_undo",
+  z.object({ id: text, owner: text, created_at: text, interaction: maybeText, media: maybeText, ops: text, undone_at: maybeText }),
+  { key: ["id"], people: ["ops"] },
+);
+
 export const tables = [
   city,
   area,
@@ -190,6 +196,7 @@ export const tables = [
   interactionPrivate,
   media,
   calendarLink,
+  inputUndo,
 ];
 
 // Rows read as the records in shared/records.ts: JSON columns parsed, integer flags as booleans.

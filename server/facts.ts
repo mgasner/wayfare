@@ -1,26 +1,30 @@
 import { z } from "zod";
-import { db, mutation, person, sql, toolError } from "../lib/nexus.js";
+import { db, mutation, person, sql, toolError, type Statement } from "../lib/nexus.js";
 import { parseFactValue } from "../shared/facts.js";
 import { FactField, type Fact } from "../shared/records.js";
 import { FactRow } from "./tables.js";
 
 /**
- * Stores what a user said about a place ("La Mar closes at 4:30 now") as a fact with source `user:<id>`.
- * Only its author sees it until the weekly promotion job moves it into the city data or it expires.
- * Exported for input.interpret, which applies a reported fact in its own transaction.
+ * The write for what a user said about a place ("La Mar closes at 4:30 now"): a fact with source
+ * `user:<id>`, which only its author sees until the weekly promotion job moves it into the city data
+ * or it expires. input.interpret commits it in its own transaction; reportFact runs it alone.
  */
-export async function reportFact(userId: string, place: string, field: FactField, value: unknown): Promise<{ fact: Fact; op: "created" | "updated" }> {
+export function reportFactStatement(userId: string, place: string, field: FactField, value: unknown, at = new Date().toISOString()): Statement<Fact> {
   const parsed = parseFactValue(field, value);
   if (!parsed.ok) throw toolError("invalid_input", parsed.message);
-  const source = `user:${userId}`;
+  return sql(FactRow)`
+    INSERT INTO fact (place, field, value, source, checked_at)
+    SELECT ${place}, ${field}, ${JSON.stringify(parsed.value)}, ${`user:${userId}`}, ${at}
+    WHERE EXISTS (SELECT 1 FROM place WHERE id = ${place})
+    ON CONFLICT (place, field, source) DO UPDATE SET value = excluded.value, checked_at = excluded.checked_at
+    RETURNING *`;
+}
+
+export async function reportFact(userId: string, place: string, field: FactField, value: unknown): Promise<{ fact: Fact; op: "created" | "updated" }> {
+  const write = reportFactStatement(userId, place, field, value);
   const [existing, written] = await db.execute(
-    sql(z.object({ n: z.number() }))`SELECT count(*) AS n FROM fact WHERE place = ${place} AND field = ${field} AND source = ${source}`,
-    sql(FactRow)`
-      INSERT INTO fact (place, field, value, source, checked_at)
-      SELECT ${place}, ${field}, ${JSON.stringify(parsed.value)}, ${source}, ${new Date().toISOString()}
-      WHERE EXISTS (SELECT 1 FROM place WHERE id = ${place})
-      ON CONFLICT (place, field, source) DO UPDATE SET value = excluded.value, checked_at = excluded.checked_at
-      RETURNING *`,
+    sql(z.object({ n: z.number() }))`SELECT count(*) AS n FROM fact WHERE place = ${place} AND field = ${field} AND source = ${`user:${userId}`}`,
+    write,
   );
   const fact = written.rows[0];
   if (!fact) throw toolError("not_found", `No place ${place}`);

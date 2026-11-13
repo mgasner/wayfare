@@ -3,7 +3,9 @@ import { beforeAll, describe, expect, it } from "vitest";
 import type { FileDatabase } from "../lib/db.js";
 import type { Auth } from "../lib/nexus.js";
 import { handleVoice } from "../lib/voice.js";
-import { addUser, seededDb } from "./helpers.js";
+import { interpretText } from "../server/input.js";
+import { addPlaces, createTrip } from "./fixtures.js";
+import { addUser, callAs, seededDb } from "./helpers.js";
 
 const real = !!process.env.REAL_API;
 
@@ -40,24 +42,65 @@ function wav(parts: Uint8Array[]): Blob {
 describe.skipIf(!real)("real APIs", () => {
   let database: FileDatabase;
   let max: Auth;
+  let trip: string;
 
   beforeAll(async () => {
     database = await seededDb();
     max = await addUser(database, "max@example.com");
+    await addPlaces(database);
+    trip = (await createTrip(max)).id;
   });
 
-  it("transcribes mixed Spanish and English", { timeout: 60_000 }, async () => {
+  async function interpret(text: string, context: Record<string, unknown>) {
+    const res = await callAs(max, "input.interpret", { text, context });
+    console.log(JSON.stringify({ text, status: res.status, changes: res.body.changes }));
+    expect(res.status).toBe(200);
+    return res.body.changes as { kind: string; op: string; record: any }[];
+  }
+
+  it("el viernes estamos en Barranco, ten to six", { timeout: 60_000 }, async () => {
+    const changes = await interpret("el viernes estamos en Barranco, ten to six", { screen: "anchors", trip });
+    expect(changes).toHaveLength(1);
+    expect(changes[0]).toMatchObject({ kind: "anchor", record: { date: "2026-11-20", start_time: "10:00", end_time: "18:00", area: "barranco" } });
+  });
+
+  it("a friend says Tía Grimanesa for anticuchos, after five", { timeout: 60_000 }, async () => {
+    const changes = await interpret("a friend says Tía Grimanesa for anticuchos, after five", { screen: "saves", trip });
+    expect(changes).toHaveLength(1);
+    expect(changes[0]).toMatchObject({ kind: "save", record: { place: "tia-grimanesa" } });
+    expect(changes[0]!.record.note).toMatch(/anticucho/i);
+    expect(changes[0]!.record.note).toMatch(/5|five|17/i);
+  });
+
+  it("La Mar closes at 4:30 now", { timeout: 60_000 }, async () => {
+    const changes = await interpret("La Mar closes at 4:30 now", { screen: "place", trip, place: "la-mar-cebicheria" });
+    expect(changes).toHaveLength(1);
+    expect(changes[0]).toMatchObject({ kind: "fact", record: { place: "la-mar-cebicheria", field: "hours", value: { closes: "16:30" } } });
+    expect(changes[0]!.record.value.text).toMatch(/16:30|4:30/);
+  });
+
+  it("dinner at Rafael Saturday 8pm booked", { timeout: 60_000 }, async () => {
+    const changes = await interpret("dinner at Rafael Saturday 8pm booked", { screen: "board", trip });
+    expect(changes).toHaveLength(1);
+    expect(changes[0]).toMatchObject({ kind: "meal", record: { place: "rafael", date: "2026-11-21", slot: "dinner", time: "20:00", status: "confirmed" } });
+  });
+
+  it("transcribes mixed Spanish and English and interprets it", { timeout: 60_000 }, async () => {
     const form = new FormData();
     const clip = wav([
       await speak("El viernes estamos en Barranco,", "A native speaker from Lima, Peru, speaking Spanish."),
       await speak("ten to six.", "An American speaking English, casually."),
     ]);
     form.set("audio", clip, "clip.wav");
-    form.set("context", JSON.stringify({ screen: "anchors" }));
-    const res = await handleVoice(new Request("http://localhost/api/voice", { method: "POST", body: form }), max, { env: process.env });
-    const body = (await res.json()) as { transcript: string };
+    form.set("context", JSON.stringify({ screen: "anchors", trip }));
+    const res = await handleVoice(new Request("http://localhost/api/voice", { method: "POST", body: form }), max, {
+      env: process.env,
+      interpret: interpretText,
+    });
+    const body = (await res.json()) as { transcript: string; changes: { kind: string; record: any }[] };
     console.log(JSON.stringify(body));
     expect(res.status).toBe(200);
     expect(body.transcript.toLowerCase()).toMatch(/viernes.*barranco.*(ten|10) to (six|6)/);
+    expect(body.changes[0]).toMatchObject({ kind: "anchor", record: { date: "2026-11-20", area: "barranco" } });
   });
 });

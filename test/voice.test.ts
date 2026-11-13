@@ -48,7 +48,9 @@ describe("POST /api/voice", () => {
     const res = await handleVoice(voiceRequest(clip(), { screen: "anchors", date: "2026-11-20" }), max, { env, interpret });
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({ transcript: "el viernes estamos en Barranco, ten to six", changes: [], undo: "" });
-    expect(interpret).toHaveBeenCalledWith("el viernes estamos en Barranco, ten to six", { screen: "anchors", date: "2026-11-20" }, max);
+    expect(interpret).toHaveBeenCalledWith("el viernes estamos en Barranco, ten to six", { screen: "anchors", date: "2026-11-20" }, max, {
+      media: expect.any(String),
+    });
 
     expect(calls[0]!.url).toBe("https://api.openai.com/v1/audio/transcriptions");
     expect(calls[0]!.form.get("model")).toBe("gpt-transcribe");

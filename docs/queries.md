@@ -132,4 +132,14 @@ WHERE request LIKE '%@%.%'
 
 ## Voice inputs that were undone
 
-Waits on C2, which decides how `input.undo` is stored.
+Each `input.interpret` or `/api/voice` call that changed something writes one `input_undo` row: `media` is the voice clip (null for typed input), `interaction` the interpret call, and `undone_at` is set when `input.undo` reverts it. Inputs that changed nothing write no row.
+
+```sql
+SELECT substr(created_at, 1, 10) AS day,
+  CASE WHEN media IS NULL THEN 'typed' ELSE 'voice' END AS input,
+  count(*) AS inputs, sum(undone_at IS NOT NULL) AS undone,
+  round(100.0 * sum(undone_at IS NOT NULL) / count(*), 1) AS undone_pct
+FROM input_undo
+GROUP BY day, input
+ORDER BY day DESC, input
+```
