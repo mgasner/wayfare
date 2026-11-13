@@ -774,7 +774,7 @@ function BookingProfile({ d, set }: PageProps) {
             <Wallet size={18} />
           </span>
           <div className="grow">
-            <div className="wiz-strong num">Credits · US${d.credits_usd.toLocaleString("en-US")}</div>
+            <div className="wiz-strong num">Credits · {me.data ? usd(me.data.credits_usd) : "…"}</div>
             <div className="muted wiz-small">We pay deposits and card holds with our cards and take them from your credits.</div>
           </div>
           <div className="credits-btn">
@@ -804,11 +804,14 @@ function BookingProfile({ d, set }: PageProps) {
 
 // ---------- 6. Summary ----------
 
-function bookingLine(d: Draft, passportOnFile: boolean): { main: string; sub: string; warn: boolean } {
-  const missing = [!passportOnFile && "passport not added", d.credits_usd <= 0 && "no credits yet"].filter(Boolean) as string[];
+const usd = (n: number) => `US$${n.toLocaleString("en-US", { maximumFractionDigits: 2 })}`;
+
+function bookingLine(d: Draft, me: { passport_on_file: boolean; credits_usd: number } | undefined): { main: string; sub: string; warn: boolean } {
+  const credits = me?.credits_usd ?? 0;
+  const missing = [!me?.passport_on_file && "passport not added", credits <= 0 && "no credits yet"].filter(Boolean) as string[];
   return {
     main: d.whatsapp_fallback ? "WhatsApp fallback on" : "WhatsApp fallback off",
-    sub: missing.length ? missing.join(" · ").replace(/^./, (c) => c.toUpperCase()) : `Passport on file · US$${d.credits_usd} credits`,
+    sub: missing.length ? missing.join(" · ").replace(/^./, (c) => c.toUpperCase()) : `Passport on file · ${usd(credits)} credits`,
     warn: missing.length > 0,
   };
 }
@@ -819,7 +822,7 @@ function SummaryLines({ d, areas, stayMinutes, onOpen, active, compact }: PagePr
     .map((a) => ({ a, m: areaTime(d.base, a, stayMinutes).mins }))
     .sort((x, y) => y.m - x.m)[0];
   const me = useMe();
-  const b = bookingLine(d, me.data?.passport_on_file ?? false);
+  const b = bookingLine(d, me.data ?? undefined);
   const lines: { page: number; icon: ReactNode; k: string; v: string; sub?: ReactNode; warn?: boolean }[] = [
     {
       page: 0,

@@ -106,14 +106,14 @@ export const User = z.object({ id: z.string(), email: z.string(), name: z.string
 export type User = z.infer<typeof User>;
 
 /** The signed-in user as `me.get` returns it. Private fields show only as presence. */
-export const Me = User.extend({ passport_on_file: z.boolean() });
+export const Me = User.extend({ passport_on_file: z.boolean(), credits_usd: z.number() });
 export type Me = z.infer<typeof Me>;
 
 export const Base = z.object({ name: z.string(), lat: z.number(), lng: z.number() });
 export const Appetite = z.object({ tastings: z.number().int(), sit_down: z.number().int(), lunch_main: z.boolean() });
 export const Budget = z.object({ per_person: z.number(), currency: z.string() });
 export const Diet = z.array(z.string());
-export const BookingProfile = z.object({ credits_usd: z.number(), whatsapp_fallback: z.boolean() });
+export const BookingProfile = z.object({ whatsapp_fallback: z.boolean() });
 
 export const Trip = z.object({
   id: z.string(),

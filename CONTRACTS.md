@@ -8,7 +8,7 @@ Plan: https://app.indent.com/reports/01a1d244-d12d-7998-a0e6-0439927ce1b1 (local
 
 | Entrypoint | Kind | Input | Output | Owner |
 |---|---|---|---|---|
-| `me.get` | query | `{}` | `Me \| null` (`User` plus `passport_on_file`) | A |
+| `me.get` | query | `{}` | `Me \| null` (`User` plus `passport_on_file`, `credits_usd`) | A |
 | `me.setPassport` / `me.clearPassport` | mutation | `{ number }` / `{}` | `{ passport_on_file: true }` / `{ passport_on_file: false }` | E |
 | `cities.get` | query | `{ id }` | `{ city: City, areas: Area[] }` | B |
 | `places.search` | query | `{ city, trip?, kinds?, area?, q?, date?, limit? }` | `PlaceCard[]` | B |
@@ -56,5 +56,6 @@ Voice upload: `POST /api/voice` (multipart: `audio`, `context` JSON) returns the
 - Every third-party call goes through `attempt()` from `lib/attempt.ts`.
 - Personal data (names, phone numbers, emails, passport numbers, message text, transcripts) never goes in `interaction.request`; it goes in the private part.
 - A user's own personal data lives in `user_private` (one row per user; the passport number). No entrypoint returns it; the UI sees only `me.get`'s `passport_on_file`. Trip rows never hold it.
+- Credits belong to the user: `credit_ledger` rows (`amount_cents`, positive for top-ups, grants and refunds, negative for debits), balance = sum, shown as `me.get`'s `credits_usd`. Write a row per change; never update or delete one. `BookingProfile` is per trip and holds only `whatsapp_fallback`.
 - Commits: author and committer `Max Gasner <max@indent.com>`.
 - One branch per PR, stacked within a workstream.

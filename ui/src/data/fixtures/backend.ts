@@ -20,6 +20,9 @@ const HOTELS = [
   { name: "JW Marriott Hotel Lima", address: "Malecón de la Reserva 615, Miraflores", lat: -12.1316, lng: -77.0297 },
 ];
 
+/** The fixture user's credit balance (credit_ledger sum on the server). */
+const CREDITS_USD = 150;
+
 const ME: User = { id: "u_max", email: "max@indent.com", name: "Max Gasner", picture: null };
 const TRIP_ID = "lima-nov-2026";
 const STORE_KEY = "dp-fixtures-v1";
@@ -66,7 +69,7 @@ function seed(): State {
         appetite: { tastings: 3, sit_down: 5, lunch_main: true },
         budget: { per_person: 1800, currency: "USD" },
         diet: [],
-        booking: { credits_usd: 0, whatsapp_fallback: true },
+        booking: { whatsapp_fallback: true },
         refresh: "standard",
         created_at: t0,
       },
@@ -344,7 +347,7 @@ function undo({ undo: token }: In<"input.undo">): Out<"input.undo"> {
 type Handlers = { [N in Name]?: (input: In<N>) => Out<N> | Promise<Out<N>> };
 
 const handlers: Handlers = {
-  "me.get": (): Me => ({ ...ME, passport_on_file: state.passportOnFile }),
+  "me.get": (): Me => ({ ...ME, passport_on_file: state.passportOnFile, credits_usd: CREDITS_USD }),
   "me.setPassport": () => {
     state.passportOnFile = true;
     persist();

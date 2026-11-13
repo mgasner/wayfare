@@ -187,6 +187,12 @@ export const userPrivate = table(
   { key: ["owner"], people: ["passport"] },
 );
 
+export const creditLedger = table(
+  "credit_ledger",
+  z.object({ id: text, owner: text, amount_cents: int, kind: text, ref: maybeText, created_at: text }),
+  { key: ["id"] },
+);
+
 export const tables = [
   city,
   area,
@@ -204,6 +210,7 @@ export const tables = [
   calendarLink,
   inputUndo,
   userPrivate,
+  creditLedger,
 ];
 
 // Rows read as the records in shared/records.ts: JSON columns parsed, integer flags as booleans.

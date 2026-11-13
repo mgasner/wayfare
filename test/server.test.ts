@@ -68,9 +68,9 @@ describe("trips", () => {
     });
     expect(updated.body).toMatchObject({ party: 3, budget: { per_person: 120, currency: "USD" }, diet: ["no shellfish"] });
     expect((await callAs(max, "trips.update", { id: body.id, diet: null })).body.diet).toBeNull();
-    const booking = { credits_usd: 50, whatsapp_fallback: false };
+    const booking = { whatsapp_fallback: false };
     expect((await callAs(max, "trips.update", { id: body.id, booking })).body.booking).toEqual(booking);
-    expect((await callAs(max, "trips.update", { id: body.id, booking: { ...booking, card_on_file: true, passport_on_file: true } })).body.booking).toEqual(booking);
+    expect((await callAs(max, "trips.update", { id: body.id, booking: { ...booking, card_on_file: true, passport_on_file: true, credits_usd: 50 } })).body.booking).toEqual(booking);
     expect((await callAs(max, "trips.update", { id: body.id, start_date: "2026-12-30" })).status).toBe(400);
   });
 });

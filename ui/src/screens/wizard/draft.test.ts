@@ -25,9 +25,9 @@ describe("wizard draft", () => {
     expect([mealSlots(short), short.tastings, short.sit_down, casual(short)]).toEqual([6, 3, 3, 0]);
   });
 
-  it("builds trips.create input with credits instead of a card", () => {
+  it("builds trips.create input; credits and passport live on the user", () => {
     const t = toTripInput(LIMA_DEFAULTS);
-    expect(t.booking).toEqual({ credits_usd: 0, whatsapp_fallback: true });
+    expect(t.booking).toEqual({ whatsapp_fallback: true });
     expect(t.appetite).toEqual({ tastings: 3, sit_down: 5, lunch_main: true });
     expect(t.budget).toEqual({ per_person: 1800, currency: "USD" });
   });
