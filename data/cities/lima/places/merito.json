@@ -1,0 +1,147 @@
+{
+  "id": "merito",
+  "area": "barranco",
+  "name": "Mérito",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": "b009d796-5751-4796-9cda-d0a5c6975b59",
+  "lat": -12.1505327,
+  "lng": -77.0207443,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "merito.mesa247.pe",
+      "slug": "merito",
+      "local_id": 1005
+    },
+    {
+      "type": "phone",
+      "number": "+51936023089"
+    },
+    {
+      "type": "phone",
+      "number": "+5112771628"
+    }
+  ],
+  "summary": "A distinctive Venezuelan-Peruvian tasting at about a third the price of Central, highly rated by diners and critics, and one of the hardest tables in Barranco to get.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://www.meritorestaurante.com"
+    },
+    {
+      "label": "Book online",
+      "url": "https://merito.mesa247.pe/reservas/merito"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1txrey7/kjolle_or_maido/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/GoingToPeru/comments/1tv1fon/hit_me_with_your_best_restaurant_in_lima/"
+    },
+    {
+      "label": "theinfatuation.com",
+      "url": "https://www.theinfatuation.com/lima/reviews/merito"
+    },
+    {
+      "label": "7canibales.com",
+      "url": "https://www.7canibales.com/mundo-canibal/juan-luis-martinez-merito/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d15149517-Reviews-Merito-Lima_Lima_Region.html"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:20Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Tasting only. Dinner Tue-Fri; lunch and dinner Saturday; closed Sunday and Monday.",
+        "closed_days": [
+          0,
+          1
+        ]
+      },
+      "checked_at": "2026-11-13T01:43:20Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 203,
+        "text": "10-step tasting PEN 689 (~USD 203) per person"
+      },
+      "checked_at": "2026-11-13T01:43:20Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Venezuelan-Peruvian fine dining",
+      "checked_at": "2026-11-13T01:43:20Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Menú Experiencia Mérito (10 steps)",
+        "items": [
+          {
+            "name": "On the Verge of Tomato",
+            "description": "cryptically named tasting-menu course (Oct 2026 review)"
+          },
+          {
+            "name": "Ocaso magenta (Magenta Dusk)",
+            "description": "tasting menu course"
+          },
+          {
+            "name": "Oxidation / Unusual",
+            "description": "other short-named courses in the Oct 2026 review"
+          },
+          {
+            "name": "Mashua, yacón and tea elixir",
+            "description": "closing drink; restaurant's flan may follow"
+          },
+          {
+            "name": "Conchas and huacatay",
+            "description": "recurring ingredients per the chef"
+          },
+          {
+            "name": "Older dishes (2024-25)",
+            "description": "Andean curry; beef with arracacha and mango; cocona with mashua and lemon verbena; arepa with pork belly and tamarillo. Menu changed in Jun 2026, so some may be gone."
+          }
+        ],
+        "as_of": "2026-06 / 2026-10 (press)",
+        "source_url": "https://www.7canibales.com/mundo-canibal/juan-luis-martinez-merito/"
+      },
+      "checked_at": "2026-11-13T01:43:20Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "destination-tasting",
+        "format": "tasting",
+        "pros": [
+          "Unique cuisine, strongly rated in recent press",
+          "PEN 689 is much cheaper than Central/Kjolle"
+        ],
+        "cons": [
+          "Very few open slots",
+          "Tasting-only now",
+          "Closed Sun/Mon",
+          "Map pin is approximate"
+        ],
+        "accolades": [
+          "World's 50 Best 2026: #13",
+          "World's 50 Best 2025: #26"
+        ],
+        "chef": "Juan Luis Martínez",
+        "how_to_book": "Link on official site. Phone +51 936 023 089 per Infatuation and 7 Caníbales; site lists 01 277 1628."
+      },
+      "checked_at": "2026-11-13T01:43:20Z"
+    }
+  ]
+}

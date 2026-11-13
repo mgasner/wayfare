@@ -6,13 +6,13 @@ import { FileDatabase } from "../lib/db.js";
 import { migrate } from "../lib/migrate.js";
 import { seed } from "../lib/seed.js";
 import { tables } from "../server/tables.js";
-import { root, tempPath } from "./helpers.js";
+import { fixtureCities, root, tempPath } from "./helpers.js";
 
 const migrations = join(root, "db/migrations");
 
 function copyCities(): string {
   const dir = mkdtempSync(join(tmpdir(), "dp-cities-"));
-  cpSync(join(root, "data/cities"), dir, { recursive: true });
+  cpSync(fixtureCities, dir, { recursive: true });
   return dir;
 }
 
@@ -37,10 +37,10 @@ describe("seed", () => {
   it("loads the Lima fixture as curated places with research facts, and repeats as a no-op", async () => {
     const database = new FileDatabase(tempPath());
     await migrate(database, migrations);
-    const first = await seed(database, join(root, "data/cities"));
+    const first = await seed(database, fixtureCities);
     expect(first.cities).toEqual(["lima"]);
     expect(first.changes).toBeGreaterThan(0);
-    expect((await seed(database, join(root, "data/cities"))).changes).toBe(0);
+    expect((await seed(database, fixtureCities)).changes).toBe(0);
     const places = await database.run((s) => s.prepare("SELECT id, curated FROM place ORDER BY id").all());
     expect(places.length).toBeGreaterThanOrEqual(3);
     expect(places.every((p) => p.curated === 1)).toBe(true);

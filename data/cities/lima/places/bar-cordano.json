@@ -1,0 +1,46 @@
+{
+  "id": "bar-cordano",
+  "area": "centro",
+  "name": "Bar Cordano",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "c1ced3cc-2446-4a22-9750-3dd3eed7da21",
+  "lat": -12.0447845,
+  "lng": -77.0289459,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "A 1905 bar-restaurant on the corner by the Government Palace, with a long wooden bar, butifarra and jamón del país sandwiches and old-Lima plates. Go for the room and a chilcano rather than the cooking.",
+  "links": [
+    {
+      "label": "oldpubs.com",
+      "url": "https://oldpubs.com/pubs/bar-cordano-lima/"
+    },
+    {
+      "label": "Limeo",
+      "url": "https://limeo.pe/restaurante/cordano-cercado-de-lima"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Daily about 8:00-20:30 (listings differ by half an hour).",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Criollo bar food",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

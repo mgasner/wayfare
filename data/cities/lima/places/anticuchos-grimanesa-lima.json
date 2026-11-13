@@ -1,0 +1,190 @@
+{
+  "id": "anticuchos-grimanesa-lima",
+  "area": "miraflores",
+  "name": "Anticuchos de la Tía Grimanesa",
+  "kind": "informal",
+  "google_place_id": null,
+  "overture_id": "d003defa-0367-4a18-a7d4-b2135085ebe4",
+  "lat": -12.1135406,
+  "lng": -77.0457153,
+  "channels": [
+    {
+      "type": "phone",
+      "number": "+51941869568"
+    },
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "The best-documented anticucho specialist in Lima: a 1974 street cart turned small Miraflores shop. Plan it as a 30-45 minute stop for beef heart and picarones, not a destination dinner; recent reviews grumble about price and portion size.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://m.facebook.com/grimanesavargasanticuchos/"
+    },
+    {
+      "label": "Instagram",
+      "url": "@vargasgrimanesa"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://wanderlog.com/place/details/852979/grimanesa-anticucheria"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://carta.menu/restaurants/santiago-de-surco/atg-anticuchos-de-la-tia-grimanessa"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/GoingToPeru/comments/1wsivmv/lugares_comida_buenos_y_convenientes/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/PERU/comments/109f25f"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/gastronomia/peruana/critica-gastronomica-paola-miglio-anticuchos-tia-grimanesa-noticia-472675-noticia/"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/somos/historias/grimanesa-anticuchos-miraflores-lo-mas-importante-para-mi-era-que-mis-hijos-estudiasen-medio-siglo-con-los-anticuchos-de-grimanesa-y-la-razon-por-la-que-son-los-mas-buscados-de-lima-noticia/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.ca/Restaurant_Review-g294316-d2461313-Reviews-ATG_Anticuchos_de_la_Tia_Grimanessa-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://larepublica.pe/gastronomia/2024/06/21/el-mejor-anticucho-del-mundo-esta-en-la-tia-grimanesa-segun-taste-atlas-estos-son-sus-precios-y-carta-dona-grimanesa-vargas-atmp-945798"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Mon-Sat from late afternoon (15:30 or 17:00, sources differ) to about 22:00; closed Sunday.",
+        "closed_days": [
+          0
+        ]
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 11,
+        "text": "About S/60-90 (US$18-26) for two, cash"
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Peruvian anticuchos (grilled beef heart skewers)",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Carta (counter menu)",
+        "items": [
+          {
+            "name": "Anticucho de corazón",
+            "description": "Thick beef heart marinated in ají panca, garlic, vinegar, cumin; S/13 in 2024."
+          },
+          {
+            "name": "2 palitos con papa y ají",
+            "description": "Standard order; S/26 (2024)."
+          },
+          {
+            "name": "3 palitos con papa y ají",
+            "description": "Larger portion; S/38 (2024)."
+          },
+          {
+            "name": "Combinado",
+            "description": "Heart + rachi + cuajo + molleja; S/32 (2024), S/28 (Sept 2026). Gizzard and rachi can be tough."
+          },
+          {
+            "name": "Anticucho de pollo",
+            "description": "Chicken skewer for non-offal eaters; S/12 (2024)."
+          },
+          {
+            "name": "Antiduo",
+            "description": "One heart, one chicken skewer, potatoes; S/27 (2024)."
+          },
+          {
+            "name": "Plato con anchuras",
+            "description": "300 g anchuras with heart and chicken skewers, choclo, potato, soda; S/56 (2024)."
+          },
+          {
+            "name": "Picarones",
+            "description": "Sweet potato and squash rings with chancaca syrup; reviewers call them among Lima's best."
+          },
+          {
+            "name": "Choclo / papas sancochadas",
+            "description": "Boiled corn and potatoes, the usual sides."
+          }
+        ],
+        "as_of": "2024-06-22 prices; 2026-09 review for skewer prices",
+        "source_url": "https://larepublica.pe/gastronomia/2024/06/21/el-mejor-anticucho-del-mundo-esta-en-la-tia-grimanesa-segun-taste-atlas-estos-son-sus-precios-y-carta-dona-grimanesa-vargas-atmp-945798"
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "dress",
+      "value": "Casual",
+      "checked_at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "off-the-beaten-path",
+        "format": "Tiny counter-service anticucheria, communal tables and a bar; order and pay at counter",
+        "pros": [
+          "50+ year institution with strong press",
+          "Tender, well-seasoned heart and good picarones",
+          "Cheap, fast, no reservation",
+          "Easy from Miraflores"
+        ],
+        "cons": [
+          "Small portions, some call it overpriced",
+          "Tiny space, line after 6 PM, closed Sundays",
+          "Rachi/gizzard can be tough",
+          "Cash-only status conflicting; coordinates from OSM/Mapcarta, not a Maps pin"
+        ],
+        "accolades": [
+          "TasteAtlas best anticucho, 'Reina de Corazones'",
+          "Opinionated About Dining South America 2025 #45 (secondary source)",
+          "El Comercio Somos profile, 50 years (Oct 2024)",
+          "Paola Miglio / El Comercio 16/20 (2017)",
+          "Lonely Planet Peru"
+        ],
+        "chef": "Grimanesa Vargas (owner, in business since 1974)",
+        "how_to_book": "No reservations. Order and pay at counter, then take a seat. Party of 2 is easy. Arrive at opening or before 6 PM. Call to confirm hours (3:30 vs 5 PM opening disputed).",
+        "reviews": {
+          "google": {
+            "rating": 4.1,
+            "count": 1852,
+            "summary": null
+          },
+          "critics": {
+            "rating": 16,
+            "count": 1,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": null,
+            "count": 274,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-12T12:00:00Z"
+    }
+  ]
+}

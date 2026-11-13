@@ -1,0 +1,25 @@
+{
+  "id": "statera",
+  "area": "miraflores",
+  "name": "Statera",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": "29f76250-e0ec-4d5c-af0f-a02ac2399dba",
+  "lat": -12.1158266,
+  "lng": -77.0432663,
+  "channels": [],
+  "summary": "André Patsias's tasting-menu restaurant on Avenida Mariscal La Mar, reported permanently closed in 2026.",
+  "links": [],
+  "facts": [
+    {
+      "field": "status",
+      "value": "closed",
+      "checked_at": "2026-11-12T00:30:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Contemporary Peruvian",
+      "checked_at": "2026-11-12T00:30:00Z"
+    }
+  ]
+}

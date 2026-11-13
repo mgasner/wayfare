@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { FactValues } from "./facts.js";
 import { Area, Channel, City, FactField, Instant, Link, Place, PlaceKind, Stop } from "./records.js";
 
 // Files under data/cities/<city>/, written by the research pass and loaded by bin/seed.
@@ -18,8 +19,13 @@ export const AreaFile = Area.omit({ city: true }).extend({
 export const AreasFile = z.array(AreaFile);
 export type AreaFile = z.infer<typeof AreaFile>;
 
-/** A fact from research; stored with source `research`. */
-export const ResearchFact = z.object({ field: FactField, value: z.unknown(), checked_at: Instant });
+/** A fact from research; stored with source `research`. Values have their field's shape from shared/facts.ts. */
+export const ResearchFact = z.discriminatedUnion(
+  "field",
+  FactField.options.map((field) => z.object({ field: z.literal(field), value: FactValues[field], checked_at: Instant })) as unknown as [
+    z.ZodObject<{ field: z.ZodLiteral<FactField>; value: z.ZodType; checked_at: typeof Instant }>,
+  ],
+);
 export type ResearchFact = z.infer<typeof ResearchFact>;
 
 /** places/<id>.json: the city comes from the directory, and every seeded place is curated. */

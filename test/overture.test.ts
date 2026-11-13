@@ -6,7 +6,7 @@ import type { FileDatabase } from "../lib/db.js";
 import { bestMatch, metersBetween, nameSimilarity } from "../lib/match.js";
 import { latestRelease, loadOverture, writeMatchesToFiles, type OvertureRow } from "../lib/overture.js";
 import { seed } from "../lib/seed.js";
-import { addUser, root, seededDb } from "./helpers.js";
+import { addUser, fixtureCities, root, seededDb } from "./helpers.js";
 
 describe("matching", () => {
   it("scores names ignoring accents, case and generic words", () => {
@@ -86,7 +86,7 @@ describe("loadOverture", () => {
     );
     const dir = mkdtempSync(join(tmpdir(), "dp-cities-"));
     const { cpSync } = await import("node:fs");
-    cpSync(join(root, "data/cities"), dir, { recursive: true });
+    cpSync(fixtureCities, dir, { recursive: true });
     const file = join(dir, "lima/places/la-mar-cebicheria.json");
     writeFileSync(file, JSON.stringify({ ...JSON.parse(readFileSync(file, "utf8")), overture_id: "lamar" }));
     await seed(database, dir);

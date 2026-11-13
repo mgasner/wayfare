@@ -1,0 +1,153 @@
+{
+  "id": "mayta",
+  "area": "miraflores",
+  "name": "Mayta",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": "26d26d0e-49ba-4233-a550-b3dc0fa56ffc",
+  "lat": -12.1098471,
+  "lng": -77.0491714,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "mayta.mesa247.pe",
+      "slug": "mayta",
+      "local_id": 14
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51937220734"
+    }
+  ],
+  "summary": "Jaime Pesaque's Amazon-focused tasting and à la carte room in Miraflores, open daily and usually easier to book than the Barranco tasting rooms. The menu is more niche than Central's and rated a notch below on Reddit.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://maytalima.com.pe"
+    },
+    {
+      "label": "Book online",
+      "url": "https://mayta.mesa247.pe/reservas/mayta"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/maytalima/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1txrey7/kjolle_or_maido/"
+    },
+    {
+      "label": "7canibales.com",
+      "url": "https://www.7canibales.com/restaurantes/mayta-jaime-pesaque/"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/somos/gastronomia/el-conocimiento-detras-de-los-sabores-asi-es-yachay-el-centro-de-experimentacion-creativa-de-mayta-jaime-pesaque-mejores-restaurantes-del-peru-noticia/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d2252139-Reviews-Mayta_Restaurante-Lima_Lima_Region.html"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:23Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Daily. Lunch 12:00-15:00, dinner 18:00-22:00; tasting seatings 12:00-13:30 and 18:00-20:30.",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T01:43:23Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 294,
+        "text": "Bitácora Amazónica 10-step PEN 998 (~USD 294); Experiencia Tierra Noble 7-step PEN 745 (~USD 219)"
+      },
+      "checked_at": "2026-11-13T01:43:23Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Contemporary Peruvian, Amazonian-focused (Yachay research)",
+      "checked_at": "2026-11-13T01:43:23Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Bitácora Amazónica",
+        "items": [
+          {
+            "name": "Gamitana ceviche",
+            "description": "Amazon fish served at high-water season, soft and sweet"
+          },
+          {
+            "name": "Juane de pato",
+            "description": "with churos (land snails)"
+          },
+          {
+            "name": "Tumba cuchara clams",
+            "description": "fresh, iodine-tinged"
+          },
+          {
+            "name": "Cerdo de monte",
+            "description": "wild pig dish"
+          },
+          {
+            "name": "Camu camu",
+            "description": "recurs in a cracker, a cold-filtered leche de tigre and a frozen cloud"
+          },
+          {
+            "name": "Limón mandarino dessert",
+            "description": "final dessert"
+          },
+          {
+            "name": "Tucupí",
+            "description": "fermented cassava juice base in preparations"
+          },
+          {
+            "name": "A la carte",
+            "description": "catch of the day, crispy squid, peas and peppermint, grilled tripe, duck skillet S/299 (Feb 2026 carta)"
+          }
+        ],
+        "as_of": "2026-05 (press)",
+        "source_url": "https://www.7canibales.com/restaurantes/mayta-jaime-pesaque/"
+      },
+      "checked_at": "2026-11-13T01:43:23Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "fine-dining",
+        "format": "both",
+        "pros": [
+          "Both tasting menus and a la carte",
+          "Cheaper tasting option (PEN 745, 7 steps)"
+        ],
+        "cons": [
+          "Rated below the Barranco three by Reddit",
+          "Tasting reviewed as pricey/uneven by some",
+          "Heavy Amazonian emphasis"
+        ],
+        "accolades": [
+          "World's 50 Best 2026: #45"
+        ],
+        "chef": "Jaime Pesaque",
+        "how_to_book": "Choose Bitácora Amazónica, Tierra Noble or A la carte. Also WhatsApp/phone +51 937 220 734. Bar alternative not found.",
+        "reviews": {
+          "tripadvisor": {
+            "rating": 4.4,
+            "count": 794,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:23Z"
+    }
+  ]
+}

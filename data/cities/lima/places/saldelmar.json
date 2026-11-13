@@ -1,0 +1,172 @@
+{
+  "id": "saldelmar",
+  "area": "miraflores",
+  "name": "Saldelmar",
+  "kind": "bookable",
+  "google_place_id": null,
+  "overture_id": null,
+  "lat": -12.1305847,
+  "lng": -77.0198135,
+  "channels": [
+    {
+      "type": "whatsapp",
+      "number": "+51953489892"
+    },
+    {
+      "type": "web",
+      "url": "https://wa.me/message/HGOY5NK73WGYO1"
+    }
+  ],
+  "summary": "Worth a lunch, not a headline booking: Solís has about 40 years in the trade and strong critic support, but Google 3.5 on 46 reviews and one freshness complaint make it less proven than the famous names. A casual, product-driven seafood lunch rather than a destination tasting.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://saldelmar.pe"
+    },
+    {
+      "label": "Book online",
+      "url": "https://wa.me/message/HGOY5NK73WGYO1"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/saldelmar_lima/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/place/SALDELMAR/@-12.1305109,-77.0195134,17z/data=!3m1!4b1!4m6!3m5!1s0x9105b77c4e203c87:0x4b82974b709b72bc!8m2!3d-12.1305109!4d-77.0195134!16s%2Fg%2F11z16rl25t"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/somos/gastronomia/saldelmar-la-nueva-apuesta-de-hector-solis-restaurantes-en-miraflores-noticia/"
+    },
+    {
+      "label": "m.peru21.pe",
+      "url": "https://m.peru21.pe/gastronomia/hector-solis-y-johanna-aparcana-estamos-creando-un-verdadero-restaurante-del-mar-para-lima/"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-12T00:55:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Lunch only, Tue-Sun 12:00-17:00; closed Monday.",
+        "closed_days": [
+          1
+        ]
+      },
+      "checked_at": "2026-11-12T00:55:00Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 47,
+        "text": "Roughly S/100-200+ pp a la carte (~US$29-59), reviewer-reported only"
+      },
+      "checked_at": "2026-11-12T00:55:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Peruvian seafood driven by the day's catch with European technique: tiraditos, stews, paella-pan rices",
+      "checked_at": "2026-11-12T00:55:00Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Carta (changes with the catch)",
+        "items": [
+          {
+            "name": "Tiradito Saldelmar",
+            "description": "Fish medallions on olive oil with spicy vinegar, pepper, Maldon salt"
+          },
+          {
+            "name": "Ceviche al vapor",
+            "description": "Salt-cured fish passed through steam, finished with limón and ají"
+          },
+          {
+            "name": "Bocado de atún a la brasa",
+            "description": "Tuna marinated in 14 spices, grilled, with pickles and potatoes"
+          },
+          {
+            "name": "Tostón, ensaladilla y pejerrey",
+            "description": "Potato salad on sourdough toast with pickled pejerrey"
+          },
+          {
+            "name": "Pulpo asustado",
+            "description": "Octopus slices briefly passed through hot water, ají, limón"
+          },
+          {
+            "name": "Langostinos salvajes con huevos fritos",
+            "description": "Wild prawns with fried eggs"
+          },
+          {
+            "name": "Sudado",
+            "description": "Dried cherry, limo and mochero chiles over fish"
+          },
+          {
+            "name": "Guiso de morena con morcillas y papas",
+            "description": "Moray eel stew with blood sausage; also with scallops or sea urchin"
+          },
+          {
+            "name": "Cau cau marino",
+            "description": "Moray eel replaces tripe"
+          },
+          {
+            "name": "Arroz negro con calamares",
+            "description": "Paella-pan rice with grilled baby squid"
+          },
+          {
+            "name": "Puerto Etén",
+            "description": "Rice with lobster"
+          },
+          {
+            "name": "Arroz blanco con agua de ostras",
+            "description": "Rice cooked in oyster liquor with pearls and mushrooms"
+          }
+        ],
+        "as_of": "unofficial copy ~June 2026, partly confirmed by El Comercio Aug 2026 and Peru21 Jul 2026",
+        "source_url": "https://elcomercio.pe/somos/gastronomia/saldelmar-la-nueva-apuesta-de-hector-solis-restaurantes-en-miraflores-noticia/"
+      },
+      "checked_at": "2026-11-12T00:55:00Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "upscale-a-la-carte",
+        "format": "a la carte; no tasting menu found",
+        "pros": [
+          "Chef Solís's track record and critic support",
+          "Day's catch from named fishermen",
+          "Rices and stews are the standouts",
+          "Fairly priced wine list"
+        ],
+        "cons": [
+          "~4 months old",
+          "Google 3.5 from 46 reviews; one freshness complaint",
+          "Lunch only, closed Mondays",
+          "WhatsApp-only booking, no stated policy",
+          "No official menu prices; website blocked",
+          "Photo URL is a signed El Comercio link and may expire"
+        ],
+        "accolades": [
+          "Nominee Mejor Nuevo Restaurante, Premios Somos 2026 (El Comercio, 2026-09-20)",
+          "AmiGo 'Spots to Go Right Now: Lima' (2026-10-19)",
+          "El Comercio Somos review (2026-08-04)"
+        ],
+        "chef": "Héctor Solís (with Johanna Aparcana; wine list by Ignacio Medina)",
+        "how_to_book": "Message WhatsApp with date, a 12:00-17:00 time and party of 2.",
+        "reviews": {
+          "google": {
+            "rating": 3.5,
+            "count": 46,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-12T00:55:00Z"
+    }
+  ]
+}

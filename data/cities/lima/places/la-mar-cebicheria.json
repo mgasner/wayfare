@@ -3,12 +3,190 @@
   "area": "miraflores",
   "name": "La Mar Cebichería",
   "kind": "walk_in",
-  "lat": -12.1133,
-  "lng": -77.0453,
-  "channels": [{ "type": "walk_in" }],
-  "summary": "Gastón Acurio's cebichería; lunch only, expect a line at peak.",
+  "google_place_id": null,
+  "overture_id": "721adc79-5be6-4557-a68d-764ed1ddfc4b",
+  "lat": -12.1133604,
+  "lng": -77.045372,
+  "channels": [
+    {
+      "type": "email",
+      "address": "lamar@lamarcebicheria.com.pe"
+    },
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "Gastón Acurio's cebichería: a lively shareable seafood lunch where ceviche is the point and you accept a queue. More casual and cheaper than the tasting-menu places, and it takes no bookings, so treat it as a flexible lunch.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://lamarcebicheria.com/peru/"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/lamarcebicherialima/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://maps.app.goo.gl/5nvf93YJfVEcKfWu8"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://www.google.com/maps/place/La+Mar+Cevicher%C3%ADa+Peruana/@-12.1133171,-77.0453156,17z"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1oifrd9/peru_trip_looking_for_the_right_moves_to_make_in/"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/Lima_Peru/comments/1s7syq9/recomendaciones_de_restaurantes/"
+    },
+    {
+      "label": "theinfatuation.com",
+      "url": "https://www.theinfatuation.com/lima/reviews/la-mar-lima"
+    },
+    {
+      "label": "limeo.pe",
+      "url": "https://limeo.pe/en/restaurante/la-mar-miraflores"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d779051-Reviews-La_Mar_Cevicheria_Peruana-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://lamarcebicheria.com/cartas/peru/LMR-PERU-carta.pdf"
+    }
+  ],
   "facts": [
-    { "field": "status", "value": "open", "checked_at": "2026-11-12T22:41:00Z" },
-    { "field": "hours", "value": { "mon-sun": "12:00-17:00" }, "checked_at": "2026-11-12T22:41:00Z" }
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Lunch only. Mon-Thu 12:00-17:00; Fri 12:00-19:00; Sat/Sun/holidays 11:30-17:30",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 59,
+        "text": "Est. S/150-250 per person (2-3 shared dishes + drink); prices include tax and service"
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Peruvian cebichería / seafood with Nikkei and chifa influences",
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "La Mar carta 2026",
+        "items": [
+          {
+            "name": "Cebiche Clásico (S/69-94)",
+            "description": "Pejerrey, seasonal or luxury fish in classic leche de tigre"
+          },
+          {
+            "name": "Cebiche Nikkei (S/89)",
+            "description": "Tuna in Nikkei leche de tigre"
+          },
+          {
+            "name": "Cebiche Mantaro (S/89)",
+            "description": "Trout, artichoke leche de tigre, chips"
+          },
+          {
+            "name": "Trío de cebiches (S/139)",
+            "description": "Clásico, Nikkei, Mantaro"
+          },
+          {
+            "name": "Tiradito criollo / limeño (S/79-89)",
+            "description": "Seasonal fish in ají amarillo or rocoto sauce"
+          },
+          {
+            "name": "Causa acebichada (S/78)",
+            "description": "Potato causa topped with fish ceviche"
+          },
+          {
+            "name": "Chalana de sashimi especial (S/229 for two)",
+            "description": "Best of the day, 12 varieties"
+          },
+          {
+            "name": "Wantacos Nikkei (S/26 each)",
+            "description": "Wonton tacos with tuna tartare"
+          },
+          {
+            "name": "Empanada del mar (S/26 each)",
+            "description": "Langoustine and crab ají"
+          },
+          {
+            "name": "Pescado a la meunier limeña (S/89-98)",
+            "description": "Flounder meunière with yellow-potato purée"
+          },
+          {
+            "name": "Arroz enchichado (S/98-128)",
+            "description": "Creamy loche and ají amarillo rice, fish panquitas"
+          },
+          {
+            "name": "Sopa seca de pulpo (S/129)",
+            "description": "Noodles in ink with rocoto aioli"
+          }
+        ],
+        "as_of": "2026-09-04",
+        "source_url": "https://lamarcebicheria.com/cartas/peru/LMR-PERU-carta.pdf"
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "dress",
+      "value": "Not stated (Limeo: casual/elegante-sport)",
+      "checked_at": "2026-11-12T00:50:00Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "upscale-a-la-carte",
+        "format": "a la carte",
+        "pros": [
+          "Google 4.5 (8,757), TripAdvisor 4.6 (5,127)",
+          "Fresh ceviche, tiraditos, desserts praised in 2026",
+          "Prices include tax and service",
+          "Bar seating, patio"
+        ],
+        "cons": [
+          "No reservations; waits ~35 min to ~2h",
+          "Lunch only",
+          "Loud and chaotic",
+          "Pricey for ceviche"
+        ],
+        "accolades": [
+          "Latin America's 50 Best (2026 rank unverified)",
+          "TripAdvisor Travelers' Choice"
+        ],
+        "chef": "Gastón Acurio (head chef per site: Anthony Vasquez)",
+        "how_to_book": "Official reservations page lists no Lima location; TripAdvisor, Infatuation, Limeo say no reservations. An older listing has a phone number; unconfirmed whether it holds tables for 2.",
+        "reviews": {
+          "google": {
+            "rating": 4.5,
+            "count": 8757,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.6,
+            "count": 5127,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-12T00:50:00Z"
+    }
   ]
 }

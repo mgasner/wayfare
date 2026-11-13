@@ -1,0 +1,182 @@
+{
+  "id": "fernandini-restaurante",
+  "area": "barranco",
+  "name": "Fernandini",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": null,
+  "lat": -12.1487628,
+  "lng": -77.0205205,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "fernandini.mesa247.pe",
+      "slug": "fernandini",
+      "local_id": 2795
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51932605873"
+    },
+    {
+      "type": "email",
+      "address": "fernandinirest@gmail.com"
+    }
+  ],
+  "summary": "A buzzy new Barranco casona tasting at about US$150 for 10 courses, for people who want a Peruvian tasting night without Central/Maido prices or lead times. Less proven (opened March 2026, no awards, some noise and service-pacing complaints), so choose it for price and availability, not pedigree.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://fernandini.mesa247.pe/?lang=es"
+    },
+    {
+      "label": "Book online",
+      "url": "https://fernandini.mesa247.pe/reservas/fernandini"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/fernandinirest/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://maps.app.goo.gl/anrf9i214MhgVoKe6"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://es.restaurantguru.com/Fernandini-Barranco-District"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/somos/gastronomia/fernandini-restaurante-cuanto-cuesta-y-como-es-la-carta-del-nuevo-restaurante-de-rodrigo-fernandini-noticia/"
+    },
+    {
+      "label": "mesa247.pe",
+      "url": "https://www.mesa247.pe/lima/restaurante/fernandini"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.es/Restaurant_Review-g294316-d34318770-Reviews-Fernandini-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://cdn.mesa247.io/archivos/ficheros/2795/1792682571.pdf"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:43Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Mon-Thu 12:00-23:00; Fri-Sat 12:00-23:30; Sun 12:00-17:00 (lunch and dinner)",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T01:43:43Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 153,
+        "text": "Tasting S/520 pp (~US$153); Peruvian-wine pairing S/400 (~US$118), world wines S/500 (~US$147)"
+      },
+      "checked_at": "2026-11-13T01:43:43Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Contemporary Peruvian (coast, Andes, Amazon)",
+      "checked_at": "2026-11-13T01:43:43Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Menú Degustación Fernandini (10 courses)",
+        "items": [
+          {
+            "name": "Primer Latido",
+            "description": "Siquisapa ants (Moyobamba), cocona"
+          },
+          {
+            "name": "Frontera Salada",
+            "description": "Catch of the day, oyster, trout"
+          },
+          {
+            "name": "Raíces Elevadas",
+            "description": "Olluco, mashua, oca"
+          },
+          {
+            "name": "Quwi",
+            "description": "Guinea pig, mole, Andean BBQ"
+          },
+          {
+            "name": "Río Profundo",
+            "description": "Paiche, aguaje, Amazonian chorizo"
+          },
+          {
+            "name": "Valle de Loche",
+            "description": "Duck magret, foie gras, loche squash"
+          },
+          {
+            "name": "Cordillera Larga",
+            "description": "Beef tongue, agnolotti, moraya"
+          },
+          {
+            "name": "Deshielo",
+            "description": "Tuna, chilcano"
+          },
+          {
+            "name": "Pachamisky",
+            "description": "Lúcuma, quinoa, aguaymanto"
+          },
+          {
+            "name": "Apoteosis Amazónica",
+            "description": "Cacao, pacay, copoazú"
+          }
+        ],
+        "as_of": "2026-11-12",
+        "source_url": "https://cdn.mesa247.io/archivos/ficheros/2795/1792682571.pdf"
+      },
+      "checked_at": "2026-11-13T01:43:43Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "destination-tasting",
+        "format": "tasting (10 courses) plus a la carte, vegan tasting and bar",
+        "pros": [
+          "~US$153 for 10 courses",
+          "Lunch and dinner incl. Sunday lunch",
+          "Google 4.9 / Tripadvisor 4.8 per aggregators",
+          "Barranco location with bar"
+        ],
+        "cons": [
+          "Opened Mar 2026, no awards",
+          "Reports of noise, slow service, unavailable dishes",
+          "Deposit/cancellation not public",
+          "Service/tax inclusion unclear",
+          "Sunday lunch only"
+        ],
+        "accolades": [
+          "Opened 28 Mar 2026 (El Comercio, 31 May 2026); no formal awards found"
+        ],
+        "chef": "Rodrigo Fernandini (also runs Artesano, New York)",
+        "how_to_book": "Pick 'Menú Degustación Fernandini', 2 people, date, time, then personal details (not entered). Parties over 4 must call.",
+        "reviews": {
+          "google": {
+            "rating": 4.9,
+            "count": null,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.8,
+            "count": 45,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:43Z"
+    }
+  ]
+}

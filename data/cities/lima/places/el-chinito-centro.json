@@ -1,0 +1,38 @@
+{
+  "id": "el-chinito-centro",
+  "area": "centro",
+  "name": "Sanguchería El Chinito",
+  "kind": "informal",
+  "google_place_id": "ChIJm5jCXwPJBZER3FpC8FmRT04",
+  "overture_id": "affe6fb4-44b1-441e-a39b-72e753fd8bcd",
+  "lat": -12.0491915,
+  "lng": -77.0407944,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "The original corner shop of Lima's best-known sanguchería, at Chancay and Zepita: chicharrón, jamón del país and turkey sandwiches with salsa criolla, eaten standing or at a few tables. A breakfast or snack stop.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://elchinito.com.pe/locales"
+    },
+    {
+      "label": "SwissLima",
+      "url": "https://swisslima.ch/es/comer/restaurantes/el-chinito/"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Peruvian sandwiches",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

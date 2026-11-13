@@ -1,0 +1,25 @@
+{
+  "id": "amaz",
+  "area": "miraflores",
+  "name": "Ámaz",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": null,
+  "lat": -12.1287093,
+  "lng": -77.026562,
+  "channels": [],
+  "summary": "Pedro Miguel Schiaffino's Amazonian restaurant on Avenida La Paz. Closed since 2020; Schiaffino now cooks at La Rosa Náutica.",
+  "links": [],
+  "facts": [
+    {
+      "field": "status",
+      "value": "closed",
+      "checked_at": "2026-11-12T00:30:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Amazonian",
+      "checked_at": "2026-11-12T00:30:00Z"
+    }
+  ]
+}

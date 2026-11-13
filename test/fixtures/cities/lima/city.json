@@ -1,0 +1,21 @@
+{
+  "id": "lima",
+  "name": "Lima",
+  "country": "PE",
+  "tz": "America/Lima",
+  "currency": "PEN",
+  "languages": ["es"],
+  "bbox": [-77.2, -12.3, -76.8, -11.9],
+  "config": {
+    "platforms": [
+      { "name": "Mesa 24/7", "notes": "Most bookable mid-range and many fine-dining rooms; slots readable per date and party." },
+      { "name": "Meitre", "notes": "Used by several fine-dining rooms." },
+      { "name": "Own site", "notes": "The top tasting menus book on their own sites, often with a prepaid deposit." }
+    ],
+    "messaging": ["whatsapp"],
+    "closures": "Many restaurants close Sunday dinner and Monday; cevicherías serve lunch only.",
+    "release_norms": "Tasting menus release tables weeks ahead; cancellations reappear close to the date.",
+    "card_notes": "Prepaid deposits and some bookings ask for a card and a passport or ID number.",
+    "tipping": "About 10% where no service charge is added."
+  }
+}

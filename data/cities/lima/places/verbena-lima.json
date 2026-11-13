@@ -1,0 +1,174 @@
+{
+  "id": "verbena-lima",
+  "area": "san-isidro",
+  "name": "Verbena",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": "651d512f-9624-4d1f-a03c-65809e4152fb",
+  "lat": -12.0999146,
+  "lng": -77.0365906,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "verbena.mesa247.pe",
+      "slug": "verbena",
+      "local_id": 1348
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51922561335"
+    },
+    {
+      "type": "email",
+      "address": "verbena.grupo@gmail.com"
+    }
+  ],
+  "summary": "A 16-seat basement from a Basque-trained Peruvian chef: playful Peruvian-Mediterranean tapas rather than ceremony, far cheaper and easier to book than Central or Mérito. Pick it for warmth and cooking, not a destination tasting.",
+  "links": [
+    {
+      "label": "Book online",
+      "url": "https://verbena.mesa247.pe/reservas/verbena"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/verbena.pe/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/search/?api=1&query=-12.0999141,-77.036581"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1sdd3lv/verbena_lima/"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/somos/gastronomia/verbena-el-restaurante-en-un-sotano-que-lima-no-esperaba-chef-ricardo-goachet-noticia/"
+    },
+    {
+      "label": "theinfatuation.com",
+      "url": "https://www.theinfatuation.com/lima/reviews/verbena"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d29991387-Reviews-Verbena-Lima_Lima_Region.html"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:57Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Dinner Mon-Sat 19:00-21:30; closed Sunday. No street sign.",
+        "closed_days": [
+          0
+        ]
+      },
+      "checked_at": "2026-11-13T01:43:57Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 68,
+        "text": "~S/200-260 pp (~US$59-76); menu price not published"
+      },
+      "checked_at": "2026-11-13T01:43:57Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Peruvian-Mediterranean author tapeo",
+      "checked_at": "2026-11-13T01:43:57Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Rotating 6- or 10-course (sample as reviewed Apr 2026)",
+        "items": [
+          {
+            "name": "Galleta de lechuga de mar",
+            "description": "Paracas sea-lettuce cracker, charela tartar, artichoke cream"
+          },
+          {
+            "name": "Tiradito de conchas",
+            "description": "Scallops in loche tiger's milk"
+          },
+          {
+            "name": "Empanada de seco de alcachofa",
+            "description": "Fried artichoke seco empanada, pepper honey"
+          },
+          {
+            "name": "Croquetas de cecina",
+            "description": "Cecina croquettes, light mango chutney"
+          },
+          {
+            "name": "Navajas a la parrilla",
+            "description": "Grilled razor clams, green asparagus, fennel, pistachio"
+          },
+          {
+            "name": "Langostinos a la brasa",
+            "description": "Zarandaja, culantro oil, quinoa-pop chalaquita"
+          },
+          {
+            "name": "Pescado al carbón",
+            "description": "Coconut foam, bijao, green curry, sea-lettuce crisp, green apple"
+          },
+          {
+            "name": "Entrecot Angus",
+            "description": "On day-long confit peppers, potato millefeuille, grilled focaccia"
+          },
+          {
+            "name": "Fresas con leche condensada",
+            "description": "Strawberry compote, light cream, meringue, campari gel"
+          },
+          {
+            "name": "Crema volteada de negroni",
+            "description": "Dessert"
+          }
+        ],
+        "as_of": "2026-04-17",
+        "source_url": "https://elcomercio.pe/somos/gastronomia/verbena-el-restaurante-en-un-sotano-que-lima-no-esperaba-chef-ricardo-goachet-noticia/"
+      },
+      "checked_at": "2026-11-13T01:43:57Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "off-the-beaten-path",
+        "format": "both: 16-seat basement room with rotating 6- or 10-course shared-plate menus plus short a la carte",
+        "pros": [
+          "Easy booking most dates",
+          "~US$60-80 pp",
+          "El Comercio, Infatuation, Somos nominee",
+          "Small, hidden, few tourists"
+        ],
+        "cons": [
+          "Menu prices unpublished",
+          "Only 2 Tripadvisor reviews",
+          "Closed Sunday",
+          "Hard-to-find entrance",
+          "Less formal than a classic tasting"
+        ],
+        "accolades": [
+          "Nominee Best New Restaurant, Premios Somos 2025",
+          "El Comercio Somos profile Apr 2026",
+          "The Infatuation Lima review Aug 2025",
+          "r/finedining thread 'Verbena - Lima' Apr 2026 (content blocked)"
+        ],
+        "chef": "Ricardo 'Richi' Goachet (Basque Culinary Center; Arzak/Berasategui)",
+        "how_to_book": "Pick party size, date, time. 'El Homenaje' experience from 19:30. A 'Notifícame' waitlist button sits next to times.",
+        "reviews": {
+          "tripadvisor": {
+            "rating": 5,
+            "count": 2,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:57Z"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "chifa-san-joy-lao",
+  "area": "barrio-chino",
+  "name": "Chifa San Joy Lao",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "b4e955ce-92f4-451c-8215-022ab3eea451",
+  "lat": -12.0512981,
+  "lng": -77.025116,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "A traditional Barrio Chino chifa on Jirón Ucayali for big shared plates (chaufa, wantán, tallarín saltado) at local prices.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://www.chifasanjoylao.com/nosotros"
+    },
+    {
+      "label": "Limeo",
+      "url": "https://limeo.pe/restaurante/san-joy-lao-cercado-de-lima"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Chifa (Cantonese-Peruvian)",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "id": "kimo-nikkei-miraflores",
+  "area": "miraflores",
+  "name": "Kimo",
+  "kind": "bookable",
+  "google_place_id": null,
+  "overture_id": "bbf4bb59-3a4b-4b7e-a3c6-ff42662eaefb",
+  "lat": -12.1261272,
+  "lng": -77.0334778,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "kimo.mesa247.pe",
+      "slug": "kimo",
+      "local_id": 2247
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51979548606"
+    }
+  ],
+  "summary": "For a couple wanting a view and a Nikkei bar-omakase evening at well under Maido's tasting price. A hotel rooftop with a young omakase rather than a destination house; reviews are high with a few 2024 service complaints.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://www.soumahotel.com/hotel-restaurant-lima-peru/kimo"
+    },
+    {
+      "label": "Book online",
+      "url": "https://kimo.mesa247.pe/reservas/kimo"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/kimo.nikkei/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/search/?api=1&query=-12.1260586,-77.0333023"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/somos/restaurantes/kimo-miraflores-nigiris-cebiches-y-creatividad-el-restaurante-nikkei-a-17-pisos-de-altura-sorprende-con-su-nuevo-menu-de-degustacion-carta-precios-reservas-gastronomia-noticia/"
+    },
+    {
+      "label": "placeres.pe",
+      "url": "https://placeres.pe/kimo-eleva-la-experiencia-nikkei-con-su-nuevo-omakase/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d25414525-Reviews-Kimo_Nikkei-Lima_Lima_Region.html"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:49Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Lunch daily 13:00-16:00; dinner Mon-Sat 19:30-00:00, Sun 19:30-23:00",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T01:43:49Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 76,
+        "text": "Omakase reported at S/260 pp (~US$76), Aug 2025; not confirmed for Nov 2026"
+      },
+      "checked_at": "2026-11-13T01:43:49Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Nikkei, seafood-focused",
+      "checked_at": "2026-11-13T01:43:49Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Omakase (seasonal, pre-set guide menu)",
+        "items": [
+          {
+            "name": "Erizos de Marcona",
+            "description": "Sea urchin with Ucayali cacao-honey juice and Huaral mandarin granita"
+          },
+          {
+            "name": "Moluscos bivalvos con copoazú",
+            "description": "Clams and razor clams, coconut tapioca, copoazú"
+          },
+          {
+            "name": "Jamón de paiche",
+            "description": "Paiche ham with foie gras and eel sauce"
+          },
+          {
+            "name": "Cebiche del día",
+            "description": "Catch of the day with octopus"
+          },
+          {
+            "name": "Pulpo a la robata",
+            "description": "Robata-grilled octopus"
+          },
+          {
+            "name": "Nigiri tasting",
+            "description": "Selection of nigiri"
+          },
+          {
+            "name": "Nigiri de foie y tari",
+            "description": "Foie nigiri flambéed at the table"
+          },
+          {
+            "name": "Peruvian-inspired signature creations",
+            "description": "Author dishes; change by season"
+          }
+        ],
+        "as_of": "2025-08 (press); current menu not published",
+        "source_url": "https://placeres.pe/kimo-eleva-la-experiencia-nikkei-con-su-nuevo-omakase/"
+      },
+      "checked_at": "2026-11-13T01:43:49Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "fine-dining",
+        "format": "both: rooftop restaurant with sushi bar; omakase at the bar (12 steps per El Comercio Aug 2025, 15 per Placeres) plus a la carte",
+        "pros": [
+          "Pacific views from the 17th floor",
+          "Omakase ~S/260",
+          "Recent Tripadvisor and live booking confirm it is open"
+        ],
+        "cons": [
+          "2026 omakase price/steps unconfirmed",
+          "Hotel setting; hotel menu in USD",
+          "Bar-seat inventory unclear"
+        ],
+        "accolades": [
+          "Tripadvisor 4.8, #195 of ~4,100 Lima restaurants",
+          "Mesa 24/7 5.0",
+          "Opened 2022; no 50 Best listing found"
+        ],
+        "how_to_book": "Widget books a table by party size/date/time; unclear whether the omakase bar seats are separate inventory. WhatsApp/phone to reserve omakase bar seats specifically.",
+        "reviews": {
+          "tripadvisor": {
+            "rating": 4.8,
+            "count": 52,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:49Z"
+    }
+  ]
+}

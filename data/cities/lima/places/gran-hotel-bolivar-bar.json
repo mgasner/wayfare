@@ -1,0 +1,38 @@
+{
+  "id": "gran-hotel-bolivar-bar",
+  "area": "centro",
+  "name": "Bar of the Gran Hotel Bolívar",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "d8bbf3ad-ce6d-4534-a83f-68fdff9dbc46",
+  "lat": -12.0509129,
+  "lng": -77.0351791,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "The bar of the 1924 hotel on Plaza San Martín, long known as El Bolivarcito, and one of the first bars to serve the pisco sour; the house version is the oversized Pisco Sour Catedral.",
+  "links": [
+    {
+      "label": "Hotel",
+      "url": "https://www.granhotelbolivar.pe/gastronomia"
+    },
+    {
+      "label": "El País",
+      "url": "https://elpais.com/gastronomia/beber/2024-06-11/los-mejores-lugares-donde-beber-pisco-en-lima.html"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Pisco bar",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

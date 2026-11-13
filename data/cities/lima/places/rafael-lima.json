@@ -1,0 +1,206 @@
+{
+  "id": "rafael-lima",
+  "area": "miraflores",
+  "name": "Rafael",
+  "kind": "bookable",
+  "google_place_id": null,
+  "overture_id": "a5eb0356-2c90-4921-affd-767539a22e2c",
+  "lat": -12.1253281,
+  "lng": -77.0313492,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "rafaelrestaurante.mesa247.pe",
+      "slug": "rafael",
+      "local_id": 2426
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51966409797"
+    },
+    {
+      "type": "email",
+      "address": "reservas@rafaelrestaurante.pe"
+    },
+    {
+      "type": "phone",
+      "number": "+5112424149"
+    }
+  ],
+  "summary": "Rafael suits couples who want a polished, unhurried Lima dinner with great pasta and scallops and no tasting-menu marathon; a comfortable à la carte room, not a destination tasting. Versus Maido or Central it costs far less and is much easier to book, but is less distinctively Peruvian.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://rafaelrestaurante.pe"
+    },
+    {
+      "label": "Book online",
+      "url": "https://rafaelrestaurante.mesa247.pe/reservas/rafael"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/rafaelrestaurante/"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://es.restaurantguru.com/Rafael-Miraflores?com=634125"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://wanderlog.com/es/place/details/27715/rafael"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/16qnccf"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1jv6plq"
+    },
+    {
+      "label": "theinfatuation.com",
+      "url": "https://www.theinfatuation.com/lima/reviews/rafael-lima"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/somos/gastronomia/rafael-restaurante-el-lujo-que-no-se-ostenta-chef-rafael-osterling-noticia/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.co.uk/Restaurant_Review-g294316-d781008-Reviews-Rafael-Lima_Lima_Region.html"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:33Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Mon-Sat lunch 13:00-15:30 and dinner 19:00-23:00; closed Sunday.",
+        "closed_days": [
+          0
+        ]
+      },
+      "checked_at": "2026-11-13T01:43:33Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": null,
+        "text": "À la carte. Mains roughly S/80-120 (~US$24-35); El Comercio's 2024 guide gave S/100-400 per meal (~US$30-120). No official tasting price found."
+      },
+      "checked_at": "2026-11-13T01:43:33Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Contemporary Peruvian with Mediterranean, Italian (house pastas), Nikkei and Asian influences",
+      "checked_at": "2026-11-13T01:43:33Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Carta (à la carte), seasonal; items as described in press",
+        "items": [
+          {
+            "name": "Conchas a la parrilla",
+            "description": "Fresh Paracas scallops, lemon butter, crispy garlic; the signature dish"
+          },
+          {
+            "name": "Ravioles de choclo asado",
+            "description": "Roasted corn ravioli, with prawns in some versions; long-running mainstay"
+          },
+          {
+            "name": "Piemontese duck pasta",
+            "description": "Rich duck ragu with Pinot Grigio and pecorino (The Infatuation, Aug 2025)"
+          },
+          {
+            "name": "Tiradito de atún",
+            "description": "Tuna with Amazonian Brazil nut, coconut and green mango"
+          },
+          {
+            "name": "Carpaccio de beterraga",
+            "description": "Beet carpaccio with fennel and cashews"
+          },
+          {
+            "name": "Ensalada de tomates heirloom",
+            "description": "Heirloom tomatoes, strawberries, pine nuts, tuna shavings"
+          },
+          {
+            "name": "Tikka masala de camarón",
+            "description": "Shrimp in spiced creamy sauce with jasmine rice"
+          },
+          {
+            "name": "Arroz con pato",
+            "description": "Lacquered duck with juicy rice"
+          },
+          {
+            "name": "Birria de cordero",
+            "description": "Lamb birria"
+          },
+          {
+            "name": "Marmita de fabes y almejas",
+            "description": "Seasonal bean and clam stew with house-made morcilla"
+          },
+          {
+            "name": "Thai mushroom curry",
+            "description": "With wok-fried rice"
+          },
+          {
+            "name": "Flan de mascarpone",
+            "description": "Caramel, honey ice cream, macadamia tuile"
+          }
+        ],
+        "as_of": "Jan 2026 (El Comercio) and Aug 2025 (The Infatuation). Official /la-carta returned 406; a ~2025 carta.menu PDF has only category tags.",
+        "source_url": "https://elcomercio.pe/somos/gastronomia/rafael-restaurante-el-lujo-que-no-se-ostenta-chef-rafael-osterling-noticia/"
+      },
+      "checked_at": "2026-11-13T01:43:33Z"
+    },
+    {
+      "field": "deposit_policy",
+      "value": "Widget asks for card details and has Culqi/Kushki payment code, so a card guarantee or prepayment is likely; amount/terms not visible without entering data.",
+      "checked_at": "2026-11-13T01:43:33Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "upscale-a-la-carte",
+        "format": "à la carte (no fixed tasting menu found on official site; bar serves tapas)",
+        "pros": [
+          "Consistent, well-reviewed cooking and service (4.4-4.5 across ~1,800-2,000 reviews each)",
+          "Good value vs 50 Best peers (mains ~S/80-120)",
+          "Bar takes walk-ins, strong cocktails",
+          "Simple online booking with visible times"
+        ],
+        "cons": [
+          "Eclectic menu, not strictly Peruvian",
+          "No official menu or prices online",
+          "Card guarantee/deposit terms unknown",
+          "TripAdvisor rank only #100 in Lima; some reviews cite value and extra charges",
+          "Reddit evidence thin"
+        ],
+        "accolades": [
+          "Latin America's 50 Best 2025: #33",
+          "Open since 2000"
+        ],
+        "chef": "Rafael Osterling, with Rodrigo Alzamora; pastry Annia Ortiz; bar Juan Romero",
+        "how_to_book": "Party size 1-6, date, time, then personal details and card. Parties over 6 or trouble: WhatsApp or email. Subagent stopped at the time picker.",
+        "reviews": {
+          "google": {
+            "rating": 4.5,
+            "count": 2057,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 4.4,
+            "count": 1812,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:33Z"
+    }
+  ]
+}

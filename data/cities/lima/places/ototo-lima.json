@@ -1,0 +1,156 @@
+{
+  "id": "ototo-lima",
+  "area": "surquillo",
+  "name": "Otôto Barra Nikkei",
+  "kind": "reserve_ahead",
+  "google_place_id": null,
+  "overture_id": null,
+  "lat": -12.116185,
+  "lng": -77.0249547,
+  "channels": [
+    {
+      "type": "mesa247",
+      "host": "ototo.mesa247.pe",
+      "slug": "ototo1",
+      "local_id": 2603
+    },
+    {
+      "type": "whatsapp",
+      "number": "+51902122360"
+    }
+  ],
+  "summary": "For a couple who wants a real itamae-led omakase counter at ~US$60 each, run by a 10-year Maido alumnus. Smaller and less proven than Maido, Kimo or Shizen, with few reviews (93 on Google).",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://ototo.mesa247.pe/"
+    },
+    {
+      "label": "Book online",
+      "url": "https://ototo.mesa247.pe/reservas/ototo1"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/ototo_peru/"
+    },
+    {
+      "label": "Google Maps",
+      "url": "https://www.google.com/maps/place/OTOTO+Barra+nikkei/data=!4m2!3m1!1s0x9105c9005148198b:0x8b6aa9b300161f96"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://limeo.pe/restaurante/ototo-lima"
+    },
+    {
+      "label": "elcomercio.pe",
+      "url": "https://elcomercio.pe/provecho/restaurantes/marco-palma-del-sushi-en-maido-a-su-propia-barra-omakase-en-surquillo-ototo-sushi-en-lima-noticia/"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://www.bigbox.com.pe/experiencias/ototo-cocina-nikkei/cocina-nikkei-pe"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T01:43:53Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Lunch daily 11:00-16:00, some evenings 18:00-20:00 (sources conflict).",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T01:43:53Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 59,
+        "text": "Mesa 24/7 avg spend S/200 pp (~US$59)"
+      },
+      "checked_at": "2026-11-13T01:43:53Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Nikkei omakase: sashimi, mixed cebiche, nigiri",
+      "checked_at": "2026-11-13T01:43:53Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Omakase (changes daily); Bigbox 6-step version",
+        "items": [
+          {
+            "name": "Abreboca",
+            "description": "Crunchy fish-texture bite"
+          },
+          {
+            "name": "Sashimi moriawase",
+            "description": "Nine cuts of the day's catch"
+          },
+          {
+            "name": "Cebiche mixto",
+            "description": "Fish and octopus with fried-squid chicharrón, Chimbote-style tiger's milk"
+          },
+          {
+            "name": "Nigiri course",
+            "description": "Braided onigiri, torched and creamy nigiri, tiradito riffs"
+          },
+          {
+            "name": "Tiradito de bivalvos con percebes",
+            "description": "Bigbox menu"
+          },
+          {
+            "name": "Gyoza de corvina y pulpo",
+            "description": "Bigbox menu"
+          },
+          {
+            "name": "Sando de pejerrey",
+            "description": "Bigbox menu"
+          },
+          {
+            "name": "Sudado de pez de roca",
+            "description": "Bigbox menu"
+          }
+        ],
+        "as_of": "2025-06-24 (El Comercio review); Bigbox page undated",
+        "source_url": "https://www.bigbox.com.pe/experiencias/ototo-cocina-nikkei/cocina-nikkei-pe"
+      },
+      "checked_at": "2026-11-13T01:43:53Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "off-the-beaten-path",
+        "format": "tasting: intimate omakase bar (~8 counter seats), itamae-led; extras a la carte",
+        "pros": [
+          "Dedicated omakase bar",
+          "Maido-trained chef",
+          "Google 4.7",
+          "Good value"
+        ],
+        "cons": [
+          "Few reviews",
+          "Conflicting hours",
+          "Not wheelchair-accessible (per Limeo)"
+        ],
+        "accolades": [
+          "Premios Somos 2026 nominee, Mejor Nikkei (per Limeo)",
+          "Premios Somos 2025 nominee, best new restaurant (El Comercio)"
+        ],
+        "chef": "Marco Palma (ex-Maido, 2013-2023)",
+        "how_to_book": "Tiny space, be punctual; report allergies. Ask for a seat nearest the chef and confirm a slot is omakase-eligible.",
+        "reviews": {
+          "google": {
+            "rating": 4.7,
+            "count": 93,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-13T01:43:53Z"
+    }
+  ]
+}

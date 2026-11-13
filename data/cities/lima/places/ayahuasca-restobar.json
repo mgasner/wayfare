@@ -1,0 +1,38 @@
+{
+  "id": "ayahuasca-restobar",
+  "area": "barranco",
+  "name": "Ayahuasca Restobar",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "b6eb921f-feac-4cb3-8af1-a9a5e0270278",
+  "lat": -12.1471634,
+  "lng": -77.0220871,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "A cocktail bar in the restored 19th-century Mansión Berninzon, room after room of Andean and Amazonian decor. For pisco cocktails and the house, not the food.",
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://www.ayahuascarestobar.com/"
+    },
+    {
+      "label": "Lo Mejor de Perú",
+      "url": "https://www.lomejordeperu.com/es/lima/restaurantes/lima-rest-ayahuasca"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Bar, cocktails",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

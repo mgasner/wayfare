@@ -1,0 +1,46 @@
+{
+  "id": "salon-capon",
+  "area": "barrio-chino",
+  "name": "Salón Capón",
+  "kind": "walk_in",
+  "google_place_id": null,
+  "overture_id": "655ff33e-a3c9-4954-9052-896d4d47f19b",
+  "lat": -12.0517159,
+  "lng": -77.0248032,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "An old Cantonese hall on Jirón Paruro, best for dim sum on a weekend morning and roast meats; one of the classic Barrio Chino chifas.",
+  "links": [
+    {
+      "label": "Wikivoyage",
+      "url": "https://es.wikivoyage.org/wiki/Lima/Lima_Centro"
+    },
+    {
+      "label": "The Peru Guides",
+      "url": "https://www.theperuguides.com/es/que-ver/fusion-nikkei-chifa-lima/"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Daily 9:30-21:30.",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Chifa (Cantonese-Peruvian), dim sum",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

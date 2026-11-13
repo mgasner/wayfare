@@ -139,6 +139,6 @@ describe("saves", () => {
     const mine = (await callAs(max, "saves.list")).body[0].place.facts.hours;
     const theirs = (await callAs(other, "saves.list")).body[0].place.facts.hours;
     expect(mine).toMatchObject({ value: { "mon-sun": "12:00-16:30" }, source: `user:${id}` });
-    expect(theirs).toMatchObject({ value: { "mon-sun": "12:00-17:00" }, source: "research" });
+    expect(theirs).toMatchObject({ value: { text: "Daily 12:00-17:00", closed_days: [] }, source: "research" });
   });
 });

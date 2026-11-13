@@ -1,0 +1,44 @@
+{
+  "id": "anticuchos-bran",
+  "area": "surquillo",
+  "name": "Anticuchos Bran",
+  "kind": "informal",
+  "google_place_id": null,
+  "overture_id": "c1c5d47b-a2fe-48ad-a9ca-de6cfad75841",
+  "lat": -12.1169758,
+  "lng": -77.0195847,
+  "channels": [
+    {
+      "type": "walk_in"
+    }
+  ],
+  "summary": "An evening anticuchería in Surquillo that locals put next to Grimanesa for beef-heart skewers, with lower prices and fewer tourists.",
+  "links": [
+    {
+      "label": "Restaurant Guru",
+      "url": "https://es.restaurantguru.com/Anticuchos-Bran-Surquillo"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Mon-Sat 17:30-23:00; closed Sunday.",
+        "closed_days": [
+          0
+        ]
+      },
+      "checked_at": "2026-11-13T02:00:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Anticuchos",
+      "checked_at": "2026-11-13T02:00:00Z"
+    }
+  ]
+}

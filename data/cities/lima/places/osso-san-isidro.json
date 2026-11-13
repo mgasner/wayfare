@@ -1,0 +1,187 @@
+{
+  "id": "osso-san-isidro",
+  "area": "san-isidro",
+  "name": "Osso Carnicería y Salumería",
+  "kind": "bookable",
+  "google_place_id": null,
+  "overture_id": "60f52651-dc02-40ec-a4ee-758097d0db3a",
+  "lat": -12.0969791,
+  "lng": -77.0375519,
+  "channels": [
+    {
+      "type": "whatsapp",
+      "number": "+51922019328"
+    },
+    {
+      "type": "phone",
+      "number": "+5114697438"
+    },
+    {
+      "type": "email",
+      "address": "reservas@osso.pe"
+    }
+  ],
+  "summary": "For dry-aged beef, tartare and bone-marrow risotto in a big lively room at about US$50-70 each. Less ceremonial than a tasting menu, and reviews are more split than Google's 4.4 suggests. WhatsApp-only booking is the main friction.",
+  "links": [
+    {
+      "label": "Instagram",
+      "url": "@ossocarnes (unverified, login-walled)"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://limeo.pe/en/restaurante/osso-san-isidro"
+    },
+    {
+      "label": "Google reviews (aggregator)",
+      "url": "https://wanderlog.com/es/place/details/1179291/osso-san-isidro"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/finedining/comments/1ikp6ac"
+    },
+    {
+      "label": "Reddit",
+      "url": "https://www.reddit.com/r/Lima_Peru/comments/1ctynih"
+    },
+    {
+      "label": "the50.com",
+      "url": "https://www.the50.com/restaurants/best-in-latin-america/the-list/Osso.html"
+    },
+    {
+      "label": "burgerbreton.com",
+      "url": "https://burgerbreton.com/en/restaurants/osso-lima-renzo-garibaldi/"
+    },
+    {
+      "label": "Tripadvisor",
+      "url": "https://www.tripadvisor.com/Restaurant_Review-g294316-d12182404-Reviews-Osso-Lima_Lima_Region.html"
+    },
+    {
+      "label": "Menu source",
+      "url": "https://andrea-yui.squarespace.com/s/CARTA-OSSO-SAN-ISIDRO.pdf"
+    }
+  ],
+  "facts": [
+    {
+      "field": "status",
+      "value": "open",
+      "checked_at": "2026-11-12T00:35:00Z"
+    },
+    {
+      "field": "hours",
+      "value": {
+        "text": "Mon-Sat 12:30-22:00; Sunday 12:00-16:00 (sources conflict).",
+        "closed_days": []
+      },
+      "checked_at": "2026-11-12T00:35:00Z"
+    },
+    {
+      "field": "price_pp",
+      "value": {
+        "usd": 60,
+        "text": "About S/170-180 per person a la carte (~US$50); realistically S/170-240"
+      },
+      "checked_at": "2026-11-12T00:35:00Z"
+    },
+    {
+      "field": "cuisine",
+      "value": "Meat restaurant / butcher and salumería: dry-aged beef, Wagyu, pork, charcuterie, tartare",
+      "checked_at": "2026-11-12T00:35:00Z"
+    },
+    {
+      "field": "menu",
+      "value": {
+        "name": "Carta San Isidro (PDF metadata Apr 2024; prices likely higher now)",
+        "items": [
+          {
+            "name": "Steak tartare (lomo fino madurado)",
+            "description": "Aged tenderloin, sal de Maras, chives. S/85. 50 Best-cited star dish."
+          },
+          {
+            "name": "Carpaccio dry aged",
+            "description": "Aged bife angosto, beef emulsion. S/63"
+          },
+          {
+            "name": "Risotto de tuétano",
+            "description": "Carnaroli rice, mushrooms, bacon, bone marrow. S/56"
+          },
+          {
+            "name": "Papas fritas trufadas",
+            "description": "Yellow-potato fries, masdam cheese, truffle. S/28"
+          },
+          {
+            "name": "Cortes del carnicero (dry age)",
+            "description": "Per 100 g: Porterhouse S/64, T-bone S/60, bife ancho S/59.50, bife angosto S/52, tomahawk S/42; Wagyu bife S/135"
+          },
+          {
+            "name": "Entraña de res (300 g)",
+            "description": "Angus skirt, butter and parsley. S/141-165"
+          },
+          {
+            "name": "Asado de tira (330-450 g)",
+            "description": "Short rib. S/158"
+          },
+          {
+            "name": "Lomo saltado",
+            "description": "Aged tenderloin, demi-glace. S/99"
+          },
+          {
+            "name": "Hamburguesa / Wagyu",
+            "description": "Gruyère, bacon, 'Animal' sauce. S/55 / S/85"
+          },
+          {
+            "name": "Cerdo: chuletón, BBQ ribs, costillas char siu",
+            "description": "Pork cuts. S/79-126"
+          },
+          {
+            "name": "Chorizos (parrillero, italiano, maple)",
+            "description": "House charcuterie, S/45 each"
+          },
+          {
+            "name": "Torta de chocolate",
+            "description": "S/37"
+          }
+        ],
+        "as_of": "2024-04",
+        "source_url": "https://andrea-yui.squarespace.com/s/CARTA-OSSO-SAN-ISIDRO.pdf"
+      },
+      "checked_at": "2026-11-12T00:35:00Z"
+    },
+    {
+      "field": "notes",
+      "value": {
+        "tier": "upscale-a-la-carte",
+        "format": "a la carte (no tasting menu; 'Mesa del Carnicero' special table by email only)",
+        "pros": [
+          "Dry-aged and Wagyu cuts, aged tartare",
+          "50 Best listing; Google ~4.4 on ~2,000 reviews",
+          "No tasting commitment",
+          "Per-100 g pricing lets you size the order"
+        ],
+        "cons": [
+          "No working online booking",
+          "TripAdvisor 3.9; value complaints; one 'overrated' comment",
+          "Large, loud room",
+          "Menu is 2024; site dead; hours conflict"
+        ],
+        "accolades": [
+          "Latin America's 50 Best 2025: #44"
+        ],
+        "chef": "Renzo Garibaldi",
+        "how_to_book": "WhatsApp +51 922 019 328 with date, time, party of 2. Mesa del Carnicero: email reservas@osso.pe. Official website osso.pe is expired.",
+        "reviews": {
+          "google": {
+            "rating": 4.4,
+            "count": 2000,
+            "summary": null
+          },
+          "tripadvisor": {
+            "rating": 3.9,
+            "count": 370,
+            "summary": null
+          }
+        }
+      },
+      "checked_at": "2026-11-12T00:35:00Z"
+    }
+  ]
+}
