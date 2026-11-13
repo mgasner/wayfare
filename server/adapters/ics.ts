@@ -1,4 +1,5 @@
 import { attempt } from "../../lib/attempt.js";
+import { isToolError, toolError } from "../../lib/nexus.js";
 import { zonedInstant } from "../time.js";
 import type { CalEvent, When } from "./gcal.js";
 
@@ -89,9 +90,33 @@ export function normalizeFeedUrl(url: string): string {
   return url.trim().replace(/^webcals?:\/\//i, "https://");
 }
 
+/** Fetches a user-given URL; the host's fetcher refuses non-public addresses and caps size and redirects. */
+export type FeedFetcher = (url: URL, init: { signal: AbortSignal; accept: string }) => Promise<{ status: number; body: string }>;
+
+// The runtime's fetch can't see which address a name resolves to, so the host injects a guarded one.
+let feedFetcher: FeedFetcher | null = null;
+
+export function setFeedFetcher(fetcher: FeedFetcher | null): void {
+  feedFetcher = fetcher;
+}
+
+/** What the user sees for any feed failure; the reason stays in the interaction log. */
+export const FEED_UNREADABLE = "Could not read that calendar";
+
 /** Events in a published ICS feed. */
 export async function readIcs(url: string, options: { owner: string; city: string; tz: string }): Promise<CalEvent[]> {
   const feed = new URL(normalizeFeedUrl(url));
+  const fetcher = feedFetcher;
+  if (!fetcher) throw toolError("unavailable", "ICS feeds are not available on this host");
+  try {
+    return await readWith(fetcher, feed, options);
+  } catch (error) {
+    if (isToolError(error, "unavailable")) throw toolError("unavailable", FEED_UNREADABLE);
+    throw error;
+  }
+}
+
+async function readWith(fetcher: FeedFetcher, feed: URL, options: { owner: string; city: string; tz: string }): Promise<CalEvent[]> {
   const result = await attempt(
     {
       kind: "calendar.read",
@@ -104,9 +129,9 @@ export async function readIcs(url: string, options: { owner: string; city: strin
       [
         "live",
         async (ctx) => {
-          const res = await fetch(feed, { headers: { Accept: "text/calendar" }, signal: ctx.signal });
-          if (!res.ok) throw new Error(`ics ${res.status}`);
-          const text = await res.text();
+          const res = await fetcher(feed, { accept: "text/calendar", signal: ctx.signal });
+          if (res.status < 200 || res.status >= 300) throw new Error(`ics ${res.status}`);
+          const text = res.body;
           if (!text.includes("BEGIN:VCALENDAR")) throw new Error("not an iCalendar feed");
           const events = parseIcs(text, options.tz);
           ctx.note({ events: events.length, bytes: text.length });

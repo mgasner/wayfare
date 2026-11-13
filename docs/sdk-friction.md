@@ -222,3 +222,14 @@ export const userPrivate = table("user_private", z.object({ owner: text, passpor
 // after: written by anyone with the owner's auth, read only where declared, and never in an output schema
 export const userPrivate = table("user_private", Row, { key: ["owner"], secret: { passport: { readBy: ["bookings.fillForm"] } } });
 ```
+
+### 18. `fetch` to a user-given URL can't be kept off private addresses (missing option)
+
+ICS feeds are URLs a traveler pastes, fetched on add and every 6 hours by cron. A name that resolves to loopback, or any https host that redirects to `http://169.254.169.254/`, reached internal services and came back as anchors (review H2). Checking the hostname is not enough; the check has to run on the address actually dialed, on every redirect hop. The runtime has no DNS and `fetch` takes no lookup hook, so `server/adapters/ics.ts` takes an injected `FeedFetcher`, and `lib/public-fetch.ts` (Node: `node:dns`, `node:https` with a `lookup` that rejects non-public addresses, manual redirects, a size cap) is installed by `api/route.ts` and `api/cron/calendar.ts`. Without the host's fetcher, feeds fail closed. Any app that fetches user URLs (webhooks, link previews, imports) needs the same thing.
+
+```ts nocheck
+// before (server/adapters/ics.ts)
+const res = await feedFetcher(feed, { accept: "text/calendar", signal: ctx.signal }); // injected by api/, Node-only
+// after: egress policy in the runtime, applied after resolution and per redirect hop
+const res = await fetch(feed, { signal: ctx.signal, egress: "public", redirect: "follow", maxBytes: 5_000_000 });
+```
