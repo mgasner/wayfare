@@ -10,9 +10,9 @@ import { PlaceRow } from "../../components/PlaceRow";
 import { availabilitySummary, closedOn, mealHour, timesFor, tripMealFor, type MealSlot } from "../../data/availability";
 import { isWalkInKind, kindLabel } from "../../data/facts";
 import { isWalk } from "../../data/geo";
-import { usePlaces, useToggleSave, useTravelMinutes } from "../../data/hooks";
+import { useFirstSlotReads, usePlaces, useToggleSave, useTravelMinutes } from "../../data/hooks";
 import { shellTrip, tripKicker, useTripView } from "../../data/trip";
-import { dateRange, dayOfMonth, weekday } from "../../lib/dates";
+import { dateRange, dayOfMonth, upcoming, weekday } from "../../lib/dates";
 import { useLocation, useNavigate } from "../../lib/router";
 import "./discover.css";
 
@@ -59,6 +59,9 @@ function writeFilters(f: Filters): string {
   return s ? `?${s}` : "";
 }
 
+/** Places at the top of the list that get a first slot read. */
+const FIRST_READ_PLACES = 12;
+
 export function Discover() {
   const { query } = useLocation();
   const navigate = useNavigate();
@@ -104,6 +107,9 @@ export function Discover() {
   const walkIns = visible.filter((p) => isWalkInKind(p.kind));
   const uncurated = visible.filter((p) => p.kind === null);
   const selected = visible.find((p) => p.id === f.sel) ?? null;
+  // A first read for the top of the list: the chosen day, else the next three trip days.
+  const readDates = trip ? (day ? [day] : upcoming(trip.trip.start_date, trip.trip.end_date, trip.city.tz, 3)) : [];
+  const checking = useFirstSlotReads(bookAhead.slice(0, FIRST_READ_PLACES), readDates, trip?.trip.party ?? null);
 
   const row = (p: PlaceCard) => (
     <PlaceRow
@@ -113,7 +119,7 @@ export function Discover() {
       minutes={minutes[p.id]}
       walk={trip && p.lat !== null && p.lng !== null ? isWalk(trip.trip.base, { lat: p.lat, lng: p.lng }) && !day : false}
       meal={trip ? tripMealFor(trip.meals, p.id) : null}
-      summary={trip ? availabilitySummary(p, trip.trip.start_date, trip.trip.end_date, meal) : undefined}
+      summary={trip ? (checking.has(p.id) && !p.slots.length ? { tone: "muted", text: "Checking tables…" } : availabilitySummary(p, trip.trip.start_date, trip.trip.end_date, meal)) : undefined}
       times={day && meal && p.slots.length ? timesFor(p, day, meal) : null}
       onToggleSave={() => toggleSave.mutate({ place: p.id, saved: !p.saved })}
       selected={p.id === f.sel}

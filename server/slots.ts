@@ -10,6 +10,8 @@ import { PlaceRow, SlotReadRow } from "./tables.js";
 export const MESA_TIMEOUT_MS = 8_000;
 /** A read this recent is returned as is, so a double tap doesn't call the platform twice. */
 export const REUSE_MS = 60_000;
+/** Live platform reads one person may cause per minute; past it, dates answer from the last good read. */
+export const LIVE_READS_PER_MINUTE = 60;
 
 type Readable = { channel: Mesa247; adapter: typeof mesa247 } | { channel: Meitre; adapter: typeof meitre };
 
@@ -55,13 +57,23 @@ export async function refreshPlaceSlots(
   for (const r of existing.rows) stored.set(r.date, [...(stored.get(r.date) ?? []), r]);
   if (!readable) return dates.map((date) => ({ date, step: "unknown", reads: stored.get(date) ?? [], link }));
 
+  const recent = (at: string) => now - Date.parse(at) >= 0 && now - Date.parse(at) < REUSE_MS;
+  const unique = [...new Set(dates)];
+  const toRead = unique.filter((d) => !(stored.get(d)?.length && stored.get(d)!.every((r) => recent(r.checked_at))));
+  let budget = toRead.length;
+  if (owner) {
+    // Blocked rows made no call, so they don't count.
+    const [{ rows }] = await db.execute(sql(z.object({ n: z.number() }))`
+      SELECT count(*) AS n FROM interaction
+      WHERE owner = ${owner} AND kind = 'slots.read' AND fallback = 'live' AND outcome <> 'blocked' AND at > ${new Date(now - 60_000).toISOString()}`);
+    budget = Math.max(0, LIVE_READS_PER_MINUTE - (rows[0]?.n ?? 0));
+  }
+  const live = new Set(toRead.slice(0, budget));
+
   const results = await Promise.all(
-    [...new Set(dates)].map(async (date): Promise<DateResult> => {
+    unique.map(async (date): Promise<DateResult> => {
       const prior = stored.get(date) ?? [];
-      const recent = (at: string) => now - Date.parse(at) >= 0 && now - Date.parse(at) < REUSE_MS;
-      if (prior.length && prior.every((r) => recent(r.checked_at))) {
-        return { date, step: "recent", reads: prior, link };
-      }
+      if (!toRead.includes(date)) return { date, step: "recent", reads: prior, link };
       const { channel, adapter } = readable;
       const got = await attempt(
         {
@@ -77,6 +89,7 @@ export async function refreshPlaceSlots(
             "live",
             async (ctx) => {
               if (isBlocked(adapter.channel)) throw blocked(`${adapter.channel} is switched off by BLOCK_CHANNELS`);
+              if (!live.has(date)) throw blocked(`over ${LIVE_READS_PER_MINUTE} live reads a minute for this person`);
               return { reads: await adapter.read(channel as never, date, party, ctx.signal) as ServiceRead[] };
             },
           ],

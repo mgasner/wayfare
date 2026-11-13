@@ -9,6 +9,15 @@ const MONTHS_LONG = ["January", "February", "March", "April", "May", "June", "Ju
 export const toDate = (iso: string) => new Date(`${iso}T12:00:00Z`);
 export const toIso = (d: Date) => d.toISOString().slice(0, 10);
 
+/** Today's date in a time zone, as YYYY-MM-DD. */
+export const todayIn = (tz: string, now = new Date()) => now.toLocaleDateString("en-CA", { timeZone: tz });
+
+/** Trip dates from today on, at most `n`. */
+export const upcoming = (start: string, end: string, tz: string, n: number, now = new Date()) =>
+  dateRange(start, end)
+    .filter((d) => d >= todayIn(tz, now))
+    .slice(0, n);
+
 export function addDays(iso: string, n: number): string {
   return toIso(new Date(toDate(iso).getTime() + n * DAY));
 }

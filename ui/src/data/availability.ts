@@ -59,13 +59,18 @@ export function availabilitySummary(p: PlaceCard, start: string, end: string, me
   const describe = (label: string, ds: string[]) => (ds.length === 0 ? null : ds.length > 3 ? `${label} ${ds.length} days` : `${label} ${shortDates(ds)}`);
   const wanted: [string, string[]][] = meal === "lunch" ? [["Lunch", lunch]] : meal === "dinner" ? [["Dinner", dinner]] : [["Lunch", lunch], ["dinner", dinner]];
   const bits = wanted.map(([l, ds]) => describe(l, ds)).filter(Boolean) as string[];
+  // A first read covers a few days; don't call the rest closed.
+  const unread = days.filter((d) => !timesFor(p, d, "lunch").read).length;
+  const checked = unread ? ` · ${days.length - unread} of ${days.length} days read` : "";
   if (bits.length === 0) {
     const w = meal ? wait(meal) : [...new Set([...wait("lunch"), ...wait("dinner")])];
-    return { tone: "danger", text: w.length ? `Fully booked. Waitlist on ${w.length} day${w.length === 1 ? "" : "s"}` : "Nothing open on your dates" };
+    if (w.length) return { tone: "danger", text: `Fully booked. Waitlist on ${w.length} day${w.length === 1 ? "" : "s"}${checked}` };
+    return unread ? { tone: "muted", text: `Nothing open${checked}` } : { tone: "danger", text: "Nothing open on your dates" };
   }
   const text = bits.map((b, i) => (i === 0 ? b.charAt(0).toUpperCase() + b.slice(1) : b)).join(", ");
   const total = (meal === "dinner" ? 0 : lunch.length) + (meal === "lunch" ? 0 : dinner.length);
-  return { tone: total <= 3 ? "warn" : "ok", text: total <= 3 && !meal && lunch.length + dinner.length <= 4 ? `Open only ${shortDates([...new Set([...lunch, ...dinner])])}` : text };
+  const only = !unread && total <= 3 && !meal && lunch.length + dinner.length <= 4;
+  return { tone: total <= 3 ? "warn" : "ok", text: only ? `Open only ${shortDates([...new Set([...lunch, ...dinner])])}` : `${text}${checked}` };
 }
 
 /** The meal that ties a place to the trip, if any: confirmed first, then the most recent. */
@@ -84,3 +89,15 @@ export function mealWhen(m: Pick<Meal, "date" | "time" | "slot">): string {
 export const mealHour = (meal: MealSlot | undefined) => (meal === "lunch" ? "13:00" : "20:00");
 
 export const slotOfTime = (t: string): MealSlot => serviceOf(t);
+
+/** Places with a channel we can read slots from (Mesa 24/7, Meitre). */
+export const hasReadableSlots = (p: PlaceCard) => p.channels.some((c) => c.type === "mesa247" || c.type === "meitre");
+
+/** Which of the places shown get a first live read: readable, no read on any of `dates`, at most `max`, in order. */
+export function firstReadTargets(places: PlaceCard[], dates: string[], max: number): string[] {
+  if (!dates.length) return [];
+  return places
+    .filter((p) => hasReadableSlots(p) && !p.slots.some((s) => dates.includes(s.date)))
+    .slice(0, max)
+    .map((p) => p.id);
+}

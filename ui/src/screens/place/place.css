@@ -313,3 +313,15 @@
     flex: 0 0 280px;
   }
 }
+
+.pd-checking {
+  color: var(--stale);
+  font-size: 12px;
+  font-weight: 600;
+  animation: pd-pulse 1.2s ease-in-out infinite;
+}
+@keyframes pd-pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
