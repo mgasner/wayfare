@@ -17,10 +17,17 @@
     {
       "path": "/api/cron/slots",
       "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/cron/calendar",
+      "schedule": "0 */6 * * *"
     }
   ],
   "functions": {
     "api/cron/slots.ts": {
+      "maxDuration": 300
+    },
+    "api/cron/calendar.ts": {
       "maxDuration": 300
     }
   }

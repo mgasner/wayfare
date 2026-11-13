@@ -3,6 +3,7 @@ import { beforeAll, describe, expect, it } from "vitest";
 import type { FileDatabase } from "../lib/db.js";
 import type { Auth } from "../lib/nexus.js";
 import { handleVoice } from "../lib/voice.js";
+import { readIcs } from "../server/adapters/ics.js";
 import { travelMatrix } from "../server/adapters/routes.js";
 import { interpretText } from "../server/input.js";
 import { addPlaces, createTrip } from "./fixtures.js";
@@ -112,5 +113,13 @@ describe.skipIf(!real)("real APIs", () => {
     console.log(JSON.stringify(m));
     expect(m.estimated).toBe(false);
     expect(m.minutes[0]![0]).toBeGreaterThan(20);
+  });
+
+  it("parses a real public ICS feed", { timeout: 30_000 }, async () => {
+    const url = "https://calendar.google.com/calendar/ical/es.pe%23holiday%40group.v.calendar.google.com/public/basic.ics";
+    const events = await readIcs(url, { owner: "x", city: "lima", tz: "America/Lima" });
+    console.log(JSON.stringify({ ics: events.length, sample: events.find((e) => e.summary.includes("Navidad")) }));
+    expect(events.length).toBeGreaterThan(5);
+    expect(events.every((e) => e.id && ("date" in e.start || "instant" in e.start))).toBe(true);
   });
 });
