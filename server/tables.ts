@@ -37,6 +37,7 @@ export const place = table(
     summary: maybeText,
     links: text.default("[]"),
     curated: int.default(0),
+    created_by: maybeText,
   }),
   { key: ["id"] },
 );

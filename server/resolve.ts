@@ -72,12 +72,12 @@ function likePattern(token: string): string {
 
 const CandidateRow = z.object({ id: z.string(), name: z.string(), area: z.string().nullable(), curated: z.number() });
 
-/** Places in `city` that could be `mentions`: every curated one, plus uncurated rows sharing a word. */
-export async function candidates(city: string, mentions: string[]): Promise<Candidate[]> {
+/** Places in `city` that could be `mentions`: every curated one, plus uncurated rows sharing a word that `viewer` may see. */
+export async function candidates(city: string, mentions: string[], viewer: string | null): Promise<Candidate[]> {
   const words = [...new Set(mentions.flatMap(tokens).filter((t) => t.length >= 3))].slice(0, 12);
   const [{ rows }] = await db.execute(sql(CandidateRow)`
     SELECT id, name, area, curated FROM place
-    WHERE city = ${city} AND (
+    WHERE city = ${city} AND (created_by IS NULL OR created_by = ${viewer}) AND (
       curated = 1 OR EXISTS (SELECT 1 FROM json_each(${JSON.stringify(words.map(likePattern))}) WHERE place.name LIKE value)
     )
     ORDER BY curated DESC

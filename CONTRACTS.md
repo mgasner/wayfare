@@ -57,6 +57,7 @@ Voice upload: `POST /api/voice` (multipart: `audio`, `context` JSON) returns the
 - Every third-party call goes through `attempt()` from `lib/attempt.ts`.
 - Personal data (names, phone numbers, emails, passport numbers, message text, transcripts) never goes in `interaction.request`; it goes in the private part.
 - A user's own personal data lives in `user_private` (one row per user; the passport number). No entrypoint returns it; the UI sees only `me.get`'s `passport_on_file`. Trip rows never hold it.
+- A place `input.interpret` creates for a name it can't match has `place.created_by` set and is visible only to that person: `places.search`, `places.get`, cards, name matching and writes that name a place (`saves.add`, `meals.set`, `anchors.add`, `facts.report`, `places.refreshSlots`) treat it as missing for anyone else.
 - Credits belong to the user: `credit_ledger` rows (`amount_cents`, positive for top-ups, grants and refunds, negative for debits), balance = sum, shown as `me.get`'s `credits_usd`. Write a row per change; never update or delete one. `BookingProfile` is per trip and holds only `whatsapp_fallback`.
 - Commits: author and committer `Max Gasner <max@indent.com>`.
 - One branch per PR, stacked within a workstream.

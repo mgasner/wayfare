@@ -65,12 +65,13 @@ export const search = query({
     const own = viewer ? `user:${viewer}` : null;
     const where = [
       "place.city = ?",
+      "(place.created_by IS NULL OR place.created_by = ?)",
       `coalesce((
         SELECT json_extract(f.value, '$') FROM fact f
         WHERE f.place = place.id AND f.field = 'status' AND (f.source NOT LIKE 'user:%' OR f.source = ?)
         ORDER BY f.checked_at DESC LIMIT 1), 'open') <> 'closed'`,
     ];
-    const params: Value[] = [city, own];
+    const params: Value[] = [city, viewer, own];
     const query = q?.trim();
     if (query) {
       where.push(`${foldSql("place.name")} LIKE ? ESCAPE '\\'`);
@@ -117,7 +118,9 @@ export const refreshSlots = mutation({
   async handler({ place, dates, party }, context): Promise<SlotRead[]> {
     const actor = context.auth?.actor;
     if (actor?.kind !== "person" && actor?.kind !== "indent") throw toolError("no_user", "Sign in to read slots");
-    const [{ rows }] = await db.execute(sql(z.object({ id: z.string() }))`SELECT id FROM place WHERE id = ${place}`);
+    const viewer = actor.kind === "person" ? actor.id : null;
+    const [{ rows }] = await db.execute(sql(z.object({ id: z.string() }))`
+      SELECT id FROM place WHERE id = ${place} AND (created_by IS NULL OR created_by = ${viewer} OR ${actor.kind === "indent"})`);
     if (!rows.length) throw toolError("not_found", `No place ${place}`);
     const results = await refreshPlaceSlots(place, dates, party, actor.kind === "person" ? actor.id : null);
     return results.flatMap((r) => r.reads);

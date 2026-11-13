@@ -31,7 +31,7 @@ export const add = mutation({
     const [{ rows }] = await db.execute(sql(SaveRow)`
       INSERT INTO save (owner, place, source, note, notify_nearby, created_at)
       SELECT ${me.id}, ${place}, ${source ?? null}, ${note ?? null}, coalesce(${nearby}, 0), ${now}
-      WHERE EXISTS (SELECT 1 FROM place WHERE id = ${place})
+      WHERE EXISTS (SELECT 1 FROM place WHERE id = ${place} AND (created_by IS NULL OR created_by = ${me.id}))
       ON CONFLICT (owner, place) DO UPDATE SET
         note = coalesce(excluded.note, save.note), source = coalesce(excluded.source, save.source),
         notify_nearby = coalesce(${nearby}, save.notify_nearby)

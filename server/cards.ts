@@ -9,7 +9,8 @@ export type CardOptions = {
 };
 
 /**
- * Places as cards for `viewer` (an app_user id, or null when signed out), in the order of `ids`.
+ * Places as cards for `viewer` (an app_user id, or null when signed out), in the order of `ids`. Places another
+ * person's input created are left out.
  * Facts reduce to one per field among sources the viewer may see: their own report if they made one, else the newest
  * shared fact. A report stays visible to its author until it is promoted or expires.
  */
@@ -20,7 +21,8 @@ export async function placeCards(ids: string[], viewer: string | null, options: 
   const own = viewer ? `user:${viewer}` : null;
   const slots = options.slots;
   const [places, facts, reads, saved] = await db.execute(
-    sql(PlaceRow)`SELECT * FROM place WHERE id IN (SELECT value FROM json_each(${list}))`,
+    sql(PlaceRow)`
+      SELECT * FROM place WHERE id IN (SELECT value FROM json_each(${list})) AND (created_by IS NULL OR created_by = ${viewer})`,
     sql(FactRow)`
       SELECT * FROM fact
       WHERE place IN (SELECT value FROM json_each(${list}))

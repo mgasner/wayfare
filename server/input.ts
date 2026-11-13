@@ -69,7 +69,7 @@ async function load(owner: string, context: InputContext): Promise<Loaded> {
     context.trip
       ? sql(TripRaw)`SELECT * FROM trip WHERE id = ${context.trip} AND owner = ${owner}`
       : sql(TripRaw)`SELECT * FROM trip WHERE owner = ${owner} ORDER BY end_date < ${today}, abs(julianday(start_date) - julianday(${today})) LIMIT 1`,
-    sql(PlaceBrief)`SELECT id, name, area, kind, city FROM place WHERE id = ${context.place ?? null}`,
+    sql(PlaceBrief)`SELECT id, name, area, kind, city FROM place WHERE id = ${context.place ?? null} AND (created_by IS NULL OR created_by = ${owner})`,
   );
   const trip = trips.rows[0] ?? null;
   if (context.trip && !trip) throw toolError("not_found", `No trip ${context.trip}`);
@@ -151,7 +151,7 @@ type Plan =
 /** Turns actions into rows to write: places resolved, dates checked, unknown places created. */
 async function plan(actions: Action[], l: Loaded, source: string | null): Promise<Plan[]> {
   const mentions = actions.flatMap((a) => ("place" in a && a.place ? [a.place.name] : []));
-  const pool: Candidate[] = mentions.length ? await candidates(l.city, mentions) : [];
+  const pool: Candidate[] = mentions.length ? await candidates(l.city, mentions, l.owner) : [];
   const ids = new Set([...pool.map((c) => c.id), ...l.known.map((k) => k.id)]);
   const areaIds = new Set(l.areas.map((a) => a.id));
   const created = new Map<string, string>();
@@ -276,7 +276,7 @@ async function apply(plans: Plan[], l: Loaded, origin: { interaction: string; me
         writes.push({
           kind: null,
           existed: false,
-          statement: sql`INSERT INTO place (id, city, area, name, curated) VALUES (${r.id!}, ${r.city!}, ${r.area ?? null}, ${r.name!}, 0)`,
+          statement: sql`INSERT INTO place (id, city, area, name, curated, created_by) VALUES (${r.id!}, ${r.city!}, ${r.area ?? null}, ${r.name!}, 0, ${owner})`,
         });
         break;
       }

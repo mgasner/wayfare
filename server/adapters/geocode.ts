@@ -37,7 +37,7 @@ export async function geocode(
         [
           "known",
           async () => {
-            const pool = await candidates(options.city, [name]);
+            const pool = await candidates(options.city, [name], options.owner);
             const match = bestMatch(name, pool);
             if (!match) return empty;
             const [{ rows }] = await db.execute(sql(Coords)`SELECT lat, lng, area FROM place WHERE id = ${match.id}`);
