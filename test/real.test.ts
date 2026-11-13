@@ -3,6 +3,7 @@ import { beforeAll, describe, expect, it } from "vitest";
 import type { FileDatabase } from "../lib/db.js";
 import type { Auth } from "../lib/nexus.js";
 import { handleVoice } from "../lib/voice.js";
+import { travelMatrix } from "../server/adapters/routes.js";
 import { interpretText } from "../server/input.js";
 import { addPlaces, createTrip } from "./fixtures.js";
 import { addUser, callAs, seededDb } from "./helpers.js";
@@ -102,5 +103,14 @@ describe.skipIf(!real)("real APIs", () => {
     expect(res.status).toBe(200);
     expect(body.transcript.toLowerCase()).toMatch(/viernes.*barranco.*(ten|10) to (six|6)/);
     expect(body.changes[0]).toMatchObject({ kind: "anchor", record: { date: "2026-11-20", area: "barranco" } });
+  });
+
+  it.skipIf(!process.env.GOOGLE_MAPS_KEY)("reads a Routes API matrix", { timeout: 30_000 }, async () => {
+    const barranco = { lat: -12.1491, lng: -77.0218 };
+    const lim = { lat: -12.0219, lng: -77.1143 };
+    const m = await travelMatrix([barranco], [lim, barranco], { city: "lima", departure: new Date(Date.now() + 86_400_000), owner: null });
+    console.log(JSON.stringify(m));
+    expect(m.estimated).toBe(false);
+    expect(m.minutes[0]![0]).toBeGreaterThan(20);
   });
 });
