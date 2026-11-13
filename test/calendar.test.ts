@@ -3,7 +3,7 @@ import type { FileDatabase } from "../lib/db.js";
 import { cronAllowed, syncAllCalendars } from "../lib/cron.js";
 import { setEnv } from "../lib/env.js";
 import type { Auth } from "../lib/nexus.js";
-import { parseIcs } from "../server/adapters/ics.js";
+import { parseIcs, setFeedFetcher } from "../server/adapters/ics.js";
 import { parseFlight } from "../server/airports.js";
 import { eventAnchor } from "../server/calsync.js";
 import { addPlaces, createTrip } from "./fixtures.js";
@@ -77,12 +77,20 @@ async function linkGoogle(credentials: unknown = { refresh_token: "rt", scope: "
 
 beforeEach(async () => {
   setEnv({ GOOGLE_CLIENT_ID: "cid", GOOGLE_CLIENT_SECRET: "secret" });
+  // The stubbed global fetch stands in for the host's guarded fetcher (test/ics-ssrf.test.ts).
+  setFeedFetcher(async (url, { signal, accept }) => {
+    const res = await fetch(url, { signal, headers: { Accept: accept } });
+    return { status: res.status, body: await res.text() };
+  });
   database = await seededDb();
   max = await addUser(database, "max@example.com");
   await addPlaces(database);
   trip = (await createTrip(max)).id;
 });
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => {
+  vi.unstubAllGlobals();
+  setFeedFetcher(null);
+});
 afterAll(() => setEnv(undefined));
 
 describe("Google Calendar sync", () => {

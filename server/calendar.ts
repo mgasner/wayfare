@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { db, mutation, person, query, sql, toolError } from "../lib/nexus.js";
-import { normalizeFeedUrl } from "./adapters/ics.js";
+import { FEED_UNREADABLE, normalizeFeedUrl } from "./adapters/ics.js";
 import { linkKey, syncCalendars, type SyncResult } from "./calsync.js";
 
 export type CalendarLink = { provider: "google" | "ics"; ref: string; last_sync: string | null };
@@ -44,7 +44,7 @@ export const addIcs = mutation({
     const feed = result.links.find((l) => l.provider === "ics" && l.ref === url);
     if (feed && !feed.ok) {
       await db.execute(sql`DELETE FROM calendar_link WHERE owner = ${me.id} AND provider = 'ics' AND ref = ${url}`);
-      throw toolError("invalid_input", `Could not read that calendar: ${feed.error ?? "unknown error"}`);
+      throw toolError("invalid_input", FEED_UNREADABLE);
     }
     return result;
   },
