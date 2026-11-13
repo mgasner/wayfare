@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { PlaceCard, SlotRead } from "../../../shared/records";
-import { availabilitySummary, closedOn, firstReadTargets, mealWhen, shortDates, timesFor } from "./availability";
+import type { Meal, PlaceCard, SlotRead } from "../../../shared/records";
+import { availabilitySummary, closedOn, firstReadTargets, mealWhen, shortDates, slotMeals, timesFor } from "./availability";
 
 const read = (date: string, times: string[], waitlist: string[] = []): SlotRead => ({ place: "p", date, party: 2, service: "", times, waitlist, checked_at: "2026-11-13T00:12:00Z", interaction: "ix" });
 
@@ -86,5 +86,30 @@ describe("first slot reads", () => {
     expect(firstReadTargets(places, ["2026-11-21"], 12)).toEqual(["read-other-day", "never-read", "never-read-2"]);
     expect(firstReadTargets(places, ["2026-11-21"], 2)).toEqual(["read-other-day", "never-read"]);
     expect(firstReadTargets(places, [], 12)).toEqual([]);
+  });
+});
+
+describe("meals in a slot on a place's grid", () => {
+  const meal = (id: string, place: string, date: string, slot: Meal["slot"], status: Meal["status"] = "want", time: string | null = null): Meal => ({
+    id, trip: "t", place, date, slot, time, status, channel: null, note: null, updated_at: "2026-11-12T00:00:00Z",
+  });
+  const places = [{ id: "central", name: "Central" }, { id: "kjolle", name: "Kjolle" }];
+  const meals = [
+    meal("m1", "central", "2026-11-16", "dinner", "requested"),
+    meal("m2", "kjolle", "2026-11-17", "dinner", "confirmed"),
+    meal("m3", "central", "2026-11-18", "dinner", "failed"),
+    meal("m4", "central", "2026-11-19", "other", "want", "13:30"),
+  ];
+
+  it("marks only this place's meals as its own, and names the place that took the slot", () => {
+    expect(slotMeals(meals, places, "kjolle", "2026-11-16", "dinner")).toEqual({ own: null, other: { meal: meals[0], name: "Central" } });
+    expect(slotMeals(meals, places, "kjolle", "2026-11-17", "dinner")).toEqual({ own: meals[1], other: null });
+    expect(slotMeals(meals, places, "central", "2026-11-17", "dinner")).toEqual({ own: null, other: { meal: meals[1], name: "Kjolle" } });
+  });
+
+  it("leaves failed and skipped meals out, and places 'other' meals by their time", () => {
+    expect(slotMeals(meals, places, "kjolle", "2026-11-18", "dinner")).toEqual({ own: null, other: null });
+    expect(slotMeals(meals, places, "kjolle", "2026-11-19", "lunch").other?.name).toBe("Central");
+    expect(slotMeals(meals, places, "kjolle", "2026-11-19", "dinner").other).toBeNull();
   });
 });

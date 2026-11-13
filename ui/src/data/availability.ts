@@ -101,3 +101,22 @@ export function firstReadTargets(places: PlaceCard[], dates: string[], max: numb
     .slice(0, max)
     .map((p) => p.id);
 }
+
+/** A trip meal in one lunch or dinner slot: at `place`, or at another place that already takes the slot. */
+export interface SlotMeals {
+  own: Meal | null;
+  other: { meal: Meal; name: string } | null;
+}
+
+/** Meals that count for a slot: skipped and failed ones leave it free; "other" meals go by their time. */
+export function slotMeals(meals: Meal[], places: Pick<PlaceCard, "id" | "name">[], place: string, date: string, slot: MealSlot): SlotMeals {
+  const inSlot = meals.filter(
+    (m) => m.date === date && m.status !== "skipped" && m.status !== "failed" && (m.slot === slot || (m.slot === "other" && !!m.time && serviceOf(m.time) === slot)),
+  );
+  const own = inSlot.find((m) => m.place === place) ?? null;
+  const theirs = inSlot.find((m) => m.place !== place);
+  return {
+    own,
+    other: theirs ? { meal: theirs, name: places.find((p) => p.id === theirs.place)?.name ?? theirs.place } : null,
+  };
+}
