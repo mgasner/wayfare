@@ -106,6 +106,60 @@ describe("write batching", () => {
     expect(put.mock.calls.length).toBe(2); // b's, and one from a carrying r1 and r2
   });
 
+  it("fails a concurrent request whose write was dropped by another request's failed replay", async () => {
+    const { store, a, b } = await setup();
+    let releaseA!: () => void;
+    const gateA = new Promise<void>((r) => (releaseA = r));
+    let releaseB!: () => void;
+    const gateB = new Promise<void>((r) => (releaseB = r));
+    const reqA = inRequest(async () => {
+      await insert(a, "dup");
+      await gateA;
+    });
+    const reqB = inRequest(async () => {
+      await insert(a, "from-B");
+      await gateB;
+    });
+    await inRequest(() => insert(b, "dup"));
+    releaseA();
+    await expect(reqA).rejects.toThrow();
+    releaseB();
+    await expect(reqB).rejects.toSatisfy((e) => isToolError(e, "unavailable"));
+    const check = new SyncedDatabase(store, tempPath("check.db"));
+    expect(await ids(check)).toEqual(["first", "dup"]);
+  });
+
+  it("fails a concurrent request whose write was dropped by another request's PUT network error", async () => {
+    const { store, a, put } = await setup();
+    let release!: () => void;
+    const gate = new Promise<void>((r) => (release = r));
+    const reqB = inRequest(async () => {
+      await insert(a, "from-B");
+      await gate;
+    });
+    put.mockRejectedValueOnce(new Error("ECONNRESET"));
+    await expect(inRequest(() => insert(a, "from-A"))).rejects.toThrow("ECONNRESET");
+    release();
+    await expect(reqB).rejects.toSatisfy((e) => isToolError(e, "unavailable"));
+    expect(await ids(new SyncedDatabase(store, tempPath("check.db")))).toEqual(["first"]);
+  });
+
+  it("refuses further writes from a request whose earlier writes were dropped, so none of it lands", async () => {
+    const { store, a, put } = await setup();
+    let release!: () => void;
+    const gate = new Promise<void>((r) => (release = r));
+    const reqB = inRequest(async () => {
+      await insert(a, "B1");
+      await gate;
+      await insert(a, "B2");
+    });
+    put.mockRejectedValueOnce(new Error("ECONNRESET"));
+    await expect(inRequest(() => insert(a, "from-A"))).rejects.toThrow("ECONNRESET");
+    release();
+    await expect(reqB).rejects.toSatisfy((e) => isToolError(e, "unavailable"));
+    expect(await ids(new SyncedDatabase(store, tempPath("check.db")))).toEqual(["first"]);
+  });
+
   it("gives up after five conflicts", async () => {
     const { a, put } = await setup();
     put.mockResolvedValue({ status: "conflict" });
