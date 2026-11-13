@@ -3,6 +3,7 @@ import { basename, join } from "node:path";
 import type { SQLInputValue } from "node:sqlite";
 import type { z } from "zod";
 import { AreasFile, CityFile, PlaceFile } from "../shared/research.js";
+import { absorbUncurated } from "./absorb.js";
 import type { Database } from "./db.js";
 
 export type CityData = { city: CityFile; areas: z.output<typeof AreasFile>; places: PlaceFile[] };
@@ -57,11 +58,12 @@ const upsertPlace = `
   INSERT INTO place (id, city, area, name, kind, google_place_id, overture_id, lat, lng, channels, summary, links, curated)
   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
   ON CONFLICT (id) DO UPDATE SET city = excluded.city, area = excluded.area, name = excluded.name, kind = excluded.kind,
-    google_place_id = excluded.google_place_id, overture_id = excluded.overture_id, lat = excluded.lat, lng = excluded.lng,
+    google_place_id = excluded.google_place_id, overture_id = coalesce(excluded.overture_id, place.overture_id), lat = excluded.lat, lng = excluded.lng,
     channels = excluded.channels, summary = excluded.summary, links = excluded.links, curated = 1
   WHERE (place.city, place.area, place.name, place.kind, place.google_place_id, place.overture_id, place.lat, place.lng,
          place.channels, place.summary, place.links, place.curated)
-    IS NOT (excluded.city, excluded.area, excluded.name, excluded.kind, excluded.google_place_id, excluded.overture_id,
+    IS NOT (excluded.city, excluded.area, excluded.name, excluded.kind, excluded.google_place_id,
+         coalesce(excluded.overture_id, place.overture_id),
          excluded.lat, excluded.lng, excluded.channels, excluded.summary, excluded.links, 1)`;
 
 const upsertFact = `
@@ -85,8 +87,10 @@ export async function seed(database: Database, citiesDir: string, only?: string[
         run(upsertArea, a.id, city.id, a.name, a.lat, a.lng, a.polygon === null ? null : j(a.polygon), a.brief, j(a.stops));
       }
       for (const p of places) {
-        run(upsertPlace, p.id, city.id, p.area, p.name, p.kind, p.google_place_id, p.overture_id, p.lat, p.lng,
-          j(p.channels), p.summary, j(p.links));
+        n += absorbUncurated(sqlite, p.id, { overtureId: p.overture_id, googlePlaceId: p.google_place_id }, () =>
+          run(upsertPlace, p.id, city.id, p.area, p.name, p.kind, p.google_place_id, p.overture_id, p.lat, p.lng,
+            j(p.channels), p.summary, j(p.links)),
+        );
         for (const f of p.facts) run(upsertFact, p.id, f.field, j(f.value), f.checked_at);
       }
     }
