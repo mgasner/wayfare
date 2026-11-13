@@ -104,6 +104,27 @@ describe("attempt", () => {
     expect(JSON.parse(priv!.payload as string)).toEqual({ media: "m1", transcript: "el viernes estamos en Barranco, ten to six" });
   });
 
+  it("links a step's media row in interaction_private", async () => {
+    await attempt({ kind: "transcribe", channel: "openai", owner }, [
+      ["live", (ctx) => {
+        ctx.media("clip-1");
+        throw new Error("upstream 500");
+      }],
+      ["retry", (ctx) => {
+        ctx.media("clip-1");
+        ctx.privately({ transcript: "hola" });
+        return "hola";
+      }],
+    ]);
+    const rows = await interactions();
+    const privs = await privates();
+    expect(privs.map((p) => [p.interaction, p.media, JSON.parse(p.payload as string)])).toEqual([
+      [rows[0]!.id, "clip-1", {}],
+      [rows[1]!.id, "clip-1", { transcript: "hola" }],
+    ]);
+    await expect(attempt({ kind: "x", channel: "y" }, [["live", (ctx) => (ctx.media("m"), 1)]])).rejects.toThrow();
+  });
+
   it("refuses private data without an owner", async () => {
     await expect(
       attempt({ kind: "x", channel: "y", request: { private: { phone: "+51 987 654 321" } } }, [["live", () => 1]]),
@@ -157,6 +178,20 @@ describe("personal data in interaction.request", () => {
     ]) {
       expect(personalKinds(text), text).toEqual([]);
     }
+  });
+
+  it("never reads an id as a phone number", () => {
+    for (let i = 0; i < 20_000; i++) {
+      const id = crypto.randomUUID();
+      expect(personalKinds(id), id).toEqual([]);
+      expect(personalKinds(`trip ${id} on 2026-11-21`), id).toEqual([]);
+      expect(personalKinds(id.toUpperCase()), id).toEqual([]);
+      expect(personalKinds(id.replace(/-/g, "")), id).toEqual([]);
+    }
+    for (const id of ["g1a2b3c4d:f1", "el-chinito-52894e5f", "01HZX3K9M2Q8R7T6V5W4Y3Z2A1", "ov-08f2a1-4533-9463-815", "LA2470-20261123"]) {
+      expect(personalKinds(id), id).toEqual([]);
+    }
+    expect(personalKinds("call +51 987 654 321, trip 52894e5f-f9aa-4533-9463-81575c475ffd")).toEqual(["phone"]);
   });
 
   it("no string in any interaction.request row looks personal", async () => {
