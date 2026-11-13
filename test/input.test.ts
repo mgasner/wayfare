@@ -70,6 +70,51 @@ describe("input.interpret", () => {
     expect(await all("SELECT interaction, media, undone_at FROM input_undo")).toEqual([{ interaction: ix[0]!.id, media: null, undone_at: null }]);
   });
 
+  describe("weekdays", () => {
+    let long: string;
+    const userText = (bodies: any[]) => JSON.parse((bodies[0].messages[1].content as string).split("\n")[1]!);
+    beforeEach(async () => {
+      long = (await callAs(max, "trips.create", { city: "lima", start_date: "2026-11-13", end_date: "2026-11-23", party: 2, base: { name: "H", lat: -12.05, lng: -77.03 } })).body.id;
+    });
+    afterEach(() => vi.useRealTimers());
+    const friday = { ...anchor, date: "2026-11-13" }; // what a model that ignores the rule answers on Fri Nov 13
+
+    it("reads a bare weekday said on that weekday as next week's", async () => {
+      vi.useFakeTimers({ toFake: ["Date"] });
+      vi.setSystemTime(new Date("2026-11-13T15:00:00Z")); // Fri 10:00 in Lima
+      const bodies = stubModel([friday]);
+      const res = await callAs(max, "input.interpret", { text: "el viernes estamos en Barranco, ten to six", context: { screen: "where", trip: long } });
+      expect(res.body.changes[0].record.date).toBe("2026-11-20");
+      const ctx = userText(bodies);
+      expect(ctx).toMatchObject({ today: "2026-11-13", today_weekday: "Friday", city_time_zone: "America/Lima" });
+      expect(ctx.next_weekday).toMatchObject({ Friday: "2026-11-20", Saturday: "2026-11-14" });
+    });
+
+    it("keeps today when the input says today", async () => {
+      vi.useFakeTimers({ toFake: ["Date"] });
+      vi.setSystemTime(new Date("2026-11-13T15:00:00Z"));
+      stubModel([friday]);
+      const res = await callAs(max, "input.interpret", { text: "hoy viernes estamos en Barranco, ten to six", context: { screen: "where", trip: long } });
+      expect(res.body.changes[0].record.date).toBe("2026-11-13");
+    });
+
+    it("uses the city's date, not UTC's, and the speaker's device date when it is within a day", async () => {
+      vi.useFakeTimers({ toFake: ["Date"] });
+      vi.setSystemTime(new Date("2026-11-14T03:30:00Z")); // Fri 22:30 in Lima, Sat in UTC
+      let bodies = stubModel([]);
+      await callAs(max, "input.interpret", { text: "nada", context: { screen: "where", trip: long } });
+      expect(userText(bodies)).toMatchObject({ today: "2026-11-13", today_weekday: "Friday" });
+
+      bodies = stubModel([]);
+      await callAs(max, "input.interpret", { text: "nada", context: { screen: "where", trip: long, today: "2026-11-14" } });
+      expect(userText(bodies)).toMatchObject({ today: "2026-11-14", today_weekday: "Saturday", next_weekday: { Friday: "2026-11-20" } });
+
+      bodies = stubModel([]);
+      await callAs(max, "input.interpret", { text: "nada", context: { screen: "where", trip: long, today: "2026-12-25" } });
+      expect(userText(bodies)).toMatchObject({ today: "2026-11-13" });
+    });
+  });
+
   it("matches a save to the curated place by a fuzzy name, with the note", async () => {
     stubModel([{ type: "add_save", place: { id: null, name: "Tia Grimanesa" }, area: null, note: "anticuchos, after five", source: "friend" }]);
     const res = await callAs(max, "input.interpret", { text: "a friend says Tía Grimanesa for anticuchos, after five", context: { screen: "saves" } });

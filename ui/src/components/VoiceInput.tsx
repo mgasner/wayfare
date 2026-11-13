@@ -41,7 +41,9 @@ export function VoiceInput({ intent, onChanges, placeholder = "Say or type a pla
     });
   };
 
-  const rec = useRecorder({ context: intent, onResult: (r) => done(r) });
+  // The device's date, so "el viernes" said on a Friday means next Friday wherever the speaker is.
+  const withToday = () => ({ ...intent, today: new Date().toLocaleDateString("en-CA") });
+  const rec = useRecorder({ context: withToday(), onResult: (r) => done(r) });
   useEffect(() => {
     if (rec.error) toast({ text: rec.error });
   }, [rec.error, toast]);
@@ -51,7 +53,7 @@ export function VoiceInput({ intent, onChanges, placeholder = "Say or type a pla
     const t = text.trim();
     if (!t || interpret.isPending) return;
     try {
-      const r = await interpret.mutateAsync({ text: t, context: intent });
+      const r = await interpret.mutateAsync({ text: t, context: withToday() });
       setText("");
       done(r);
     } catch (err) {

@@ -29,7 +29,7 @@ Plan: https://app.indent.com/reports/01a1d244-d12d-7998-a0e6-0439927ce1b1 (local
 | `travel.minutes` | query | `{ trip, date, time, places: string[], from?: { place } \| { lat, lng, label? } }` | `{ minutes: Record<string, number \| null>, estimated, from: { lat, lng, label, anchor } }` | C |
 | `stays.search` | query | `{ city, q, limit? }` | `{ results: { name, address, lat, lng, google_place_id, place }[], source: "google" \| "places" \| "none" }` | E |
 | `stays.minutes` | query | `{ city, lat, lng, date?, time? }` | `{ minutes: Record<area id, number \| null>, estimated }` | E |
-| `input.interpret` | mutation | `{ text, context: { screen, trip?, date?, place? } }` | `{ changes: Change[], undo: string }` | C |
+| `input.interpret` | mutation | `{ text, context: { screen, trip?, date?, place?, today? } }` (`today`: the device's local date) | `{ changes: Change[], undo: string }` | C |
 | `input.undo` | mutation | `{ undo }` | `{ ok: true }` | C |
 | `calendar.*` | | see C's PR | | C |
 | `agent.recordFacts` | mutation | `{ facts: { place, field, value, source?, checked_at? }[] }` (source `research` \| `overture` \| `live:<channel>`) | `{ written, unchanged, unknown_places }` | B |

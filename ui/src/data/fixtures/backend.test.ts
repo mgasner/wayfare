@@ -61,13 +61,21 @@ describe("fixtures backend", () => {
   });
 
   it("turns a spoken area hint into an anchor that Undo removes", async () => {
-    const r = await call("input.interpret", { text: "el sábado estamos en Miraflores, ten to six", context: { screen: "where", trip: "lima-nov-2026" } });
+    const r = await call("input.interpret", { text: "el sábado estamos en Miraflores, ten to six", context: { screen: "where", trip: "lima-nov-2026", today: "2026-11-13" } });
     expect(r.changes).toHaveLength(1);
     const a = r.changes[0].record as Anchor;
     expect([a.date, a.area, a.start_time, a.end_time]).toEqual(["2026-11-14", "miraflores", "10:00", "18:00"]);
     await call("input.undo", { undo: r.undo });
     const anchors = await call("anchors.list", { trip: "lima-nov-2026" });
     expect(anchors.some((x: Anchor) => x.id === a.id)).toBe(false);
+  });
+
+  it("reads a bare weekday said on that weekday as next week's, unless it says today", async () => {
+    const ctx = { screen: "where", trip: "lima-nov-2026", today: "2026-11-13" }; // a Friday
+    const next = await call("input.interpret", { text: "el viernes estamos en Barranco", context: ctx });
+    expect((next.changes[0].record as Anchor).date).toBe("2026-11-20");
+    const today = await call("input.interpret", { text: "hoy viernes estamos en Barranco", context: ctx });
+    expect((today.changes[0].record as Anchor).date).toBe("2026-11-13");
   });
 
   it("turns a friend's tip into a save with the note", async () => {

@@ -8,6 +8,8 @@ export const InputContext = z.object({
   trip: z.string().optional(),
   date: IsoDate.optional(),
   place: z.string().optional(),
+  /** The speaker's local date on their device; weekdays resolve from it. */
+  today: IsoDate.optional(),
 });
 export type InputContext = z.infer<typeof InputContext>;
 
