@@ -10,6 +10,16 @@ import lima from "./lima.json";
 type CardSeed = Omit<PlaceCard, "saved">;
 const DATA = lima as unknown as { city: City; areas: Area[]; places: CardSeed[] };
 
+// Hotels for stays.search, which Google answers on the server. Coordinates approximate.
+const HOTELS = [
+  { name: "Gran Hotel Bolívar", address: "Jr. de la Unión 958, Cercado de Lima", lat: -12.0507304, lng: -77.0351602 },
+  { name: "Belmond Miraflores Park", address: "Av. Malecón de la Reserva 1035, Miraflores", lat: -12.1306, lng: -77.0306 },
+  { name: "Hotel B", address: "Jr. San Martín 301, Barranco", lat: -12.1488, lng: -77.0215 },
+  { name: "Casa Republica Barranco", address: "Av. San Martín 104, Barranco", lat: -12.1483, lng: -77.0213 },
+  { name: "Country Club Lima Hotel", address: "Los Eucaliptos 590, San Isidro", lat: -12.0985, lng: -77.042 },
+  { name: "JW Marriott Hotel Lima", address: "Malecón de la Reserva 615, Miraflores", lat: -12.1316, lng: -77.0297 },
+];
+
 const ME: User = { id: "u_max", email: "max@indent.com", name: "Max Gasner", picture: null };
 const TRIP_ID = "lima-nov-2026";
 const STORE_KEY = "dp-fixtures-v1";
@@ -462,6 +472,19 @@ const handlers: Handlers = {
     );
     return { minutes, estimated: true, from };
   },
+  "stays.search": ({ q, limit }) => {
+    const nq = norm(q);
+    const hotels = HOTELS.filter((h) => norm(`${h.name} ${h.address}`).includes(nq)).map((h) => ({ ...h, google_place_id: null, place: null }));
+    const places = DATA.places
+      .filter((p) => p.lat != null && p.lng != null && norm(p.name).includes(nq))
+      .map((p) => ({ name: p.name, address: null, lat: p.lat!, lng: p.lng!, google_place_id: p.google_place_id, place: p.id }));
+    const results = [...hotels, ...places].slice(0, limit ?? 5);
+    return { results, source: hotels.length ? ("google" as const) : results.length ? ("places" as const) : ("none" as const) };
+  },
+  "stays.minutes": ({ lat, lng }) => ({
+    minutes: Object.fromEntries(DATA.areas.map((a) => [a.id, a.lat != null && a.lng != null ? estimateMinutes({ lat, lng }, { lat: a.lat, lng: a.lng }) : null])),
+    estimated: true,
+  }),
   "calendar.links": () => [{ provider: "google", ref: ME.email, last_sync: t0 }, ...state.icsFeeds.map((ref) => ({ provider: "ics" as const, ref, last_sync: now() }))],
   "calendar.sync": () => ({ links: [], created: 0, updated: 0, deleted: 0 }),
   "calendar.addIcs": ({ url }) => {

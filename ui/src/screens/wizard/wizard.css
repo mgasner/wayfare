@@ -559,3 +559,53 @@ i.sw {
     font-size: 30px;
   }
 }
+
+.stay-search {
+  margin-top: 12px;
+  gap: 6px;
+}
+.stay-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+}
+.stay-input input {
+  border: 0;
+  padding-left: 0;
+  background: transparent;
+  outline: none;
+}
+.stay-hits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.stay-hits li + li {
+  border-top: 1px solid var(--line);
+}
+.stay-hits button {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  text-align: left;
+  color: var(--ink);
+}
+.stay-hits button > svg {
+  margin-top: 2px;
+  color: var(--accent);
+  flex: none;
+}
+.stay-hits b,
+.stay-hits .wiz-small {
+  display: block;
+}
