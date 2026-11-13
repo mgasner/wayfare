@@ -11,12 +11,15 @@ export type Database = {
   run<T>(fn: (db: DatabaseSync) => T): Promise<T>;
   /** Uploads writes held for the request; a no-op for a local file. */
   flush(): Promise<void>;
+  /** Bumped whenever writes not yet uploaded are thrown away, so a request can tell its own were lost. */
+  readonly generation: number;
   close(): void;
 };
 
 export const MAX_TRIES = 5;
 
-type Scope = { revalidated: Set<Database>; written: Set<Database> };
+/** `written`: each database this request wrote to, with its generation at the first write. */
+type Scope = { revalidated: Set<Database>; written: Map<Database, number> };
 const requestScope = new AsyncLocalStorage<Scope>();
 
 /**
@@ -25,13 +28,17 @@ const requestScope = new AsyncLocalStorage<Scope>();
  * A failed upload rejects, even if `fn` succeeded.
  */
 export async function inRequest<T>(fn: () => Promise<T>): Promise<T> {
-  const scope: Scope = { revalidated: new Set(), written: new Set() };
+  const scope: Scope = { revalidated: new Set(), written: new Map() };
   let result: T;
   try {
     result = await requestScope.run(scope, fn);
   } finally {
     // Writes already applied are uploaded even when fn throws, as they were when each execute uploaded.
-    for (const database of scope.written) await database.flush();
+    for (const [database, generation] of scope.written) {
+      await database.flush();
+      // Another request's failed upload or replay threw this request's writes away with its own.
+      if (database.generation !== generation) throw toolError("unavailable", "This request's writes were dropped after another write failed");
+    }
   }
   return result;
 }
@@ -59,6 +66,7 @@ class Mutex {
 export class FileDatabase implements Database {
   private sqlite: DatabaseSync | null = null;
   private mutex = new Mutex();
+  readonly generation = 0;
   constructor(readonly path: string) {}
 
   run<T>(fn: (db: DatabaseSync) => T): Promise<T> {
@@ -92,6 +100,7 @@ export class SyncedDatabase implements Database {
   private mutex = new Mutex();
   /** Writes applied locally and not yet uploaded, from every request on this instance. */
   private pending: ((db: DatabaseSync) => unknown)[] = [];
+  generation = 0;
 
   constructor(
     readonly store: BlobStore,
@@ -101,7 +110,11 @@ export class SyncedDatabase implements Database {
 
   run<T>(fn: (db: DatabaseSync) => T): Promise<T> {
     const scope = requestScope.getStore();
+    let wroteAt: number | undefined;
     const result = this.mutex.run(async () => {
+      const first = scope?.written.get(this);
+      // Writing on after losing earlier writes would upload half of this request.
+      if (first !== undefined && first !== this.generation) throw toolError("unavailable", "This request's writes were dropped after another write failed");
       if (!scope?.revalidated.has(this) || !this.sqlite) {
         await this.revalidate();
         scope?.revalidated.add(this);
@@ -111,11 +124,17 @@ export class SyncedDatabase implements Database {
       const value = transaction(sqlite, () => fn(sqlite));
       if (totalChanges(sqlite) !== before) {
         this.pending.push(fn);
-        scope?.written.add(this);
+        if (scope && !scope.written.has(this)) scope.written.set(this, this.generation);
+        wroteAt = this.generation;
       }
       return value;
     });
-    return scope ? result : result.then(async (value) => (await this.flush(), value));
+    if (scope) return result;
+    return result.then(async (value) => {
+      await this.flush();
+      if (wroteAt !== undefined && wroteAt !== this.generation) throw toolError("unavailable", "This write was dropped after another write failed");
+      return value;
+    });
   }
 
   flush(): Promise<void> {
@@ -185,6 +204,7 @@ export class SyncedDatabase implements Database {
     this.close();
     rmSync(this.path, { force: true });
     this.etag = null;
+    if (this.pending.length) this.generation++;
     this.pending = [];
   }
 }
