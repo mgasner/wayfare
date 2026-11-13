@@ -104,7 +104,7 @@ export const search = query({
           [
             "places",
             async () => {
-              const pool = await candidates(city.id, [q]);
+              const pool = await candidates(city.id, [q], me.id);
               const ranked = pool
                 .map((c) => ({ c, score: nameScore(q, c.name) }))
                 .filter((x) => x.score >= NAME_THRESHOLD)

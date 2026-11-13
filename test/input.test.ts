@@ -84,12 +84,45 @@ describe("input.interpret", () => {
     const res = await callAs(max, "input.interpret", { text: "El Chinito for sanguches", context: { screen: "saves" } });
     const place = res.body.changes[0].record.place as string;
     expect(place).toMatch(/^el-chinito-/);
-    expect(await all("SELECT name, area, curated, kind FROM place WHERE id = ?", place)).toEqual([
-      { name: "El Chinito", area: "barranco", curated: 0, kind: null },
+    expect(await all("SELECT name, area, curated, kind, created_by FROM place WHERE id = ?", place)).toEqual([
+      { name: "El Chinito", area: "barranco", curated: 0, kind: null, created_by: id(max) },
     ]);
     await callAs(max, "input.undo", { undo: res.body.undo });
     expect(await all("SELECT id FROM place WHERE id = ?", place)).toEqual([]);
     expect(await all("SELECT * FROM save")).toEqual([]);
+  });
+
+  it("keeps a place made from one person's words private to them", async () => {
+    stubModel([{ type: "add_save", place: { id: null, name: "Casa de Rosa Huamán" }, area: null, note: "her ají de gallina", source: "Rosa" }]);
+    const res = await callAs(max, "input.interpret", { text: "save Casa de Rosa Huamán, her ají de gallina", context: { screen: "saves" } });
+    expect(res.status).toBe(200);
+    const created = res.body.changes[0].record.place as string;
+    const names = (r: { body: { name: string }[] }) => r.body.map((p) => p.name);
+
+    expect(names(await callAs(max, "places.search", { city: "lima", q: "rosa" }))).toContain("Casa de Rosa Huamán");
+    expect((await callAs(max, "places.get", { id: created })).status).toBe(200);
+    expect((await callAs(max, "saves.list", {})).body.map((s: { place: { id: string } }) => s.place.id)).toEqual([created]);
+
+    expect(names(await callAs(other, "places.search", { city: "lima", q: "rosa" }))).not.toContain("Casa de Rosa Huamán");
+    expect(names(await callAs(null, "places.search", { city: "lima", q: "rosa" }))).not.toContain("Casa de Rosa Huamán");
+    expect((await callAs(other, "places.get", { id: created })).status).toBe(404);
+    expect((await callAs(null, "places.get", { id: created })).status).toBe(404);
+    for (const [name, input] of [
+      ["saves.add", { place: created }],
+      ["meals.set", { trip, place: created, date: "2026-11-20", slot: "lunch", status: "want" }],
+      ["facts.report", { place: created, field: "cuisine", value: "criolla" }],
+      ["places.refreshSlots", { place: created, dates: ["2026-11-20"], party: 2 }],
+    ] as const) {
+      expect((await callAs(other, name, input)).status, name).toBe(404);
+    }
+
+    // Another person naming the same place gets a place of their own, not Max's.
+    stubModel([{ type: "add_save", place: { id: null, name: "Casa de Rosa Huamán" }, area: null, note: null, source: null }]);
+    const theirs = await callAs(other, "input.interpret", { text: "save Casa de Rosa Huamán", context: { screen: "saves" } });
+    expect(theirs.body.changes[0].record.place).not.toBe(created);
+
+    await callAs(max, "input.undo", { undo: res.body.undo });
+    expect(await all("SELECT id FROM place WHERE id = ?", created)).toEqual([]);
   });
 
   it("records a user fact on the place in view that only its author sees", async () => {

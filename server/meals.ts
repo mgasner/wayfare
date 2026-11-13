@@ -19,7 +19,7 @@ export const set = mutation({
       INSERT INTO meal (id, trip, place, date, slot, time, status, channel, note, updated_at)
       SELECT ${id}, ${m.trip}, ${m.place}, ${m.date}, ${m.slot}, ${m.time}, ${m.status}, ${m.channel}, ${m.note}, ${now}
       WHERE EXISTS (SELECT 1 FROM trip WHERE id = ${m.trip} AND owner = ${me.id})
-        AND EXISTS (SELECT 1 FROM place WHERE id = ${m.place})
+        AND EXISTS (SELECT 1 FROM place WHERE id = ${m.place} AND (created_by IS NULL OR created_by = ${me.id}))
       ON CONFLICT (id) DO UPDATE SET
         trip = excluded.trip, place = excluded.place, date = excluded.date, slot = excluded.slot,
         time = excluded.time, status = excluded.status, channel = excluded.channel, note = excluded.note,

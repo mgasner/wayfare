@@ -53,6 +53,32 @@ describe("migrate", () => {
     rmSync(dir, { recursive: true });
   });
 
+  it("gives places that input created an owner, from input_undo", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "dp-migrations-"));
+    for (const f of ["0001_init.sql", "0002_input_undo.sql", "0003_user_private.sql", "0004_credit_ledger.sql"]) cpSync(join(migrations, f), join(dir, f));
+    const database = new FileDatabase(tempPath());
+    await migrate(database, dir);
+    await database.run((s) => {
+      s.exec("INSERT INTO city (id, name, country, tz, currency, languages, bbox, config) VALUES ('lima', 'Lima', 'PE', 'America/Lima', 'PEN', '[]', '[]', '{}')");
+      s.exec("INSERT INTO app_user (id, email, name, created_at) VALUES ('u1', 'u1@example.com', 'u1', 'x')");
+      const place = s.prepare("INSERT INTO place (id, city, name, curated, overture_id) VALUES (?, 'lima', ?, ?, ?)");
+      place.run("rosa-1", "Casa de Rosa", 0, null);
+      place.run("ov-1", "Overture row", 0, "08f1");
+      place.run("central", "Central", 1, null);
+      s.prepare("INSERT INTO input_undo (id, owner, created_at, ops) VALUES ('x', 'u1', 'x', ?)").run(
+        JSON.stringify([{ table: "place", key: { id: "rosa-1" }, before: null }, { table: "save", key: { owner: "u1", place: "rosa-1" }, before: null }]),
+      );
+    });
+    cpSync(join(migrations, "0005_place_created_by.sql"), join(dir, "0005_place_created_by.sql"));
+    await migrate(database, dir);
+    expect(await database.run((s) => s.prepare("SELECT id, created_by FROM place ORDER BY id").all())).toEqual([
+      { id: "central", created_by: null },
+      { id: "ov-1", created_by: null },
+      { id: "rosa-1", created_by: "u1" },
+    ]);
+    rmSync(dir, { recursive: true });
+  });
+
   it("creates the columns server/tables.ts declares", async () => {
     const database = new FileDatabase(tempPath());
     await migrate(database, migrations);

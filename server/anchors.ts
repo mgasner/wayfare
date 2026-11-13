@@ -49,7 +49,7 @@ export const add = mutation({
         FROM trip
         WHERE trip.id = ${a.trip} AND trip.owner = ${me.id} AND ${a.date} BETWEEN trip.start_date AND trip.end_date
           AND (${a.area} IS NULL OR EXISTS (SELECT 1 FROM area WHERE area.id = ${a.area} AND area.city = trip.city))
-          AND (${a.place} IS NULL OR EXISTS (SELECT 1 FROM place WHERE place.id = ${a.place} AND place.city = trip.city))
+          AND (${a.place} IS NULL OR EXISTS (SELECT 1 FROM place WHERE place.id = ${a.place} AND place.city = trip.city AND (place.created_by IS NULL OR place.created_by = ${me.id})))
         RETURNING *`,
       sql(z.object({ id: z.string() }))`SELECT id FROM trip WHERE id = ${a.trip} AND owner = ${me.id}`,
     );

@@ -15,7 +15,7 @@ export function reportFactStatement(userId: string, place: string, field: FactFi
   return sql(FactRow)`
     INSERT INTO fact (place, field, value, source, checked_at)
     SELECT ${place}, ${field}, ${JSON.stringify(parsed.value)}, ${`user:${userId}`}, ${at}
-    WHERE EXISTS (SELECT 1 FROM place WHERE id = ${place})
+    WHERE EXISTS (SELECT 1 FROM place WHERE id = ${place} AND (created_by IS NULL OR created_by = ${userId}))
     ON CONFLICT (place, field, source) DO UPDATE SET value = excluded.value, checked_at = excluded.checked_at
     RETURNING *`;
 }
