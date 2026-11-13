@@ -11,7 +11,8 @@ describe("fixtures backend", () => {
   it("serves the real Lima trip with its four meals", async () => {
     const view = await call("trips.get", { id: "lima-nov-2026" });
     expect(view.trip.start_date).toBe("2026-11-13");
-    expect(view.trip.booking.credits_usd).toBe(0);
+    expect(view.trip.booking).toEqual({ whatsapp_fallback: true });
+    expect((await call("me.get", {})).credits_usd).toBe(150);
     expect(view.meals.map((m: { place: string; status: string }) => `${m.place}:${m.status}`).sort()).toEqual([
       "central:requested",
       "maido:waitlist",

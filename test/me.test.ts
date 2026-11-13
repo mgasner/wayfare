@@ -27,6 +27,22 @@ async function everythingButUserPrivate(): Promise<string> {
   return out.join("\n");
 }
 
+describe("credits", () => {
+  it("are the sum of the user's credit_ledger rows", async () => {
+    expect((await callAs(max, "me.get")).body.credits_usd).toBe(0);
+    const id = max.actor.kind === "person" ? max.actor.id : "";
+    const otherId = other.actor.kind === "person" ? other.actor.id : "";
+    await database.run((s) => {
+      const insert = s.prepare("INSERT INTO credit_ledger (id, owner, amount_cents, kind, ref, created_at) VALUES (?, ?, ?, ?, ?, ?)");
+      insert.run("c1", id, 15000, "topup", "pi_1", "2026-11-13T00:00:00Z");
+      insert.run("c2", id, -4999, "debit", "meal_1", "2026-11-14T00:00:00Z");
+      insert.run("c3", otherId, 700, "grant", null, "2026-11-14T00:00:00Z");
+    });
+    expect((await callAs(max, "me.get")).body.credits_usd).toBe(100.01);
+    expect((await callAs(other, "me.get")).body.credits_usd).toBe(7);
+  });
+});
+
 describe("passport in user_private", () => {
   it("stores the number privately and shows only that it is on file", async () => {
     await createTrip(max);

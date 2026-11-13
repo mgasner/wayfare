@@ -11,7 +11,8 @@ export const get = query({
     if (auth?.actor.kind !== "person") return null;
     const [{ rows }] = await db.execute(sql(MeRow)`
       SELECT app_user.id, app_user.email, app_user.name, app_user.picture,
-             user_private.passport IS NOT NULL AS passport_on_file
+             user_private.passport IS NOT NULL AS passport_on_file,
+             coalesce((SELECT sum(amount_cents) FROM credit_ledger WHERE owner = app_user.id), 0) / 100.0 AS credits_usd
       FROM app_user LEFT JOIN user_private ON user_private.owner = app_user.id
       WHERE app_user.id = ${auth.actor.id}`);
     return rows[0] ?? null;
