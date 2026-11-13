@@ -8,7 +8,8 @@ Plan: https://app.indent.com/reports/01a1d244-d12d-7998-a0e6-0439927ce1b1 (local
 
 | Entrypoint | Kind | Input | Output | Owner |
 |---|---|---|---|---|
-| `me.get` | query | `{}` | `User \| null` | A |
+| `me.get` | query | `{}` | `Me \| null` (`User` plus `passport_on_file`) | A |
+| `me.setPassport` / `me.clearPassport` | mutation | `{ number }` / `{}` | `{ passport_on_file: true }` / `{ passport_on_file: false }` | E |
 | `cities.get` | query | `{ id }` | `{ city: City, areas: Area[] }` | B |
 | `places.search` | query | `{ city, trip?, kinds?, area?, q?, date?, limit? }` | `PlaceCard[]` | B |
 | `places.get` | query | `{ id, trip? }` | `PlaceCard` | B |
@@ -54,5 +55,6 @@ Voice upload: `POST /api/voice` (multipart: `audio`, `context` JSON) returns the
 - `server/` runs in the nexus-sdk server runtime's subset: `fetch`, `URL`, `TextEncoder`, `crypto.randomUUID`, no Node modules, no timers. Node-only code lives in `lib/` or `api/`.
 - Every third-party call goes through `attempt()` from `lib/attempt.ts`.
 - Personal data (names, phone numbers, emails, passport numbers, message text, transcripts) never goes in `interaction.request`; it goes in the private part.
+- A user's own personal data lives in `user_private` (one row per user; the passport number). No entrypoint returns it; the UI sees only `me.get`'s `passport_on_file`. Trip rows never hold it.
 - Commits: author and committer `Max Gasner <max@indent.com>`.
 - One branch per PR, stacked within a workstream.

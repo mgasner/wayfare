@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { attempt, blocked, empty, personalKinds } from "../lib/attempt.js";
 import type { FileDatabase } from "../lib/db.js";
 import { isToolError } from "../lib/nexus.js";
+import { PASSPORTS } from "./fixtures.js";
 import { addUser, personalDataInInteractions, seededDb } from "./helpers.js";
 
 let database: FileDatabase;
@@ -160,6 +161,10 @@ describe("personal data in interaction.request", () => {
       expect(personalKinds(text), text).toContain("phone");
     }
     expect(personalKinds("reservas@centralrestaurante.com.pe")).toContain("email");
+    for (const p of PASSPORTS) {
+      expect(personalKinds(p), p).not.toEqual([]);
+      expect(personalKinds(`passport ${p}`), p).not.toEqual([]);
+    }
     expect(personalKinds("passport X1234567")).toContain("passport");
     expect(personalKinds("AB1234567")).toContain("passport");
     for (const text of [

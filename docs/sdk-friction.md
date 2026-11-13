@@ -211,3 +211,14 @@ new Intl.DateTimeFormat("en-US", { timeZone: tz, hourCycle: "h23", ... }).format
 // fix: list Intl with full ICU in spec/38-apps.md#server-runtime, or ship Temporal
 Temporal.ZonedDateTime.from({ timeZone: "America/Lima", year: 2026, month: 11, day: 23, hour: 21 }).toInstant();
 ```
+
+### 17. A column cannot be write-only (missing option)
+
+The wizard stores the traveler's passport number for booking forms that ask for it. It lives in `user_private.passport`, and the UI must only ever learn whether one is on file. `table()`'s `people` option marks the column as personal, but nothing stops a handler from selecting it and returning it, or a later `SELECT *` from carrying it into a response; the guarantee is a test (`test/me.test.ts`) that scans every response and every other table for the number. The booking agent in Phase 2 needs the opposite half: one entrypoint that may read it, to fill a form.
+
+```ts nocheck
+// before (server/tables.ts): personal, but readable by any handler
+export const userPrivate = table("user_private", z.object({ owner: text, passport: maybeText, updated_at: text }), { key: ["owner"], people: ["passport"] });
+// after: written by anyone with the owner's auth, read only where declared, and never in an output schema
+export const userPrivate = table("user_private", Row, { key: ["owner"], secret: { passport: { readBy: ["bookings.fillForm"] } } });
+```

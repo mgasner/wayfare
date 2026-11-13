@@ -1,4 +1,4 @@
-import type { Anchor, Area, City, Fact, FactView, Meal, PlaceCard, Save, SlotRead, Trip, TripView, User } from "../../../../shared/records";
+import type { Anchor, Area, City, Fact, FactView, Meal, Me, PlaceCard, Save, SlotRead, Trip, TripView, User } from "../../../../shared/records";
 import type { Change, InterpretResult } from "../../../../shared/actions.js";
 import type { Input as In, Name, Output as Out } from "../../api.js";
 import { estimateMinutes } from "../geo";
@@ -33,6 +33,8 @@ interface State {
   slotReads: SlotRead[];
   undo: Record<string, Change[]>;
   icsFeeds: string[];
+  /** Only whether a passport was given: fixtures never keep the number. */
+  passportOnFile: boolean;
 }
 
 const t0 = "2026-11-12T22:00:00Z";
@@ -64,7 +66,7 @@ function seed(): State {
         appetite: { tastings: 3, sit_down: 5, lunch_main: true },
         budget: { per_person: 1800, currency: "USD" },
         diet: [],
-        booking: { passport_on_file: false, credits_usd: 0, whatsapp_fallback: true },
+        booking: { credits_usd: 0, whatsapp_fallback: true },
         refresh: "standard",
         created_at: t0,
       },
@@ -117,6 +119,7 @@ function seed(): State {
     slotReads: [],
     undo: {},
     icsFeeds: [],
+    passportOnFile: false,
   };
 }
 
@@ -341,7 +344,17 @@ function undo({ undo: token }: In<"input.undo">): Out<"input.undo"> {
 type Handlers = { [N in Name]?: (input: In<N>) => Out<N> | Promise<Out<N>> };
 
 const handlers: Handlers = {
-  "me.get": () => ME,
+  "me.get": (): Me => ({ ...ME, passport_on_file: state.passportOnFile }),
+  "me.setPassport": () => {
+    state.passportOnFile = true;
+    persist();
+    return { passport_on_file: true as const };
+  },
+  "me.clearPassport": () => {
+    state.passportOnFile = false;
+    persist();
+    return { passport_on_file: false as const };
+  },
   "cities.get": ({ id }) => (id === "lima" ? { city: DATA.city, areas: DATA.areas } : fail(`No city ${id}`)),
   "places.search": ({ city, kinds, area, q, limit }) => {
     const nq = q ? norm(q) : null;

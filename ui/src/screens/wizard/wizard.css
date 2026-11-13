@@ -609,3 +609,8 @@ i.sw {
 .stay-hits .wiz-small {
   display: block;
 }
+
+.on-file {
+  gap: 4px;
+  color: var(--ok);
+}

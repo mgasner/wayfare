@@ -3,6 +3,9 @@ import type { FileDatabase } from "../lib/db.js";
 import type { Auth } from "../lib/nexus.js";
 import { callAs } from "./helpers.js";
 
+/** Passport numbers as people type them: ICAO letter-digit forms, a US next-generation number, a digits-only one. */
+export const PASSPORTS = ["X1234567", "AB1234567", "A12345678", "123456789"];
+
 // Nov 20 2026 is a Friday, Nov 21 a Saturday.
 export const limaTrip = {
   city: "lima",
