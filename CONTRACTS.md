@@ -25,6 +25,8 @@ Plan: https://app.indent.com/reports/01a1d244-d12d-7998-a0e6-0439927ce1b1 (local
 | `anchors.add` / `anchors.remove` | mutation | Anchor minus id / `{ id }` | `Anchor` / `{ ok: true }` | C |
 | `anchors.whereAt` | query | `{ trip, date, time }` | `{ lat, lng, label, anchor: string \| null }` | C |
 | `travel.minutes` | query | `{ trip, date, time, places: string[], from?: { place } \| { lat, lng, label? } }` | `{ minutes: Record<string, number \| null>, estimated, from: { lat, lng, label, anchor } }` | C |
+| `stays.search` | query | `{ city, q, limit? }` | `{ results: { name, address, lat, lng, google_place_id, place }[], source: "google" \| "places" \| "none" }` | E |
+| `stays.minutes` | query | `{ city, lat, lng, date?, time? }` | `{ minutes: Record<area id, number \| null>, estimated }` | E |
 | `input.interpret` | mutation | `{ text, context: { screen, trip?, date?, place? } }` | `{ changes: Change[], undo: string }` | C |
 | `input.undo` | mutation | `{ undo }` | `{ ok: true }` | C |
 | `calendar.*` | | see C's PR | | C |
@@ -38,6 +40,8 @@ Plan: https://app.indent.com/reports/01a1d244-d12d-7998-a0e6-0439927ce1b1 (local
 `places.refreshSlots` returns the live read per date (and per service for Meitre), else the last good one with its old `checked_at`; a date neither could answer has no entry. Reads from the last minute are returned without a new call.
 
 `travel.minutes` starts from `from` when given (a place in the trip's city, or a point), else from `anchors.whereAt` at `date` `time`; `time` is also the departure for traffic.
+
+`stays.*` work before a trip exists (the wizard's "where you sleep"). `stays.search` tries Google Places text search inside the city's bbox, then our place table by name; the query text goes only to `interaction_private`. The wizard sets the trip's `base` name and coordinates together from a picked result.
 
 `agent.*` takes `Authorization: Bearer $AGENT_TOKEN` and runs as the `indent` actor. Fact values per field: `shared/facts.ts`.
 

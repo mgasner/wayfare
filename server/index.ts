@@ -9,7 +9,8 @@ import * as me from "./me.js";
 import * as meals from "./meals.js";
 import * as places from "./places.js";
 import * as saves from "./saves.js";
+import * as stays from "./stays.js";
 import * as travel from "./travel.js";
 import * as trips from "./trips.js";
 
-export const modules = { agent, anchors, calendar, cities, facts, input, me, meals, places, saves, travel, trips };
+export const modules = { agent, anchors, calendar, cities, facts, input, me, meals, places, saves, stays, travel, trips };

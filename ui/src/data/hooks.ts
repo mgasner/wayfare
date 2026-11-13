@@ -34,6 +34,25 @@ export const useWhereAt = (input: In<"anchors.whereAt"> | null) => useApi("ancho
 export const useTravelMinutes = (input: In<"travel.minutes"> | null) =>
   useApi("travel.minutes", input && input.places.length ? input : null, { placeholderData: keepPreviousData });
 
+function useDebounced<T>(value: T, ms: number): T {
+  const [v, setV] = useState(value);
+  useEffect(() => {
+    const t = setTimeout(() => setV(value), ms);
+    return () => clearTimeout(t);
+  }, [value, ms]);
+  return v;
+}
+
+/** Hotels or addresses matching `q` in a city, looked up 300 ms after typing stops. */
+export function useStaySearch(city: string, q: string) {
+  const term = useDebounced(q.trim(), 300);
+  return useApi("stays.search", term.length >= 2 ? { city, q: term, limit: 5 } : null, { staleTime: 10 * 60_000, placeholderData: keepPreviousData });
+}
+
+/** Taxi minutes from where you sleep to each area of the city. */
+export const useStayMinutes = (city: string, at: { lat: number; lng: number } | null) =>
+  useApi("stays.minutes", at ? { city, lat: at.lat, lng: at.lng } : null, { staleTime: 60 * 60_000, placeholderData: keepPreviousData });
+
 /** Lunch-to-dinner rides, one travel.minutes call per day, keyed by date. */
 export function useTravelHops(trip: string | null, hops: { date: string; from: string; to: string; time: string }[]) {
   return useQueries({
