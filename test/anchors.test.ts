@@ -135,6 +135,25 @@ describe("travel.minutes", () => {
     expect(await personalDataInInteractions(database)).toEqual([]);
   });
 
+  it("starts from a place instead of the anchors when given one", async () => {
+    setEnv({ GOOGLE_MAPS_KEY: "maps-key" });
+    const { bodies } = stubRoutes(() => 9);
+    const r = await ask({ places: ["maido"], from: { place: "rafael" } });
+    expect(r).toMatchObject({ estimated: false, minutes: { maido: 9 }, from: { label: "Rafael", anchor: null, lat: -12.1193, lng: -77.0359 } });
+    expect(bodies[0].origins[0].waypoint.location.latLng).toEqual({ latitude: -12.1193, longitude: -77.0359 });
+  });
+
+  it("starts from coordinates when given them", async () => {
+    const r = await ask({ places: ["maido"], from: { lat: -12.1253, lng: -77.0302, label: "Lunch" } });
+    expect(r).toMatchObject({ estimated: true, from: { label: "Lunch", anchor: null } });
+    expect(r.minutes.maido).toBeLessThanOrEqual(4);
+  });
+
+  it("rejects an origin place that isn't in the trip's city", async () => {
+    const r = await callAs(max, "travel.minutes", { trip, date: "2026-11-20", time: "13:00", places: ["maido"], from: { place: "nowhere" } });
+    expect(r.status).toBe(404);
+  });
+
   it("falls back to the estimate when the Routes API fails", async () => {
     setEnv({ GOOGLE_MAPS_KEY: "maps-key" });
     stubRoutes(() => 1, 403);

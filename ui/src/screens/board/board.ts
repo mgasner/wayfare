@@ -3,7 +3,6 @@ import type { Output } from "../../api.js";
 import type { CellStatus } from "../../components/StatusChip";
 import { closedOn, timesFor, type MealSlot } from "../../data/availability";
 import { priceUsd } from "../../data/facts";
-import { estimateMinutes } from "../../data/geo";
 import { dateRange, isSunday, minutesOf } from "../../lib/dates";
 
 export interface Cell {
@@ -28,8 +27,10 @@ export interface Row {
   date: string;
   lunch: Cell;
   dinner: Cell;
-  /** Taxi minutes from the lunch place to the dinner place, when both are known. */
+  /** Taxi minutes from the lunch place to the dinner place (travel.minutes), when both are known. */
   hop: number | null;
+  /** The hop is a distance estimate because the Routes API wasn't available. */
+  hopEstimated: boolean;
   /** Reserve-ahead places closed that day, for the closures marker. */
   closures: number;
 }
@@ -74,11 +75,38 @@ export function buildBoard(view: TripView, places: PlaceCard[], conflicts: Confl
   return dateRange(view.trip.start_date, view.trip.end_date).map((date) => {
     const lunch = cell(view, places, date, "lunch", conflicts);
     const dinner = cell(view, places, date, "dinner", conflicts);
-    const a = lunch.place;
-    const b = dinner.place;
-    const hop = a?.lat != null && a.lng != null && b?.lat != null && b.lng != null && a.id !== b.id ? estimateMinutes({ lat: a.lat, lng: a.lng }, { lat: b.lat, lng: b.lng }) : null;
     const closures = places.filter((p) => p.kind === "reserve_ahead" && closedOn(p, date)).length;
-    return { date, lunch, dinner, hop, closures };
+    return { date, lunch, dinner, hop: null, hopEstimated: false, closures };
+  });
+}
+
+/** A lunch-to-dinner ride to ask travel.minutes for: leave `from` at `time` for `to`. */
+export interface HopQuery {
+  date: string;
+  from: string;
+  to: string;
+  time: string;
+}
+
+const LEAVE_BEFORE_DINNER_MIN = 30;
+
+/** Days whose lunch and dinner are at two different places with coordinates. */
+export function hopQueries(rows: Row[]): HopQuery[] {
+  return rows.flatMap((r) => {
+    const a = r.lunch.meal && r.lunch.status !== "failed" ? r.lunch.place : null;
+    const b = r.dinner.meal && r.dinner.status !== "failed" ? r.dinner.place : null;
+    if (a?.lat == null || b?.lat == null || a.id === b.id) return [];
+    const dinner = minutesOf(r.dinner.meal?.time ?? "20:00");
+    const leave = Math.max(0, dinner - LEAVE_BEFORE_DINNER_MIN);
+    const time = `${String(Math.floor(leave / 60)).padStart(2, "0")}:${String(leave % 60).padStart(2, "0")}`;
+    return [{ date: r.date, from: a.id, to: b.id, time }];
+  });
+}
+
+export function withHops(rows: Row[], hops: Record<string, { minutes: number | null; estimated: boolean } | undefined>): Row[] {
+  return rows.map((r) => {
+    const h = hops[r.date];
+    return h ? { ...r, hop: h.minutes, hopEstimated: h.estimated } : r;
   });
 }
 

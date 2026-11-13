@@ -24,7 +24,7 @@ Plan: https://app.indent.com/reports/01a1d244-d12d-7998-a0e6-0439927ce1b1 (local
 | `anchors.list` | query | `{ trip }` | `Anchor[]` | C |
 | `anchors.add` / `anchors.remove` | mutation | Anchor minus id / `{ id }` | `Anchor` / `{ ok: true }` | C |
 | `anchors.whereAt` | query | `{ trip, date, time }` | `{ lat, lng, label, anchor: string \| null }` | C |
-| `travel.minutes` | query | `{ trip, date, time, places: string[] }` | `Record<string, number \| null>` | C |
+| `travel.minutes` | query | `{ trip, date, time, places: string[], from?: { place } \| { lat, lng, label? } }` | `{ minutes: Record<string, number \| null>, estimated, from: { lat, lng, label, anchor } }` | C |
 | `input.interpret` | mutation | `{ text, context: { screen, trip?, date?, place? } }` | `{ changes: Change[], undo: string }` | C |
 | `input.undo` | mutation | `{ undo }` | `{ ok: true }` | C |
 | `calendar.*` | | see C's PR | | C |
@@ -36,6 +36,8 @@ Plan: https://app.indent.com/reports/01a1d244-d12d-7998-a0e6-0439927ce1b1 (local
 | `agent.expireFacts` | mutation | `{ facts?: { place, field, source }[], user_facts_before? }` | `{ deleted }` | B |
 
 `places.refreshSlots` returns the live read per date (and per service for Meitre), else the last good one with its old `checked_at`; a date neither could answer has no entry. Reads from the last minute are returned without a new call.
+
+`travel.minutes` starts from `from` when given (a place in the trip's city, or a point), else from `anchors.whereAt` at `date` `time`; `time` is also the departure for traffic.
 
 `agent.*` takes `Authorization: Bearer $AGENT_TOKEN` and runs as the `indent` actor. Fact values per field: `shared/facts.ts`.
 

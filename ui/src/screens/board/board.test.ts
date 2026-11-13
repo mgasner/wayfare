@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import type { PlaceCard, TripView } from "../../../../shared/records";
 import { fixtureTransport, resetFixtures } from "../../data/fixtures/backend";
-import { buildBoard, FAR_HOP_MIN, showClosures, spend, tally } from "./board";
+import { buildBoard, FAR_HOP_MIN, hopQueries, showClosures, spend, tally, withHops } from "./board";
 
 let view: TripView;
 let places: PlaceCard[];
@@ -38,14 +38,25 @@ describe("trip board grid", () => {
     expect(rows.filter(showClosures).map((r) => r.date)).toEqual(["2026-11-15", "2026-11-22"]);
   });
 
-  it("measures the hop between lunch and dinner places", () => {
+  it("asks travel.minutes for the hop from the lunch place to dinner", async () => {
     const withLunch: TripView = {
       ...view,
       meals: [...view.meals, { ...view.meals[0]!, id: "m_walok", place: "wa-lok-barrio-chino", date: "2026-11-16", slot: "lunch", time: "14:30", status: "want" }],
       places: [...view.places, places.find((p) => p.id === "wa-lok-barrio-chino")!],
     };
-    const mon = buildBoard(withLunch, places).find((r) => r.date === "2026-11-16")!;
+    const rows = buildBoard(withLunch, places);
+    const queries = hopQueries(rows);
+    expect(queries).toEqual([{ date: "2026-11-16", from: "wa-lok-barrio-chino", to: "central", time: "19:30" }]);
+    const travel = (await fixtureTransport("travel.minutes", { trip: "lima-nov-2026", date: "2026-11-16", time: "19:30", places: ["central"], from: { place: "wa-lok-barrio-chino" } })) as {
+      minutes: Record<string, number>;
+      estimated: boolean;
+      from: { label: string };
+    };
+    expect(travel.from.label).toMatch(/Wa Lok/);
+    const mon = withHops(rows, { "2026-11-16": { minutes: travel.minutes.central!, estimated: travel.estimated } }).find((r) => r.date === "2026-11-16")!;
     expect(mon.hop).toBeGreaterThanOrEqual(FAR_HOP_MIN);
+    expect(mon.hopEstimated).toBe(true);
+    expect(rows.find((r) => r.date === "2026-11-16")!.hop).toBeNull();
   });
 
   it("marks meals that overlap a far-away plan", () => {
